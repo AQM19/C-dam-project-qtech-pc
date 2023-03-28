@@ -1,0 +1,6 @@
+C:\Users\a.quintanal\Desktop\aquintanal\QTECH_PC\Q-Tech\AccesData\bin\Debug\AccesData.dll
+C:\Users\a.quintanal\Desktop\aquintanal\QTECH_PC\Q-Tech\AccesData\bin\Debug\AccesData.pdb
+C:\Users\a.quintanal\Desktop\aquintanal\QTECH_PC\Q-Tech\AccesData\obj\Debug\AccesoDatos.csproj.AssemblyReference.cache
+C:\Users\a.quintanal\Desktop\aquintanal\QTECH_PC\Q-Tech\AccesData\obj\Debug\AccesoDatos.csproj.CoreCompileInputs.cache
+C:\Users\a.quintanal\Desktop\aquintanal\QTECH_PC\Q-Tech\AccesData\obj\Debug\AccesData.dll
+C:\Users\a.quintanal\Desktop\aquintanal\QTECH_PC\Q-Tech\AccesData\obj\Debug\AccesData.pdb
