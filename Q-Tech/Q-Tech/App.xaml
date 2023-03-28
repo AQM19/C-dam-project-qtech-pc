@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:Q_Tech"
              StartupUri="/Modales/Login.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>

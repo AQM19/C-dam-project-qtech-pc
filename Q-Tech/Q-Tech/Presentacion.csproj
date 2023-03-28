@@ -91,6 +91,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\PasswordConverter.cs" />
     <Compile Include="Modales\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
@@ -147,6 +148,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Fondos\login_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Fondos\login_blue_background.jpeg" />
+    <Resource Include="Recursos\Fondos\login_green_background.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\MainIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

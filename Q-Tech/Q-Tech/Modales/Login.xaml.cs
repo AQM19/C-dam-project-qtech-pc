@@ -24,5 +24,10 @@ namespace Q_Tech
         {
             InitializeComponent();
         }
+
+        private void PasswordViewer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
