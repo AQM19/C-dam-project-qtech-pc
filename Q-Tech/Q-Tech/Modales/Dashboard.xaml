@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:Q_Tech.Modales"
         mc:Ignorable="d"
         Title="FrmDashboard" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/Recursos/Fondos/login_green_background.jpeg"/>
+    </Window.Background>
     <Grid>
-        
+        <DockPanel LastChildFill="True">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="auto" Width="120">
+                <TextBlock Text="Q-TECH" TextAlignment="Center" FontSize="25" Padding="0, 15"/>
+                <Button>
+                    <Image Source="" />
+                </Button>
+            </StackPanel>
+        </DockPanel>
     </Grid>
 </Window>
