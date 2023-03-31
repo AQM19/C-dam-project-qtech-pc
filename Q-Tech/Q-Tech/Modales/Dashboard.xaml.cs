@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -22,6 +23,21 @@ namespace Q_Tech.Modales
         public FrmDashboard()
         {
             InitializeComponent();
+        }        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button clickedButton = (Button)sender;
+            Point targetPoint = clickedButton.TranslatePoint(new Point(0, 0), dkpVerticalMenu);
+
+            DoubleAnimation animationY = new DoubleAnimation();
+            animationY.To = targetPoint.Y - 65;
+            animationY.Duration = TimeSpan.FromSeconds(0.3);
+
+            TranslateTransform transform = (TranslateTransform)movingImage.RenderTransform;
+
+            transform.BeginAnimation(TranslateTransform.YProperty, animationY);
+            
         }
+        
     }
 }

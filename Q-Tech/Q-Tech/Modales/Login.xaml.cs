@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Q_Tech.Modales;
 
 namespace Q_Tech
 {
@@ -58,7 +59,9 @@ namespace Q_Tech
         {
             if (ValidData())
             {
-                MessageBox.Show("¡Login correcto!.");
+                FrmDashboard dashboard = new FrmDashboard();
+                dashboard.ShowDialog();
+                this.Hide();
             }
         }
 

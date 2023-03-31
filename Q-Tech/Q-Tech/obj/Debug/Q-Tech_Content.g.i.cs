@@ -8,9 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("recursos/iconos/hide.svg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("recursos/iconos/padlock.svg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("recursos/iconos/show.svg")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("recursos/iconos/usuario.svg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("recursos/iconos/selectedmenuitem.svg")]
 
 

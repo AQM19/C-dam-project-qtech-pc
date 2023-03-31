@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Q_Tech"
-        xmlns:converters="clr-namespace:Q_Tech.Converters"
         mc:Ignorable="d"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
@@ -23,7 +22,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="/Recursos/Iconos/usuario.png" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="7.5,0,0,0"/>
+                        <Image Source="/Recursos/Iconos/usuarioa.png" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="7.5,0,0,0"/>
                         <TextBox Grid.Column="1" Margin="5" BorderThickness="0" Background="Transparent" x:Name="txtUser"/>
                     </Grid>
                 </Border>

@@ -5,18 +5,112 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Q_Tech.Modales"
         mc:Ignorable="d"
-        Title="FrmDashboard" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="FrmDashboard" Height="600" Width="1200">
     <Window.Background>
         <ImageBrush ImageSource="/Recursos/Fondos/login_green_background.jpeg"/>
     </Window.Background>
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button" x:Key="MenuButtonTop">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="Padding" Value="1,5" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="Button" x:Key="MenuButtonBot">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="Padding" Value="1,16" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Height="auto" Width="120">
-                <TextBlock Text="Q-TECH" TextAlignment="Center" FontSize="25" Padding="0, 15"/>
-                <Button>
-                    <Image Source="" />
+            <DockPanel LastChildFill="False" HorizontalAlignment="Left" Background="#88FFFFFF" x:Name="dkpVerticalMenu" Width="200">
+
+                <TextBlock DockPanel.Dock="Top" Text="Q-TECH" TextAlignment="Center" FontSize="25" Padding="0, 15" Grid.Column="1"/>
+
+                <Button DockPanel.Dock="Top" Style="{StaticResource MenuButtonTop}" x:Name="btnInicio" Click="Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Recursos/Iconos/SelectedMenuItem.png" Height="28" Visibility="Visible" x:Name="movingImage">
+                            <Image.RenderTransform>
+                                <TranslateTransform X="0" Y="0" />
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock Text="Inicio" VerticalAlignment="Center" FontSize="18" />
+                    </StackPanel>
                 </Button>
-            </StackPanel>
+
+                <Button DockPanel.Dock="Top" Style="{StaticResource MenuButtonTop}" x:Name="btnTerrarios" Click="Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Terrarios" VerticalAlignment="Center" FontSize="18" Margin="28,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button DockPanel.Dock="Top" Style="{StaticResource MenuButtonTop}" x:Name="btnUsuarios" Click="Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Usuarios" VerticalAlignment="Center" FontSize="18" Margin="28,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button  DockPanel.Dock="Top" Style="{StaticResource MenuButtonTop}" x:Name="btnLogros" Click="Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Logros" VerticalAlignment="Center" FontSize="18" Margin="28,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+
+                <Grid DockPanel.Dock="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Column="1" Grid.Row="0" DockPanel.Dock="Bottom" Style="{StaticResource MenuButtonBot}">
+                        <StackPanel Orientation="Horizontal" Margin="15,0">
+                            <Image Grid.Column="0" Grid.Row="0" Source="/Recursos/Iconos/help.png" Width="28"/>
+                            <TextBlock Text="Ayuda" Margin="10,0" FontSize="20"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Grid.Column="1" Grid.Row="1" DockPanel.Dock="Bottom" Style="{StaticResource MenuButtonBot}">
+                        <StackPanel Orientation="Horizontal" Margin="15,0">
+                            <Image Source="/Recursos/Iconos/settings.png" Width="28" />
+                            <TextBlock Text="Opciones" Margin="10,0" FontSize="20"/>
+                        </StackPanel>
+                    </Button>
+
+                </Grid>
+            </DockPanel>
+
+            <Frame x:Name="frmMainFrame">
+
+            </Frame>
+
         </DockPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,25,0">
+            <Button Background="Transparent" BorderThickness="0" Margin="5,0">
+                <Border CornerRadius="25" Width="50" Height="50" BorderThickness="1" BorderBrush="Gray">
+                    <Image Source="/Recursos/Iconos/bell.png" Width="32" Cursor="Hand"/>
+                </Border>
+            </Button>
+            <Button Background="Transparent" BorderThickness="0" Margin="5,0">
+                <Border CornerRadius="25" Width="50" Height="50" BorderThickness="1" BorderBrush="Gray">
+                    <Image Source="/Recursos/Iconos/usuariob.png" Width="32" Cursor="Hand"/>
+                </Border>
+            </Button>
+        </StackPanel>
+
     </Grid>
 </Window>

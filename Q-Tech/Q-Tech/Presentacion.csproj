@@ -143,7 +143,6 @@
     <Resource Include="Recursos\Iconos\hide.png" />
     <Resource Include="Recursos\Iconos\padlock.png" />
     <Resource Include="Recursos\Iconos\show.png" />
-    <Resource Include="Recursos\Iconos\usuario.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Fondos\login_background.png" />
@@ -154,6 +153,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Iconos\MainIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\SelectedMenuItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\bell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\usuariob.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\usuarioa.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
