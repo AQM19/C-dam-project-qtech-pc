@@ -1,0 +1,51 @@
+﻿<Page x:Class="Q_Tech.Modales.Index"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Q_Tech.Modales"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Index"
+      Background="#88FFFFFF">
+
+    <Grid>
+        <DockPanel LastChildFill="True">
+
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" x:Name="spListTerra">
+
+
+            </StackPanel>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
+
+                <Border CornerRadius="15" Height="300" Width="300" Margin="15" Grid.Column="0" Grid.RowSpan="2" Grid.Row="0" x:Name="bdrMainTerra" ContentElement.MouseDown="bdrMainTerra_MouseDown">
+                    <Border.Background>
+                        <ImageBrush  Stretch="Fill" x:Name="SelectedTerra"/>
+                    </Border.Background>
+                </Border>
+
+                <TextBlock Text="30º" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" FontSize="100" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="txbTemperatura"/>
+                <TextBlock Text="30%" Grid.Column="1" Grid.Row="2" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="txbHumedad"/>
+                <TextBlock Text="30" Grid.Column="2" Grid.Row="2" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="txbLuz"/>
+
+            </Grid>
+        </DockPanel>
+
+        <Border CornerRadius="25" Width="35" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="15">
+            <Border.Background>
+                <ImageBrush ImageSource="/Recursos/Iconos/add.png"/>
+            </Border.Background>
+        </Border>
+
+    </Grid>
+</Page>

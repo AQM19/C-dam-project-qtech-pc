@@ -60,8 +60,9 @@ namespace Q_Tech
             if (ValidData())
             {
                 FrmDashboard dashboard = new FrmDashboard();
-                dashboard.ShowDialog();
                 this.Hide();
+                dashboard.ShowDialog();
+                this.Close();
             }
         }
 

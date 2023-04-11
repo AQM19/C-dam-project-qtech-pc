@@ -10,3 +10,8 @@ C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\AccesData\obj\Debug\
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\AccesData\obj\Debug\AccesoDatos.csproj.CoreCompileInputs.cache
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\AccesData\obj\Debug\AccesData.dll
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\AccesData\obj\Debug\AccesData.pdb
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\AccesData\bin\Debug\Newtonsoft.Json.dll
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\AccesData\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\AccesData\bin\Debug\Newtonsoft.Json.xml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\AccesData\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\AccesData\obj\Debug\AccesoDatos.csproj.CopyComplete

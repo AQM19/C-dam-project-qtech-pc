@@ -20,3 +20,8 @@ C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\BusinessLogic\obj\De
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\BusinessLogic\obj\Debug\LogicaNegocio.csproj.CopyComplete
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\BusinessLogic\bin\Debug\BusinessLogic.dll.config
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\BusinessLogic\bin\Debug\Newtonsoft.Json.dll
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\BusinessLogic\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\BusinessLogic\bin\Debug\Newtonsoft.Json.xml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\BusinessLogic\bin\Debug\System.Net.Http.Formatting.xml

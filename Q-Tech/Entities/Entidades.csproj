@@ -41,7 +41,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alerta.cs" />
+    <Compile Include="Animal.cs" />
+    <Compile Include="ConfiguracionUsuario.cs" />
+    <Compile Include="Dato.cs" />
+    <Compile Include="Especie.cs" />
+    <Compile Include="EspecieTerrario.cs" />
+    <Compile Include="Estadistica.cs" />
+    <Compile Include="HistorialCambio.cs" />
+    <Compile Include="Logro.cs" />
+    <Compile Include="Notificacion.cs" />
+    <Compile Include="Observacion.cs" />
+    <Compile Include="Planta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tarea.cs" />
+    <Compile Include="Terrario.cs" />
+    <Compile Include="Usuario.cs" />
+    <Compile Include="UsuarioLogro.cs" />
+    <Compile Include="UsuarioUsuario.cs" />
+    <Compile Include="Visita.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -76,4 +76,16 @@ C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Pre
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Presentacion.csproj.CopyComplete
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Q-Tech.exe
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Q-Tech.pdb
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Paginas\Index.g.cs
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Paginas\Index.baml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\bin\Debug\BusinessLogic.dll.config
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\bin\Debug\AccesData.dll
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\bin\Debug\Newtonsoft.Json.dll
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\bin\Debug\AccesData.pdb
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\bin\Debug\Newtonsoft.Json.xml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Paginas\pgUsuarios.g.cs
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Paginas\pgUsuarios.baml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Paginas\pgTerrarios.baml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Paginas\pgTerrarios.g.cs

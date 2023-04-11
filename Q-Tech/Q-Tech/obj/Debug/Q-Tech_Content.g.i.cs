@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("recursos/iconos/selectedmenuitem.svg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("modales/frmindex.xaml")]
 
 

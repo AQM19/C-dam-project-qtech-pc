@@ -34,8 +34,7 @@
     <Grid>
         <DockPanel LastChildFill="True">
             <DockPanel LastChildFill="False" HorizontalAlignment="Left" Background="#88FFFFFF" x:Name="dkpVerticalMenu" Width="200">
-
-                <TextBlock DockPanel.Dock="Top" Text="Q-TECH" TextAlignment="Center" FontSize="25" Padding="0, 15" Grid.Column="1"/>
+                <Image Source="/Recursos/Fondos/logo-qtech-full.png" DockPanel.Dock="Top" Margin="0,15" Width="150"/>
 
                 <Button DockPanel.Dock="Top" Style="{StaticResource MenuButtonTop}" x:Name="btnInicio" Click="Button_Click">
                     <StackPanel Orientation="Horizontal">
@@ -93,24 +92,39 @@
                 </Grid>
             </DockPanel>
 
-            <Frame x:Name="frmMainFrame">
+            <DockPanel DockPanel.Dock="Top" LastChildFill="False" VerticalAlignment="Center">
+
+                <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Height="30" Margin="15,0,0,0" ContentElement.MouseDown="Border_MouseDown">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Recursos/Iconos/lupa.png" Height="auto" Margin="5"/>
+                        <TextBox Width="300" Margin="5" BorderThickness="0" x:Name="txtBuscador" VerticalContentAlignment="Center" FontSize="16"/>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,25,0">
+
+                    <Border CornerRadius="25" Width="30" Height="30" BorderThickness="1" BorderBrush="Gray" Margin="5,0" Cursor="Hand">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Recursos/Iconos/bell.png" ViewportUnits="RelativeToBoundingBox" Viewport="0.1,0.1,0.8,0.8"/>
+                        </Border.Background>
+                    </Border>
+
+                    <Border CornerRadius="25" Width="30" Height="30" BorderThickness="1" BorderBrush="Gray" Margin="5,0" Cursor="Hand">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Recursos/Iconos/usuariob.png" ViewportUnits="RelativeToBoundingBox" Viewport="0.1,0.1,0.8,0.8"/>
+                        </Border.Background>
+                    </Border>
+
+                </StackPanel>
+            </DockPanel>
+
+            <Frame x:Name="frmMainFrame" NavigationUIVisibility="Hidden">
 
             </Frame>
 
         </DockPanel>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,25,0">
-            <Button Background="Transparent" BorderThickness="0" Margin="5,0">
-                <Border CornerRadius="25" Width="50" Height="50" BorderThickness="1" BorderBrush="Gray">
-                    <Image Source="/Recursos/Iconos/bell.png" Width="32" Cursor="Hand"/>
-                </Border>
-            </Button>
-            <Button Background="Transparent" BorderThickness="0" Margin="5,0">
-                <Border CornerRadius="25" Width="50" Height="50" BorderThickness="1" BorderBrush="Gray">
-                    <Image Source="/Recursos/Iconos/usuariob.png" Width="32" Cursor="Hand"/>
-                </Border>
-            </Button>
-        </StackPanel>
+        
 
     </Grid>
 </Window>

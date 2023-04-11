@@ -14,7 +14,7 @@
     <Grid>
         <Border CornerRadius="10" Width="250" Height="250" HorizontalAlignment="Left" Margin="75,0,0,0" Padding="10" Background="#BFFFFFFF">
             <DockPanel LastChildFill="True">
-                <TextBlock Text="Q-TECH" Padding="0" FontSize="24" TextAlignment="Center" DockPanel.Dock="Top"/>
+                <Image Source="/Recursos/Fondos/logo-qtech-full.png" DockPanel.Dock="Top" HorizontalAlignment="Center" Width="100"/>
 
                 <Border BorderBrush="#B3B3B3B3" BorderThickness="0.5" CornerRadius="15" DockPanel.Dock="Top" Width="175" Height="30" Margin="0,15,0,5" x:Name="brdUser" GotFocus="brdUser_GotFocus">
                     <Grid>
