@@ -11,7 +11,7 @@
             <!--Vendo helados y camionetas-->
         </ListView>
 
-        <Border CornerRadius="25" Width="35" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="15" x:Name="AddTerra" MouseDown="AddTerra_MouseDown">
+        <Border CornerRadius="25" Width="35" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="15" x:Name="AddTerra" MouseDown="AddTerra_MouseDown" MouseEnter="AddTerra_MouseEnter">
             <Border.Background>
                 <ImageBrush ImageSource="/Recursos/Iconos/add.png"/>
             </Border.Background>

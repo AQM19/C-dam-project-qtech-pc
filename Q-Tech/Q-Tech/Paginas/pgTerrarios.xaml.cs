@@ -164,8 +164,14 @@ namespace Q_Tech.Paginas
 
         private void AddTerra_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            frmTerraMaker frmTerraMaker = new frmTerraMaker();
+            Terrario terrario = new Terrario();
+            frmTerraMaker frmTerraMaker = new frmTerraMaker(_usuario, terrario);
             frmTerraMaker.ShowDialog();
+        }
+
+        private void AddTerra_MouseEnter(object sender, MouseEventArgs e)
+        {
+            AddTerra.Background = new SolidColorBrush(Color.FromRgb(25, 135, 84));
         }
     }
 }
