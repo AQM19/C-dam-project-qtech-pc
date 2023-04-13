@@ -30,5 +30,12 @@ namespace BusinessLogic
             List<Terrario> terrarios = await qc.GetAsync<List<Terrario>>("https://qtechapi.azurewebsites.net/autoterra/v1/terrarios");
             return terrarios.Where( t => t.Idusuario == id ).ToList();
         }
+
+        public static async Task<List<Especie>> GetEspecies()
+        {
+            QConsumer qc = new QConsumer();
+            List<Especie> especies = await qc.GetAsync<List<Especie>>("https://qtechapi.azurewebsites.net/autoterra/v1/especies");
+            return especies;
+        }
     }
 }

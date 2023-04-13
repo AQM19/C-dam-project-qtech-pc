@@ -1,5 +1,6 @@
 ﻿using BusinessLogic;
 using Entities;
+using Q_Tech.Prop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -163,7 +164,8 @@ namespace Q_Tech.Paginas
 
         private void AddTerra_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            frmTerraMaker frmTerraMaker = new frmTerraMaker();
+            frmTerraMaker.ShowDialog();
         }
     }
 }

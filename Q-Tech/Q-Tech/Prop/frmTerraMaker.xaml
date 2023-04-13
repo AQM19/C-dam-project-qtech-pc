@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Q_Tech.Prop"
         xmlns:dlg="clr-namespace:Microsoft.Win32;assembly=PresentationFramework"
         mc:Ignorable="d"
-        Title="Terrario de %username%" Height="450" Width="450"
+        Title="Terrario de %username%" Height="550" Width="450"
         ResizeMode="NoResize">
     <Grid>
         <StackPanel Orientation="Vertical">
@@ -95,12 +95,33 @@
                                 <ImageBrush ImageSource="/Recursos/Iconos/subir.png" />
                             </Border.Background>
                         </Border>
-                        <TextBlock x:Name="txtImageSource" TextTrimming="CharacterEllipsis" />
+                        <TextBlock x:Name="txtImageSource" TextTrimming="CharacterEllipsis" Margin="0,0,5,0"/>
                     </DockPanel>
                 </StackPanel>
 
                 <!--Row 2-->
-                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="15,3">
+                <DockPanel LastChildFill="True" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="15,3">
+                    <StackPanel Orientation="Vertical" DockPanel.Dock="Right">
+                        <Border x:Name="bdrAddSp" Width="16" Height="16" CornerRadius="5" MouseDown="bdrAddSp_MouseDown" VerticalAlignment="Top">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Recursos/Iconos/add_16x16.png" />
+                            </Border.Background>
+                        </Border>
+                        <Border x:Name="bdrDelSp" Width="16" Height="16" CornerRadius="5" MouseDown="bdrDelSp_MouseDown" VerticalAlignment="Top" Margin="0,5">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Recursos/Iconos/del_16x16.png" />
+                            </Border.Background>
+                        </Border>
+                    </StackPanel>
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+                        <ListView x:Name="lvEspecies" Margin="0,0,5,0" Height="100"/>
+
+                    </ScrollViewer>
+                </DockPanel>
+                
+                
+                <!--Row 3-->
+                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Margin="15,3">
                     <TextBlock Text="Descripción:" Margin="0,3"/>
                     <TextBox AcceptsReturn="True" MinHeight="130" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" MaxLength="300" x:Name="tbDescription" KeyUp="tbDescription_KeyUp"/>
                     <TextBlock HorizontalAlignment="Right" x:Name="txtCharacterCounter" FontSize="9" Visibility="Hidden"/>

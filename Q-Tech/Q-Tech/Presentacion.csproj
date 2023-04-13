@@ -88,6 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BoolToImageConverter.cs" />
+    <Compile Include="Prop\frmEspecies.xaml.cs">
+      <DependentUpon>frmEspecies.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Prop\frmTerraMaker.xaml.cs">
       <DependentUpon>frmTerraMaker.xaml</DependentUpon>
     </Compile>
@@ -122,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paginas\pgUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prop\frmEspecies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,6 +231,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Iconos\subir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\add_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\del_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

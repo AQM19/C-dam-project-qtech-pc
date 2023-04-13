@@ -89,3 +89,13 @@ C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Pag
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Paginas\pgUsuarios.baml
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Paginas\pgTerrarios.baml
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Paginas\pgTerrarios.g.cs
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\bin\Debug\Microsoft.Azure.KeyVault.Core.dll
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\bin\Debug\Microsoft.WindowsAzure.Storage.dll
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\bin\Debug\Microsoft.Azure.KeyVault.Core.xml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\bin\Debug\Microsoft.WindowsAzure.Storage.pdb
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\bin\Debug\Microsoft.WindowsAzure.Storage.xml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Prop\frmEspecies.g.cs
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Prop\frmTerraMaker.g.cs
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Prop\frmEspecies.baml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Q-Tech\obj\Debug\Prop\frmTerraMaker.baml

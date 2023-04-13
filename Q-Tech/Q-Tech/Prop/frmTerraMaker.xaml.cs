@@ -1,6 +1,9 @@
 ﻿using Entities;
 using Microsoft.Win32;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -12,9 +15,11 @@ namespace Q_Tech.Prop
     public partial class frmTerraMaker : Window
     {
         private Usuario _usuario;
+        private List<Especie> _especies;
         public frmTerraMaker()
         {
             InitializeComponent();
+            _especies = new List<Especie>();
         }
 
         public frmTerraMaker(Usuario usuario) : base()
@@ -111,7 +116,56 @@ namespace Q_Tech.Prop
                 pwbPassword.Focus();
                 return false;
             }
+            if (int.Parse(numberPicker.Text) <= 0)
+            {
+                MessageBox.Show("El terrario no puede tener un tamaño negativo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                numberPicker.Focus();
+                return false;
+            }
+
             return true;
+        }
+
+        private void bdrAddSp_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            frmEspecies frmEspecies = new frmEspecies();
+            frmEspecies.ShowDialog();
+
+            Especie especie = frmEspecies.Especie;
+            // Permite duplicidad de datos..
+            if (!_especies.Contains(especie))
+            {
+                _especies.Add(especie);
+                MostrarEspecies();
+            }
+        }
+
+        private void bdrDelSp_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (lvEspecies.SelectedItems.Count > 0)
+            {
+                ListViewItem item = (ListViewItem)lvEspecies.SelectedItem;
+                long id = (long)item.Tag;
+                Especie especie = _especies.Find(especies => especies.Id == id);
+                _especies.Remove(especie);
+                MostrarEspecies();
+            }
+        }
+
+        private void MostrarEspecies()
+        {
+            lvEspecies.Items.Clear();
+
+            for(int i = 0; i < _especies.Count; i++)
+            {
+                ListViewItem item = new ListViewItem
+                {
+                    Content = $"{_especies[i].Genero} {_especies[i].Sp}",
+                    Tag = _especies[i].Id
+                };
+
+                lvEspecies.Items.Add(item);
+            }
         }
     }
 }
