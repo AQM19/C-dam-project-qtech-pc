@@ -28,7 +28,7 @@ namespace Q_Tech.Modales
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Button clickedButton = (Button)sender;
+            Border clickedButton = (Border)sender;
             Point targetPoint = clickedButton.TranslatePoint(new Point(0, 0), dkpVerticalMenu);
 
             DoubleAnimation animationY = new DoubleAnimation();

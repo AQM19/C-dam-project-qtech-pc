@@ -23,6 +23,7 @@ namespace Q_Tech.Prop
     {
         private Usuario _usuario;
         private List<Especie> _especies;
+        private List<EspecieTerrario> _especiesTerrario;
         private Terrario _terrario;
 
         public Terrario Terrario { get => _terrario; set => _terrario = value; }
@@ -31,6 +32,7 @@ namespace Q_Tech.Prop
         {
             InitializeComponent();
             _especies = new List<Especie>();
+            _especiesTerrario = new List<EspecieTerrario>();
         }
 
         public frmTerraMaker(Usuario usuario, Terrario terrario) : this()
@@ -54,11 +56,11 @@ namespace Q_Tech.Prop
                 txtImageSource.Text = _terrario.Foto;
                 tbDescription.Text = _terrario.Descripcion;
 
-                List<EspecieTerrario> especiesTerrario = await Herramientas.GetEspeciesTerrario(_terrario.Id);
+                _especiesTerrario = await Herramientas.GetEspeciesTerrario(_terrario.Id);
 
-                for (int i = 0; i < especiesTerrario.Count; i++)
+                for (int i = 0; i < _especiesTerrario.Count; i++)
                 {
-                    Especie especie = await Herramientas.GetEspecie(especiesTerrario[i].Idespecie);
+                    Especie especie = await Herramientas.GetEspecie(_especiesTerrario[i].Idespecie);
                     _especies.Add(especie);
                 }
 
@@ -172,10 +174,28 @@ namespace Q_Tech.Prop
                     }
                 }
 
-                if(_terrario.Id >= 0)
+                if (_terrario.Id >= 0)
                 {
                     List<Visita> visitas = await Herramientas.GetVisitas(_terrario.Id);
                     _terrario.PuntuacionMedia = visitas.Average(x => x.Puntuacion);
+                }
+
+                List<long> idEspecies = _especies.Select(x => x.Id).ToList();
+                List<long> idEspeciesTerrario = _especiesTerrario.Select(x => x.Idespecie).ToList();
+                List<long> idFaltantes = idEspecies.Except(idEspeciesTerrario).ToList();
+
+                EspecieTerrario especieTerrario;
+
+                for (int i = 0; i < idFaltantes.Count; i++)
+                {
+                    especieTerrario = new EspecieTerrario
+                    {
+                        Idespecie = idFaltantes[i],
+                        Idterrario = _terrario.Id,
+                        FechaInsercion = DateTime.Today
+                    };
+
+                    // Crearlo con Herramientas
                 }
 
                 this.Close();
