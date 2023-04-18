@@ -12,7 +12,8 @@
         <ImageBrush ImageSource="/Recursos/Fondos/login_green_background.jpeg"/>
     </Window.Background>
     <Grid>
-        <Border CornerRadius="10" Width="250" Height="250" HorizontalAlignment="Left" Margin="75,0,0,0" Padding="10" Background="#BFFFFFFF">
+
+        <Border CornerRadius="10" Width="250" Height="250" HorizontalAlignment="Left" Margin="75,0,0,0" Padding="10" Background="#BFFFFFFF" x:Name="brdInicio">
             <DockPanel LastChildFill="True">
                 <Image Source="/Recursos/Fondos/logo-qtech-full.png" DockPanel.Dock="Top" HorizontalAlignment="Center" Width="100"/>
 
@@ -48,16 +49,87 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Button  Grid.Column="0" Content="Registro" HorizontalAlignment="Left" FontSize="9" BorderThickness="0" Background="Transparent" Foreground="#3A7CA5"/>
-                    <Button  Grid.Column="1" Content="Recordar contraseña" HorizontalAlignment="Right" FontSize="9" BorderThickness="0" Background="Transparent" Foreground="#3A7CA5"/>
+                    <TextBlock Cursor="Hand" Grid.Column="0" Text="Registro" HorizontalAlignment="Left" FontSize="9" Background="Transparent" Foreground="#3A7CA5" x:Name="txtRegistro" MouseDown="txtRegistro_MouseDown"/>
+                    <TextBlock Cursor="Hand" Grid.Column="1" Text="Recordar contraseña" HorizontalAlignment="Right" FontSize="9" Background="Transparent" Foreground="#3A7CA5" x:Name="txtRecordar" MouseDown="txtRecordar_MouseDown"/>
                 </Grid>
 
-                <Border CornerRadius="20" Width="125" Height="35" Background="#18B814">
-                    <Button Content="Iniciar sesión" Background="Transparent" BorderThickness="0" Foreground="#F8F8FF" x:Name="btnLogin" Click="btnLogin_Click" IsDefault="True"/>
+                <Border CornerRadius="20" Width="125" Height="35" Background="#18B814" x:Name="brdLogin" MouseDown="brdLogin_MouseDown" Cursor="Hand">
+                    <TextBlock Text="Iniciar sesión" Background="Transparent" Foreground="#F8F8FF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
-                
+
 
             </DockPanel>
         </Border>
+
+        <Border Visibility="Visible" CornerRadius="10" Width="250" Height="250" HorizontalAlignment="Right" Margin="0,0,75,0" Padding="10" Background="#BFFFFFFF" x:Name="brdRegistro">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <!--<ColumnDefinition Width="1*"/>-->
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <!--Row 0-->
+                <Path Cursor="Hand" x:Name="pthImage" MouseDown="pthImage_MouseDown" Data="M0,0 L10,100 L0,100 L90,100 L100,0 Z" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-50,0,0" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0">
+                    <Path.Fill>
+                        <ImageBrush ImageSource="/Recursos/Iconos/MainIcon.png" x:Name="imgBrush"/>
+                    </Path.Fill>
+                </Path>
+
+                <!--Row 1-->
+                    <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1">
+                        <TextBlock Text="Nombre de usuario:" Padding="5" TextAlignment="Center"/>
+                        <Border Margin="5,0" Background="Transparent" CornerRadius="5" BorderThickness="1" BorderBrush="#B3B3B3B3">
+                            <TextBox Margin="3" x:Name="txbUsername" BorderThickness="0" Background="Transparent"/>
+                        </Border>
+                    </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                    <TextBlock Text="Email:" Padding="5" TextAlignment="Center"/>
+                    <Border Margin="5,0" Background="Transparent" CornerRadius="5" BorderThickness="1" BorderBrush="#B3B3B3B3">
+                        <TextBox Margin="3" x:Name="txbEmail" BorderThickness="0" Background="Transparent"/>
+                    </Border>
+                </StackPanel>
+
+                <!--Row 2-->
+                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+                    <TextBlock x:Name="txtPassword" Text="Contraseña:" Padding="5" TextAlignment="Center"/>
+                    <Border BorderBrush="#B3B3B3B3" BorderThickness="1" CornerRadius="5" Margin="5,0" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Grid.Column="1" Margin="3" Background="Transparent" BorderThickness="0" x:Name="txbRegisterPass" Visibility="Hidden" KeyUp="txbRegisterPass_KeyUp"/>
+                            <PasswordBox Grid.Column="1" Margin="3" Background="Transparent" BorderThickness="0" x:Name="pwbRegisterPass" Visibility="Visible" KeyUp="pwbRegisterPass_KeyUp"/>
+                            <Button Grid.Column="2" Height="20" Margin="0,0,7.5,0" Background="Transparent" BorderThickness="0" x:Name="btnShowRegisterPass" Click="btnShowRegisterPass_Click">
+                                <Image Source="/Recursos/Iconos/show.png"/>
+                            </Button>
+
+                        </Grid>
+                    </Border>
+                </StackPanel>
+
+                <!--Row 4-->
+                <TextBlock Cursor="Hand" Text="Iniciar sesion" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Foreground="#3A7CA5" FontSize="9" TextAlignment="Center" Margin="0,5,0,0" x:Name="txtVerInicio" MouseDown="txtVerInicio_MouseDown"/>
+
+                <!--Row 5-->
+                <Border Margin="0,5" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" CornerRadius="20" Width="125" Height="35" Background="#18B814" x:Name="brdRegister" MouseDown="brdRegister_MouseDown" Cursor="Hand">
+                    <TextBlock Text="Registro" Background="Transparent" Foreground="#F8F8FF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+
+
+            </Grid>
+        </Border>
+
     </Grid>
 </Window>

@@ -99,7 +99,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\Index.xaml">
+    <Page Include="Paginas\pgIndex.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,8 +114,8 @@
     <Compile Include="Modales\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\Index.xaml.cs">
-      <DependentUpon>Index.xaml</DependentUpon>
+    <Compile Include="Paginas\pgIndex.xaml.cs">
+      <DependentUpon>pgIndex.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modales\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>

@@ -15,17 +15,17 @@ using System.Windows.Media;
 
 namespace Q_Tech.Modales
 {
-    public partial class Index : Page
+    public partial class pgIndex : Page
     {
         private long _id;
         private List<Terrario> _terrarios;
 
-        public Index()
+        public pgIndex()
         {
             InitializeComponent();
         }
 
-        public Index(long id) : this()
+        public pgIndex(long id) : this()
         {
             _id = id;
             ObtenerTerrarios();

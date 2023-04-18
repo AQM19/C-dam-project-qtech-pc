@@ -17,12 +17,10 @@ namespace Q_Tech.Modales
         public FrmDashboard()
         {
             InitializeComponent();
-            ObtenerUsuario();
         }
-
-        private async void ObtenerUsuario() // cachear el usuario
+        public FrmDashboard(Usuario usuario) : this()
         {
-            _usuario = await Herramientas.GetUsuario(1);
+            _usuario = usuario;
             CargarIndex();
         }
 
@@ -55,8 +53,8 @@ namespace Q_Tech.Modales
 
         private void CargarIndex()
         {
-            Index index = new Index(_usuario.Id);
-            frmMainFrame.Content = index;
+            pgIndex index = new pgIndex(_usuario.Id);
+            frmMainFrame.Content = index;   
         }
 
         private void CargarUsuarios()

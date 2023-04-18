@@ -59,5 +59,18 @@ namespace BusinessLogic
             List<Visita> visitas = await qc.GetAsync<List<Visita>>("https://qtechapi.azurewebsites.net/autoterra/v1/visitas");
             return visitas.Where(x => x.Idterrario == idTerrario).ToList();
         }
+
+        public static async Task<Usuario> Login(string param, string password)
+        {
+            QConsumer qc = new QConsumer();
+            Usuario usuario = await qc.PostAsync<Usuario>("https://qtechapi.azurewebsites.net/autoterra/v1/login", param, password);
+            return usuario;
+        }
+
+        public static async void CreateUsuario(Usuario usuario)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.CreateAsync("https://qtechapi.azurewebsites.net/autoterra/v1/usuarios", usuario);
+        }
     }
 }

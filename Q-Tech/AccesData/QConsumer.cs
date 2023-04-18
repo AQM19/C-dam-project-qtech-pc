@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,16 +30,19 @@ namespace AccesData
                 throw new ApplicationException($"Error al obtener el recurso: {response.StatusCode}");
             }
         }
-        public async Task<T> PostAsync<T>(string url, string usuario, string password)
+        public async Task<T> PostAsync<T>(string url, string user, string contra)
         {
-            object data = new { user = usuario, password = password };
+            Dictionary<string, string> data = new Dictionary<string, string>
+            {
+                { "param", user },
+                { "password", contra }
+            };
+
             string json = JsonConvert.SerializeObject(data);
             HttpClient client = new HttpClient();
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = await client.PostAsync(url, content);
-
-            if (response.IsSuccessStatusCode)
+                   HttpResponseMessage response = await client.PostAsync(url, content);
+                    if (response.IsSuccessStatusCode)
             {
                 string responseJson = await response.Content.ReadAsStringAsync();
                 T responseObject = JsonConvert.DeserializeObject<T>(responseJson);
@@ -49,6 +53,43 @@ namespace AccesData
                 return default;
             }
         }
+
+        //public async Task<T> PostAsync<T>(string url, string user, string contra)
+        //{
+        //    Dictionary<string, string> data = new Dictionary<string, string>
+        //    {
+        //        { "param", user },
+        //        { "password", contra }
+        //    };
+
+        //    try
+        //    {
+        //        string json = JsonConvert.SerializeObject(data);
+        //        HttpClient client = new HttpClient();
+        //        StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        //        HttpResponseMessage response = await client.PostAsync(url, content);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            string responseJson = await response.Content.ReadAsStringAsync();
+        //            T responseObject = JsonConvert.DeserializeObject<T>(responseJson);
+        //            return responseObject;
+        //        }
+        //        else
+        //        {
+        //            return default;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Manejar la excepción aquí, por ejemplo, imprimir el mensaje de error en la consola.
+        //        Console.WriteLine(ex.Message);
+        //        return default;
+        //    }
+        //}
+
+
         public async Task<T> CreateAsync<T>(string url, T data)
         {
             HttpClient client = new HttpClient();
