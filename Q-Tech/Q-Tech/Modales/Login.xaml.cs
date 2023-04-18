@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Azure.Storage.Blobs;
 using BusinessLogic;
 using Entities;
 using Microsoft.Win32;
@@ -27,6 +29,7 @@ namespace Q_Tech
     {
         private bool _showPassword;
         private bool _showRegisterPassword;
+        private string _filename;
 
         public MainWindow()
         {
@@ -101,11 +104,11 @@ namespace Q_Tech
 
             if (result == true)
             {
-                string filename = openFileDialog.FileName;
+                _filename = openFileDialog.FileName;
 
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri(filename);
+                bitmap.UriSource = new Uri(_filename);
                 bitmap.EndInit();
 
                 imgBrush.ImageSource = bitmap;
@@ -140,17 +143,53 @@ namespace Q_Tech
             {
                 byte[] salt = GenerarSalt();
                 string password = GenerarContra(salt);
+                string imageSource = GenerarImagenAzure();
 
                 Usuario newRegisterUser = new Usuario
                 {
                     NombreUsuario = txbUsername.Text,
                     Email = txbEmail.Text,
                     Salt = salt,
-                    Contrasena = password
+                    Contrasena = password,
+                    FotoPerfil = 
                 };
 
                 Herramientas.CreateUsuario(newRegisterUser);
             }
+        }
+
+        private string GenerarImagenAzure()
+        {
+            if(!string.IsNullOrEmpty(_filename))
+            {
+                string connectionString = "DefaultEndpointsProtocol=https;AccountName=<qtechstorage>;AccountKey=<FlndiCy8EE6+LS8VJp7r2p5gysm6dZG7AQrfHBJnjB0qiOOJh/pja6TwcxTWNhb66nGKcNnlT8/d+AStv7ldAA==>;EndpointSuffix=core.windows.net";
+                BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+
+                string containerName = $"<{txbUsername.Text}>"; // El nombre del contenedor
+                BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
+                containerClient.CreateIfNotExists();
+
+                string blobName = "<blob-name>"; // El nombre del blob
+                BlobClient blobClient = containerClient.GetBlobClient(blobName);
+
+                MemoryStream stream = new MemoryStream(); // Crea un MemoryStream para la imagen
+
+                BitmapImage image = new BitmapImage();
+
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                image.UriSource = new Uri(_filename);
+                image.EndInit();
+
+                image.Save(stream, image.Format); // Guarda la imagen en el MemoryStream en formato PNG
+
+                stream.Seek(0, SeekOrigin.Begin); // Reinicia el puntero de posición del MemoryStream al inicio
+
+                blobClient.Upload(stream); // Sube el MemoryStream al blob
+            }
+
+            return "";
         }
 
         private string GenerarContra(byte[] salt)
