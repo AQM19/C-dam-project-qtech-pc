@@ -37,9 +37,14 @@ namespace Q_Tech.Modales
 
             for (int i = 0; i < _terrarios.Count; i++)
             {
+
                 ImageBrush myImageBrush = new ImageBrush();
-                myImageBrush.ImageSource = new BitmapImage(new Uri(_terrarios[i].Foto, UriKind.Absolute));
-                myImageBrush.Stretch = Stretch.Fill;
+
+                if (!string.IsNullOrEmpty(_terrarios[i].Foto))
+                {
+                    myImageBrush.ImageSource = new BitmapImage(new Uri(_terrarios[i].Foto, UriKind.Absolute));
+                    myImageBrush.Stretch = Stretch.Fill;
+                }
 
                 Border myBorder = new Border
                 {
@@ -49,7 +54,7 @@ namespace Q_Tech.Modales
                     Margin = new Thickness(15),
                     Background = myImageBrush,
                     Cursor = Cursors.Hand,
-                    Tag = i                  
+                    Tag = i
                 };
 
                 myBorder.MouseDown += (sender, e) => SeleccionarTerrario((int)((Border)sender).Tag);

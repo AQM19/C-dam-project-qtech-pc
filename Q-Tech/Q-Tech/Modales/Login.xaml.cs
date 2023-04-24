@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -7,13 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Azure.Storage;
 using Azure.Storage.Blobs;
 using BusinessLogic;
 using Entities;
@@ -34,22 +30,24 @@ namespace Q_Tech
         public MainWindow()
         {
             InitializeComponent();
-
             _showPassword = false;
+            _showRegisterPassword = false;
         }
 
         private void PasswordViewer_Click(object sender, RoutedEventArgs e)
         {
             _showPassword = !_showPassword;
-            PasswordUnbind.Visibility = _showPassword ? Visibility.Visible : Visibility.Hidden;
-            PasswordBind.Visibility = _showPassword ? Visibility.Hidden : Visibility.Visible;
+            PasswordUnbind.Visibility = _showPassword ? Visibility.Visible : Visibility.Collapsed;
+            PasswordBind.Visibility = _showPassword ? Visibility.Collapsed : Visibility.Visible;
+            imgLoginShowPassword.Source = new BitmapImage(new Uri($"/Recursos/Iconos/{(_showPassword ? "hide" : "show")}.png", UriKind.Relative));
         }
 
         private void btnShowRegisterPass_Click(object sender, RoutedEventArgs e)
         {
             _showRegisterPassword = !_showRegisterPassword;
-            txbRegisterPass.Visibility = _showRegisterPassword ? Visibility.Visible : Visibility.Hidden;
-            pwbRegisterPass.Visibility = _showRegisterPassword ? Visibility.Hidden : Visibility.Visible;
+            txbRegisterPass.Visibility = _showRegisterPassword ? Visibility.Visible : Visibility.Collapsed;
+            pwbRegisterPass.Visibility = _showRegisterPassword ? Visibility.Collapsed : Visibility.Visible;
+            imgRegisterShowPassword.Source = new BitmapImage(new Uri($"/Recursos/Iconos/{(_showRegisterPassword ? "hide" : "show")}.png", UriKind.Relative));
         }
 
         private void brdUser_GotFocus(object sender, RoutedEventArgs e)
@@ -79,14 +77,32 @@ namespace Q_Tech
 
         private void txtRegistro_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            brdInicio.Visibility = Visibility.Hidden;
-            brdRegistro.Visibility = Visibility.Visible;
+            Animacion(brdRegistro, true);
+            Animacion(brdInicio, false);
         }
 
         private void txtVerInicio_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            brdRegistro.Visibility = Visibility.Hidden;
-            brdInicio.Visibility = Visibility.Visible;
+            Animacion(brdInicio, true);
+            Animacion(brdRegistro, false);
+        }
+
+        private void Animacion(Border border, bool entrada)
+        {
+            DoubleAnimation anim = new DoubleAnimation();
+            anim.From = entrada ? 0 : 1;
+            anim.To = entrada ? 1 : 0;
+            anim.Duration = TimeSpan.FromSeconds(0.5);
+
+            border.BeginAnimation(Border.VisibilityProperty, new ObjectAnimationUsingKeyFrames
+            {
+                KeyFrames = new ObjectKeyFrameCollection
+        {
+            new DiscreteObjectKeyFrame(Visibility.Visible, KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0))),
+        }
+            });
+
+            border.BeginAnimation(Border.OpacityProperty, anim);
         }
 
         private void txtRecordar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -130,66 +146,82 @@ namespace Q_Tech
                     return;
                 }
 
-                FrmDashboard dashboard = new FrmDashboard(usuario);
-                this.Hide();
-                dashboard.ShowDialog();
-                this.Close();
+                IngresarAplicacion(usuario);
             }
         }
 
-        private void brdRegister_MouseDown(object sender, MouseButtonEventArgs e)
+        private async void brdRegister_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(ValidRegisterData())
+            if (await ValidRegisterData())
             {
                 byte[] salt = GenerarSalt();
                 string password = GenerarContra(salt);
-                string imageSource = GenerarImagenAzure();
+                string username = txbUsername.Text.ToLower();
+
+                await CrearContainerBlobAzure(username);
+
+                string fotoPerfil = await CargarImagenPerfilAzure(username);
 
                 Usuario newRegisterUser = new Usuario
                 {
-                    NombreUsuario = txbUsername.Text,
+                    NombreUsuario = username,
                     Email = txbEmail.Text,
                     Salt = salt,
                     Contrasena = password,
-                    FotoPerfil = 
+                    FotoPerfil = fotoPerfil,
+                    Perfil = "CLIENTE"
                 };
 
                 Herramientas.CreateUsuario(newRegisterUser);
+
+                IngresarAplicacion(newRegisterUser);
             }
         }
 
-        private string GenerarImagenAzure()
+        private void IngresarAplicacion(Usuario usuario)
         {
-            if(!string.IsNullOrEmpty(_filename))
+            FrmDashboard dashboard = new FrmDashboard(usuario);
+            this.Hide();
+            dashboard.ShowDialog();
+            this.Close();
+        }
+
+        private async Task<string> CargarImagenPerfilAzure(string username)
+        {
+            if (!string.IsNullOrEmpty(_filename))
             {
-                string connectionString = "DefaultEndpointsProtocol=https;AccountName=<qtechstorage>;AccountKey=<FlndiCy8EE6+LS8VJp7r2p5gysm6dZG7AQrfHBJnjB0qiOOJh/pja6TwcxTWNhb66nGKcNnlT8/d+AStv7ldAA==>;EndpointSuffix=core.windows.net";
-                BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+                Uri blobUri = new Uri($"https://qtechstorage.blob.core.windows.net/{username}/profile_pic{Path.GetExtension(_filename)}");
+                StorageSharedKeyCredential storageCredentials = new StorageSharedKeyCredential("qtechstorage", "FlndiCy8EE6+LS8VJp7r2p5gysm6dZG7AQrfHBJnjB0qiOOJh/pja6TwcxTWNhb66nGKcNnlT8/d+AStv7ldAA==");
+                BlobClient blobClient = new BlobClient(blobUri, storageCredentials);
 
-                string containerName = $"<{txbUsername.Text}>"; // El nombre del contenedor
-                BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
-                containerClient.CreateIfNotExists();
+                FileStream fileStream = File.OpenRead(Path.GetFullPath(_filename));
+                await blobClient.UploadAsync(fileStream, true);
+                fileStream.Close();
 
-                string blobName = "<blob-name>"; // El nombre del blob
-                BlobClient blobClient = containerClient.GetBlobClient(blobName);
-
-                MemoryStream stream = new MemoryStream(); // Crea un MemoryStream para la imagen
-
-                BitmapImage image = new BitmapImage();
-
-                image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-                image.UriSource = new Uri(_filename);
-                image.EndInit();
-
-                image.Save(stream, image.Format); // Guarda la imagen en el MemoryStream en formato PNG
-
-                stream.Seek(0, SeekOrigin.Begin); // Reinicia el puntero de posición del MemoryStream al inicio
-
-                blobClient.Upload(stream); // Sube el MemoryStream al blob
+                if (await Task.FromResult(true))
+                {
+                    return blobUri.ToString();
+                }
             }
 
-            return "";
+            return string.Empty;
+        }
+
+        private async Task<BlobContainerClient> CrearContainerBlobAzure(string username)
+        {
+            string connectionString = "DefaultEndpointsProtocol=https;AccountName=qtechstorage;AccountKey=FlndiCy8EE6+LS8VJp7r2p5gysm6dZG7AQrfHBJnjB0qiOOJh/pja6TwcxTWNhb66nGKcNnlT8/d+AStv7ldAA==;EndpointSuffix=core.windows.net";
+            BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+
+            string containerName = username;
+
+            BlobContainerClient container = await blobServiceClient.CreateBlobContainerAsync(containerName);
+
+            if (await container.ExistsAsync())
+            {
+                return container;
+            }
+
+            return null;
         }
 
         private string GenerarContra(byte[] salt)
@@ -208,14 +240,14 @@ namespace Q_Tech
 
         private byte[] GenerarSalt()
         {
-            int saltLength = 16;
+            int saltLength = 32;
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
             byte[] saltBytes = new byte[saltLength];
             rng.GetBytes(saltBytes);
             return saltBytes;
         }
 
-        private bool ValidRegisterData()
+        private async Task<bool> ValidRegisterData()
         {
             if (string.IsNullOrEmpty(txbUsername.Text))
             {
@@ -223,10 +255,22 @@ namespace Q_Tech
                 txbUsername.Focus();
                 return false;
             }
+            if (!await Herramientas.ComprobarUsuario(txbUsername.Text))
+            {
+                MessageBox.Show("Ese nombre de usuario ya está en uso.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txbUsername.Focus();
+                return false;
+            }
             if (string.IsNullOrEmpty(txbEmail.Text))
             {
                 MessageBox.Show("El campo email no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txbEmail.Focus();
+                return false;
+            }
+            if (!await Herramientas.ComprobarUsuario(txbEmail.Text))
+            {
+                MessageBox.Show("Ese email ya está en uso.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txbUsername.Focus();
                 return false;
             }
             if (string.IsNullOrEmpty(pwbRegisterPass.Password))

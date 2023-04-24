@@ -28,7 +28,7 @@
             </Style>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid MouseDown="Grid_MouseDown">
         <DockPanel LastChildFill="True">
             <DockPanel LastChildFill="False" HorizontalAlignment="Left" Background="#88FFFFFF" x:Name="dkpVerticalMenu" Width="200">
                 <Image Source="/Recursos/Fondos/logo-qtech-full.png" DockPanel.Dock="Top" Margin="0,15" Width="150"/>
@@ -94,7 +94,7 @@
                 <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Height="30" Margin="15,0,0,0" ContentElement.MouseDown="Border_MouseDown">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Recursos/Iconos/lupa.png" Height="auto" Margin="5"/>
-                        <TextBox Width="300" Margin="5" BorderThickness="0" x:Name="txtBuscador" VerticalContentAlignment="Center" FontSize="16"/>
+                        <TextBox Width="300" Margin="5" BorderThickness="0" x:Name="txtBuscador" VerticalContentAlignment="Center" FontSize="16" TextChanged="txtBuscador_TextChanged"/>
                     </StackPanel>
                 </Border>
 
@@ -121,7 +121,11 @@
 
         </DockPanel>
 
-        
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" x:Name="searchScroll" Visibility="Collapsed" HorizontalScrollBarVisibility="Disabled" Width="341" Height="auto" MaxHeight="250" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="214,25,0,0">
+            <ListView  x:Name="searchList" Padding="0,5">
+            </ListView>
+        </ScrollViewer>
+
 
     </Grid>
 </Window>

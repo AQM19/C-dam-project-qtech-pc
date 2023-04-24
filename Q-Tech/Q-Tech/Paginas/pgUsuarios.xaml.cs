@@ -27,7 +27,8 @@ namespace Q_Tech.Paginas
                 
                 ListViewItem listViewItem = new ListViewItem();
                 StackPanel stackPanel = new StackPanel { Orientation = Orientation.Horizontal, Height = 50, Margin = new Thickness(10) };
-                ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri(usuarios[i].FotoPerfil)));
+                ImageBrush imageBrush = new ImageBrush();
+                if (!string.IsNullOrEmpty(usuarios[i].FotoPerfil)) imageBrush.ImageSource = new BitmapImage(new Uri(usuarios[i].FotoPerfil));
                 Border border = new Border { CornerRadius = new CornerRadius(5), BorderThickness = new Thickness(0), Height = 50, Width = 50, Margin = new Thickness(0, 0, 10, 0), Background = imageBrush};
                 StackPanel textStackPanel = new StackPanel { Orientation = Orientation.Vertical, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(10, 0, 0, 0), Width = 150 };
                 TextBlock nameTextBlock = new TextBlock { Text = usuarios[i].NombreUsuario };

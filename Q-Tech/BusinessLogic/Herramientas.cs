@@ -2,7 +2,6 @@
 using Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
 using System.Threading.Tasks;
 
 namespace BusinessLogic
@@ -18,6 +17,14 @@ namespace BusinessLogic
             return usuarios;
         }
 
+        public static async Task<bool> ComprobarUsuario(string param)
+        {
+            QConsumer qc = new QConsumer();
+            List<Usuario> usuarios = await qc.GetAsync<List<Usuario>>("https://qtechapi.azurewebsites.net/autoterra/v1/usuarios");
+            Usuario usuario = usuarios.FirstOrDefault(x => x.NombreUsuario == param || x.Email == param);
+            return usuario == null ? true : false;
+        }
+
         public static async Task<Usuario> GetUsuario(int id)
         {
             QConsumer qc = new QConsumer();
@@ -29,7 +36,7 @@ namespace BusinessLogic
         {
             QConsumer qc = new QConsumer();
             List<Terrario> terrarios = await qc.GetAsync<List<Terrario>>("https://qtechapi.azurewebsites.net/autoterra/v1/terrarios");
-            return terrarios.Where( t => t.Idusuario == id ).ToList();
+            return terrarios.Where(t => t.Idusuario == id).ToList();
         }
 
         public static async Task<List<Especie>> GetEspecies()
@@ -71,6 +78,15 @@ namespace BusinessLogic
         {
             QConsumer qc = new QConsumer();
             await qc.CreateAsync("https://qtechapi.azurewebsites.net/autoterra/v1/usuarios", usuario);
+        }
+
+        public static async Task<List<Usuario>> Search(string query)
+        {
+            QConsumer qc = new QConsumer();
+
+            List<Usuario> usuarios = await GetUsuarios();
+
+            return usuarios.Where(x => x.NombreUsuario.Contains(query)).ToList();
         }
     }
 }

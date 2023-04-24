@@ -39,7 +39,7 @@
                         <TextBox Grid.Column="1" Margin="5" Background="Transparent" BorderThickness="0" x:Name="PasswordUnbind" Visibility="Hidden" KeyUp="PasswordUnbind_KeyUp"/>
                         <PasswordBox Grid.Column="1" Margin="5" Background="Transparent" BorderThickness="0" x:Name="PasswordBind" Visibility="Visible" KeyUp="PasswordBind_KeyUp"/>
                         <Button Grid.Column="2" Height="20" Margin="0,0,7.5,0" Background="Transparent" BorderThickness="0" Click="PasswordViewer_Click">
-                            <Image Source="/Recursos/Iconos/show.png"/>
+                            <Image Source="/Recursos/Iconos/show.png" x:Name="imgLoginShowPassword"/>
                         </Button>
                     </Grid>
                 </Border>
@@ -61,7 +61,7 @@
             </DockPanel>
         </Border>
 
-        <Border Visibility="Visible" CornerRadius="10" Width="250" Height="250" HorizontalAlignment="Right" Margin="0,0,75,0" Padding="10" Background="#BFFFFFFF" x:Name="brdRegistro">
+        <Border Visibility="Hidden" CornerRadius="10" Width="250" Height="250" HorizontalAlignment="Right" Margin="0,0,75,0" Padding="10" Background="#BFFFFFFF" x:Name="brdRegistro">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -112,7 +112,7 @@
                             <TextBox Grid.Column="1" Margin="3" Background="Transparent" BorderThickness="0" x:Name="txbRegisterPass" Visibility="Hidden" KeyUp="txbRegisterPass_KeyUp"/>
                             <PasswordBox Grid.Column="1" Margin="3" Background="Transparent" BorderThickness="0" x:Name="pwbRegisterPass" Visibility="Visible" KeyUp="pwbRegisterPass_KeyUp"/>
                             <Button Grid.Column="2" Height="20" Margin="0,0,7.5,0" Background="Transparent" BorderThickness="0" x:Name="btnShowRegisterPass" Click="btnShowRegisterPass_Click">
-                                <Image Source="/Recursos/Iconos/show.png"/>
+                                <Image Source="/Recursos/Iconos/show.png" x:Name="imgRegisterShowPassword"/>
                             </Button>
 
                         </Grid>
