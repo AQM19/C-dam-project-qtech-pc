@@ -135,6 +135,8 @@ namespace Q_Tech
         {
             if (ValidLoginData())
             {
+                dpLoader.Visibility = Visibility.Visible;
+
                 Usuario usuario = await Herramientas.Login(txtUser.Text, PasswordBind.Password);
 
                 if (usuario == null)
@@ -143,6 +145,7 @@ namespace Q_Tech
                     txtUser.Text = string.Empty;
                     PasswordBind.Password = string.Empty;
                     PasswordUnbind.Text = string.Empty;
+                    dpLoader.Visibility = Visibility.Collapsed;
                     return;
                 }
 
@@ -154,27 +157,37 @@ namespace Q_Tech
         {
             if (await ValidRegisterData())
             {
-                byte[] salt = GenerarSalt();
-                string password = GenerarContra(salt);
-                string username = txbUsername.Text.ToLower();
-
-                await CrearContainerBlobAzure(username);
-
-                string fotoPerfil = await CargarImagenPerfilAzure(username);
-
-                Usuario newRegisterUser = new Usuario
+                try
                 {
-                    NombreUsuario = username,
-                    Email = txbEmail.Text,
-                    Salt = salt,
-                    Contrasena = password,
-                    FotoPerfil = fotoPerfil,
-                    Perfil = "CLIENTE"
-                };
+                    dpLoader.Visibility = Visibility.Visible;
 
-                Herramientas.CreateUsuario(newRegisterUser);
+                    byte[] salt = GenerarSalt();
+                    string password = GenerarContra(salt);
+                    string username = txbUsername.Text.ToLower();
 
-                IngresarAplicacion(newRegisterUser);
+                    await CrearContainerBlobAzure(username);
+
+                    string fotoPerfil = await CargarImagenPerfilAzure(username);
+
+                    Usuario newRegisterUser = new Usuario
+                    {
+                        NombreUsuario = username,
+                        Email = txbEmail.Text,
+                        Salt = salt,
+                        Contrasena = password,
+                        FotoPerfil = fotoPerfil,
+                        Perfil = "CLIENTE"
+                    };
+
+                    Herramientas.CreateUsuario(newRegisterUser);
+
+                    IngresarAplicacion(newRegisterUser);
+
+                }
+                catch (ApplicationException ex)
+                {
+                    dpLoader.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -249,36 +262,43 @@ namespace Q_Tech
 
         private async Task<bool> ValidRegisterData()
         {
+            dpLoader.Visibility = Visibility.Visible;
             if (string.IsNullOrEmpty(txbUsername.Text))
             {
                 MessageBox.Show("El campo nombre de usuario no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txbUsername.Focus();
+                dpLoader.Visibility = Visibility.Collapsed;
                 return false;
             }
             if (!await Herramientas.ComprobarUsuario(txbUsername.Text))
             {
                 MessageBox.Show("Ese nombre de usuario ya está en uso.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txbUsername.Focus();
+                dpLoader.Visibility = Visibility.Collapsed;
                 return false;
             }
             if (string.IsNullOrEmpty(txbEmail.Text))
             {
                 MessageBox.Show("El campo email no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txbEmail.Focus();
+                dpLoader.Visibility = Visibility.Collapsed;
                 return false;
             }
             if (!await Herramientas.ComprobarUsuario(txbEmail.Text))
             {
                 MessageBox.Show("Ese email ya está en uso.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txbUsername.Focus();
+                dpLoader.Visibility = Visibility.Collapsed;
                 return false;
             }
             if (string.IsNullOrEmpty(pwbRegisterPass.Password))
             {
                 MessageBox.Show("El campo contraseña no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 _ = _showRegisterPassword == true ? txbRegisterPass.Focus() : pwbRegisterPass.Focus();
+                dpLoader.Visibility = Visibility.Collapsed;
                 return false;
             }
+            dpLoader.Visibility = Visibility.Collapsed;
             return true;
         }
 

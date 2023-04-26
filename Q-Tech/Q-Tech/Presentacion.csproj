@@ -181,6 +181,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -188,6 +191,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToImageConverter.cs" />
+    <Compile Include="Paginas\pgLogros.xaml.cs">
+      <DependentUpon>pgLogros.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Prop\frmEspecies.xaml.cs">
       <DependentUpon>frmEspecies.xaml</DependentUpon>
     </Compile>
@@ -220,6 +226,10 @@
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Paginas\pgLogros.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Paginas\pgTerrarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -342,6 +352,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Iconos\del_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Fondos\loading.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

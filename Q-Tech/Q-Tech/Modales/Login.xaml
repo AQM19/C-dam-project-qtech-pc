@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Q_Tech"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
@@ -12,6 +13,10 @@
         <ImageBrush ImageSource="/Recursos/Fondos/login_green_background.jpeg"/>
     </Window.Background>
     <Grid>
+
+        <DockPanel x:Name="dpLoader" Background="#C6000000" Panel.ZIndex="1" Visibility="Collapsed">
+            <Image gif:ImageBehavior.AnimatedSource="/Recursos/Fondos/loading.gif" VerticalAlignment="Center" Width="100"/>
+        </DockPanel>
 
         <Border CornerRadius="10" Width="250" Height="250" HorizontalAlignment="Left" Margin="75,0,0,0" Padding="10" Background="#BFFFFFFF" x:Name="brdInicio">
             <DockPanel LastChildFill="True">
@@ -85,12 +90,12 @@
                 </Path>
 
                 <!--Row 1-->
-                    <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1">
-                        <TextBlock Text="Nombre de usuario:" Padding="5" TextAlignment="Center"/>
-                        <Border Margin="5,0" Background="Transparent" CornerRadius="5" BorderThickness="1" BorderBrush="#B3B3B3B3">
-                            <TextBox Margin="3" x:Name="txbUsername" BorderThickness="0" Background="Transparent"/>
-                        </Border>
-                    </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1">
+                    <TextBlock Text="Nombre de usuario:" Padding="5" TextAlignment="Center"/>
+                    <Border Margin="5,0" Background="Transparent" CornerRadius="5" BorderThickness="1" BorderBrush="#B3B3B3B3">
+                        <TextBox Margin="3" x:Name="txbUsername" BorderThickness="0" Background="Transparent"/>
+                    </Border>
+                </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
                     <TextBlock Text="Email:" Padding="5" TextAlignment="Center"/>
                     <Border Margin="5,0" Background="Transparent" CornerRadius="5" BorderThickness="1" BorderBrush="#B3B3B3B3">
