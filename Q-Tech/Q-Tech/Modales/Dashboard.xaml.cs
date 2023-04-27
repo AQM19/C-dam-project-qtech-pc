@@ -52,6 +52,8 @@ namespace Q_Tech.Modales
                 CargarUsuarios();
             if (clickedButton.Name.Equals("btnTerrarios"))
                 CargarTerrarios();
+            if (clickedButton.Name.Equals("btnLogros"))
+                CargarLogros();
 
         }
 
@@ -68,7 +70,7 @@ namespace Q_Tech.Modales
 
         private void CargarUsuarios()
         {
-            pgUsuarios pgUsuarios = new pgUsuarios();
+            pgUsuarios pgUsuarios = new pgUsuarios(_usuario.Id);
             frmMainFrame.Content = pgUsuarios;
         }
 
@@ -76,6 +78,12 @@ namespace Q_Tech.Modales
         {
             pgTerrarios pgTerrarios = new pgTerrarios(_usuario);
             frmMainFrame.Content = pgTerrarios;
+        }
+
+        private void CargarLogros()
+        {
+            pgLogros pgLogros = new pgLogros(_usuario.Id);
+            frmMainFrame.Content = pgLogros;
         }
 
         private void txtBuscador_TextChanged(object sender, TextChangedEventArgs e)

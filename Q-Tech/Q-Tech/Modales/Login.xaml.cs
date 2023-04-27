@@ -97,9 +97,9 @@ namespace Q_Tech
             border.BeginAnimation(Border.VisibilityProperty, new ObjectAnimationUsingKeyFrames
             {
                 KeyFrames = new ObjectKeyFrameCollection
-        {
-            new DiscreteObjectKeyFrame(Visibility.Visible, KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0))),
-        }
+                {
+                    new DiscreteObjectKeyFrame(Visibility.Visible, KeyTime.FromTimeSpan(TimeSpan.FromSeconds(0))),
+                }
             });
 
             border.BeginAnimation(Border.OpacityProperty, anim);
@@ -195,8 +195,9 @@ namespace Q_Tech
         {
             FrmDashboard dashboard = new FrmDashboard(usuario);
             this.Hide();
-            dashboard.ShowDialog();
-            this.Close();
+            if(dashboard.ShowDialog() == false) this.Close();
+
+            this.Show();
         }
 
         private async Task<string> CargarImagenPerfilAzure(string username)

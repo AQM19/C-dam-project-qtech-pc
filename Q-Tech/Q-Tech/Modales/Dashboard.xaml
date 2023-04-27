@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Q_Tech.Modales"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="FrmDashboard" Height="600" Width="1200">
+        Title="FrmDashboard" Height="600" Width="900">
     <Window.Background>
         <ImageBrush ImageSource="/Recursos/Fondos/login_green_background.jpeg"/>
     </Window.Background>

@@ -12,15 +12,22 @@ namespace Q_Tech.Paginas
 {
     public partial class pgUsuarios : Page
     {
+        private long _id;
+
         public pgUsuarios()
         {
             InitializeComponent();
+            
+        }
+        public pgUsuarios(long id) : this()
+        {
+            this._id = id;
             CargarUsuarios();
         }
 
         private async void CargarUsuarios()
         {
-            List<Usuario> usuarios = await Herramientas.GetUsuarios();
+            List<Usuario> usuarios = await Herramientas.GetSocial(_id);
 
             for (int i = 0; i < usuarios.Count; i++) // Se usa el bucle for por eficiencia
             {

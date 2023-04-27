@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogic;
+using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,20 @@ namespace Q_Tech.Paginas
     /// </summary>
     public partial class pgLogros : Page
     {
+        private long _id;
         public pgLogros()
         {
             InitializeComponent();
+        }
+        public pgLogros(long id) : this()
+        {
+            this._id = id;
+            CargarLogros();
+        }
+
+        private async void CargarLogros()
+        {
+            List<Logro> logros = await Herramientas.GetLogros(_id);
         }
     }
 }
