@@ -1,6 +1,7 @@
 ﻿using AccesData;
 using Entities;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,28 +9,30 @@ namespace BusinessLogic
 {
     public class Herramientas
     {
+        readonly string baseEndPoint = ConfigurationManager.AppSettings["urlApi"];
+
         //https://qtechapi.azurewebsites.net/autoterra/v1/
 
         #region GET
         #region Usuario
-        public static async Task<List<Usuario>> GetUsuarios() //optimizado
+        public static async Task<List<Usuario>> GetUsuarios() // op
         {
             QConsumer qc = new QConsumer();
             List<Usuario> usuarios = await qc.GetAsync<List<Usuario>>("https://qtechapi.azurewebsites.net/autoterra/v1/usuarios");
             return usuarios;
         }
-        public static async Task<List<Usuario>> GetSocial(long id) //optimizado
+        public static async Task<List<Usuario>> GetSocial(long id) // op
         {
             QConsumer qc = new QConsumer();
             List<Usuario> usuarios = await qc.GetAsync<List<Usuario>>($"https://qtechapi.azurewebsites.net/autoterra/v1/usuarios/social/{id}");
             return usuarios;
         }
-        public static async Task<bool> ComprobarUsuario(string param)
+        public static async Task<bool> ComprobarUsuario(string param) // op
         {
             QConsumer qc = new QConsumer();
             return await qc.GetAsync<bool>($"https://qtechapi.azurewebsites.net/autoterra/v1/usuarios/check/{param}");
         }
-        public static async Task<Usuario> GetUsuario(int id)
+        public static async Task<Usuario> GetUsuario(int id) // op
         {
             QConsumer qc = new QConsumer();
             Usuario usuario = await qc.GetAsync<Usuario>($"https://qtechapi.azurewebsites.net/autoterra/v1/usuarios/{id}");
@@ -37,21 +40,21 @@ namespace BusinessLogic
         }
         #endregion
         #region Terrarios
-        public static async Task<List<Terrario>> GetTerrarios(long id)
+        public static async Task<List<Terrario>> GetTerrarios(long id) //op
         {
             QConsumer qc = new QConsumer();
             List<Terrario> terrarios = await qc.GetAsync<List<Terrario>>("https://qtechapi.azurewebsites.net/autoterra/v1/terrarios");
-            return terrarios.Where(t => t.Idusuario == id).ToList();
+            return terrarios;
         }
         #endregion
         #region Especies
-        public static async Task<List<Especie>> GetEspecies()
+        public static async Task<List<Especie>> GetEspecies() // op
         {
             QConsumer qc = new QConsumer();
             List<Especie> especies = await qc.GetAsync<List<Especie>>("https://qtechapi.azurewebsites.net/autoterra/v1/especies");
             return especies;
         }
-        public static async Task<Especie> GetEspecie(long id)
+        public static async Task<Especie> GetEspecie(long id) // op
         {
             QConsumer qc = new QConsumer();
             Especie especie = await qc.GetAsync<Especie>($"https://qtechapi.azurewebsites.net/autoterra/v1/especies/{id}");
