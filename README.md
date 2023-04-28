@@ -1,1 +1,0 @@
-# QTECH_PC
