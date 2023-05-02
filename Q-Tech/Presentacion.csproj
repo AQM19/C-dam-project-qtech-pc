@@ -205,8 +205,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToImageConverter.cs" />
+    <Compile Include="Paginas\pgEspecies.xaml.cs">
+      <DependentUpon>pgEspecies.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\pgLogros.xaml.cs">
       <DependentUpon>pgLogros.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\pgUsuario.xaml.cs">
+      <DependentUpon>pgUsuario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Prop\frmEspecies.xaml.cs">
       <DependentUpon>frmEspecies.xaml</DependentUpon>
@@ -215,6 +221,10 @@
       <DependentUpon>frmTerraMaker.xaml</DependentUpon>
     </Compile>
     <Page Include="Modales\Dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\pgEspecies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,7 +258,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\pgUsuarios.xaml">
+    <Page Include="Paginas\pgUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\pgListaUsuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -265,8 +279,8 @@
     <Compile Include="Paginas\pgTerrarios.xaml.cs">
       <DependentUpon>pgTerrarios.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\pgUsuarios.xaml.cs">
-      <DependentUpon>pgUsuarios.xaml</DependentUpon>
+    <Compile Include="Paginas\pgListaUsuarios.xaml.cs">
+      <DependentUpon>pgListaUsuarios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -369,6 +383,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Fondos\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\disquete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

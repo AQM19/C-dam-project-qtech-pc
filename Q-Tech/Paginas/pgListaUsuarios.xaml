@@ -1,0 +1,16 @@
+﻿<Page x:Class="Q_Tech.Paginas.pgListaUsuarios"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Q_Tech.Paginas"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="pgUsuarios">
+
+    <Grid>
+        <ListView x:Name="lvUsuarios" Background="#88FFFFFF" BorderThickness="0" Padding="10">
+            <!--Bienvenido al mundo de la fantasía-->
+        </ListView>
+    </Grid>
+</Page>

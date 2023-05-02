@@ -54,6 +54,8 @@ namespace Q_Tech.Modales
                 CargarTerrarios();
             if (clickedButton.Name.Equals("btnLogros"))
                 CargarLogros();
+            if (clickedButton.Name.Equals("btnEspecies"))
+                CargarEspecies();
 
         }
 
@@ -70,20 +72,26 @@ namespace Q_Tech.Modales
 
         private void CargarUsuarios()
         {
-            pgUsuarios pgUsuarios = new pgUsuarios(_usuario.Id);
+            pgListaUsuarios pgUsuarios = new pgListaUsuarios(_usuario);
             frmMainFrame.Content = pgUsuarios;
         }
 
         private void CargarTerrarios()
         {
-            pgTerrarios pgTerrarios = new pgTerrarios(_usuario);
+            pgTerrarios pgTerrarios = new pgTerrarios(_usuario.Id);
             frmMainFrame.Content = pgTerrarios;
         }
 
         private void CargarLogros()
         {
-            pgLogros pgLogros = new pgLogros(_usuario.Id);
+            pgLogros pgLogros = new pgLogros();
             frmMainFrame.Content = pgLogros;
+        }
+
+        private void CargarEspecies()
+        {
+            pgEspecies pgEspecies = new pgEspecies();
+            frmMainFrame.Content = pgEspecies;
         }
 
         private void txtBuscador_TextChanged(object sender, TextChangedEventArgs e)

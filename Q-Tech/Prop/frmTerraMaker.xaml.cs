@@ -56,13 +56,13 @@ namespace Q_Tech.Prop
                 txtImageSource.Text = _terrario.Foto;
                 tbDescription.Text = _terrario.Descripcion;
 
-                _especiesTerrario = await Herramientas.GetEspeciesTerrario(_terrario.Id);
+                _especies = await Herramientas.GetEspeciesTerrario(_terrario.Id);
 
-                for (int i = 0; i < _especiesTerrario.Count; i++)
-                {
-                    Especie especie = await Herramientas.GetEspecie(_especiesTerrario[i].Idespecie);
-                    _especies.Add(especie);
-                }
+                //for (int i = 0; i < _especiesTerrario.Count; i++)
+                //{
+                //    Especie especie = await Herramientas.GetEspecie(_especiesTerrario[i].Idespecie);
+                //    _especies.Add(especie);
+                //}
 
                 MostrarEspecies();
             }

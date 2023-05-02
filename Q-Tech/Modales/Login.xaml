@@ -29,7 +29,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Image Source="/Recursos/Iconos/usuarioa.png" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="7.5,0,0,0"/>
-                        <TextBox Grid.Column="1" Margin="5" BorderThickness="0" Background="Transparent" x:Name="txtUser"/>
+                        <TextBox Grid.Column="1" Margin="5" BorderThickness="0" Background="Transparent" x:Name="txtUser" Text="aaronibio"/>
                     </Grid>
                 </Border>
 
@@ -42,7 +42,7 @@
                         </Grid.ColumnDefinitions>
                         <Image Source="/Recursos/Iconos/padlock.png" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="7.5,0,0,0"/>
                         <TextBox Grid.Column="1" Margin="5" Background="Transparent" BorderThickness="0" x:Name="PasswordUnbind" Visibility="Hidden" KeyUp="PasswordUnbind_KeyUp"/>
-                        <PasswordBox Grid.Column="1" Margin="5" Background="Transparent" BorderThickness="0" x:Name="PasswordBind" Visibility="Visible" KeyUp="PasswordBind_KeyUp"/>
+                        <PasswordBox Password="6e499d18ed86" Grid.Column="1" Margin="5" Background="Transparent" BorderThickness="0" x:Name="PasswordBind" Visibility="Visible" KeyUp="PasswordBind_KeyUp"/>
                         <Button Grid.Column="2" Height="20" Margin="0,0,7.5,0" Background="Transparent" BorderThickness="0" Click="PasswordViewer_Click">
                             <Image Source="/Recursos/Iconos/show.png" x:Name="imgLoginShowPassword"/>
                         </Button>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\obj\Debug\
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\
 Q_Tech
 none
 false
 DEBUG;TRACE
-C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\App.xaml
-8-1000282634
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\App.xaml
+101371873178
 
-141005178421
-1621384753185
-Modales\Dashboard.xaml;Paginas\pgIndex.xaml;Modales\Login.xaml;Paginas\pgLogros.xaml;Paginas\pgTerrarios.xaml;Paginas\pgUsuarios.xaml;Prop\frmEspecies.xaml;Prop\frmTerraMaker.xaml;
+16-1074142811
+162267042679
+Modales\Dashboard.xaml;Paginas\pgEspecies.xaml;Paginas\pgIndex.xaml;Modales\Login.xaml;Paginas\pgLogros.xaml;Paginas\pgTerrarios.xaml;Paginas\pgUsuario.xaml;Paginas\pgListaUsuarios.xaml;Prop\frmEspecies.xaml;Prop\frmTerraMaker.xaml;
 
-False
+True
 

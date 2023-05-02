@@ -17,21 +17,21 @@ namespace Q_Tech.Paginas
     public partial class pgTerrarios : Page
     {
 
-        private Usuario _usuario;
+        private long _id;
         public pgTerrarios()
         {
             InitializeComponent();
         }
 
-        public pgTerrarios(Usuario usuario) : this()
+        public pgTerrarios(long id) : this()
         {
-            _usuario = usuario;
+            _id = id;
             CargarTerrarios();
         }
 
         private async void CargarTerrarios()
         {
-            List<Terrario> terrarios = await Herramientas.GetTerrarios(_usuario.Id);
+            List<Terrario> terrarios = await Herramientas.GetTerrariosSocial(_id);
 
             for (int i = 0; i < terrarios.Count; i++)
             {
@@ -66,7 +66,7 @@ namespace Q_Tech.Paginas
 
                 TextBlock titleTextBlock = new TextBlock
                 {
-                    Text = $"{_usuario.NombreUsuario}.{terrarios[i].Nombre}"
+                    Text = $"{terrarios[i].Nombre}"
                 };
 
 
@@ -153,18 +153,6 @@ namespace Q_Tech.Paginas
             long terrarioId = (long)item.Tag;
 
             MessageBox.Show(terrarioId.ToString());
-        }
-
-        private void AddTerra_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Terrario terrario = new Terrario();
-            frmTerraMaker frmTerraMaker = new frmTerraMaker(_usuario, terrario);
-            frmTerraMaker.ShowDialog();
-        }
-
-        private void AddTerra_MouseEnter(object sender, MouseEventArgs e)
-        {
-            AddTerra.Background = new SolidColorBrush(Color.FromRgb(25, 135, 84));
         }
     }
 }
