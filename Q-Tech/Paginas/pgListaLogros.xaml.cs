@@ -2,8 +2,6 @@
 using Entities;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,11 +12,11 @@ namespace Q_Tech.Paginas
     /// <summary>
     /// Lógica de interacción para pgLogros.xaml
     /// </summary>
-    public partial class pgLogros : Page
+    public partial class pgListaLogros : Page
     {
         private List<Logro> cambiosPendientes = new List<Logro>();
 
-        public pgLogros()
+        public pgListaLogros()
         {
             InitializeComponent();
             CargarLogros();
@@ -30,7 +28,7 @@ namespace Q_Tech.Paginas
 
             for (int i = 0; i < logros.Count; i++)
             {
-                ListViewItem newItem = new ListViewItem();
+                ListViewItem newItem = new ListViewItem { HorizontalContentAlignment = HorizontalAlignment.Stretch };
                 StackPanel stackPanel = new StackPanel { Orientation = Orientation.Horizontal, Height = 50, Margin = new Thickness(10) };
                 ImageBrush imageBrush = new ImageBrush { ImageSource = new BitmapImage(new Uri($"{logros[i].Icono}", UriKind.Absolute)), };
                 Border border = new Border { CornerRadius = new CornerRadius(5), BorderThickness = new Thickness(0), Height = 50, Width = 50, Margin = new Thickness(0, 0, 10, 0), Background = imageBrush };

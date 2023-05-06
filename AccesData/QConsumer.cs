@@ -30,7 +30,7 @@ namespace AccesData
                 throw new ApplicationException($"Error al obtener el recurso: {response.StatusCode}");
             }
         }
-        public async Task<T> PostAsync<T>(string url, string user, string contra)
+        public async Task<T> LoginAsync<T>(string url, string user, string contra)
         {
             Dictionary<string, string> data = new Dictionary<string, string>
             {
@@ -43,6 +43,24 @@ namespace AccesData
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                    HttpResponseMessage response = await client.PostAsync(url, content);
                     if (response.IsSuccessStatusCode)
+            {
+                string responseJson = await response.Content.ReadAsStringAsync();
+                T responseObject = JsonConvert.DeserializeObject<T>(responseJson);
+                return responseObject;
+            }
+            else
+            {
+                return default;
+            }
+        }
+
+        public async Task<T> PostAsync<T>(string url, T data)
+        {
+            string json = JsonConvert.SerializeObject(data);
+            HttpClient client = new HttpClient();
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            if (response.IsSuccessStatusCode)
             {
                 string responseJson = await response.Content.ReadAsStringAsync();
                 T responseObject = JsonConvert.DeserializeObject<T>(responseJson);

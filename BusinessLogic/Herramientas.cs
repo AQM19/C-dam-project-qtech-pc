@@ -38,7 +38,7 @@ namespace BusinessLogic
         public static async Task<Usuario> Login(string param, string password)// op
         {
             QConsumer qc = new QConsumer();
-            Usuario usuario = await qc.PostAsync<Usuario>($"{baseEndPoint}/login", param, password);
+            Usuario usuario = await qc.LoginAsync<Usuario>($"{baseEndPoint}/login", param, password);
             return usuario;
         }
         public static async void CreateUsuario(Usuario usuario)// op
@@ -52,6 +52,11 @@ namespace BusinessLogic
             List<Usuario> usuarios = await qc.GetAsync<List<Usuario>>($"{baseEndPoint}/usuarios/q={query}");
             return usuarios;
         }// op
+        public static async void UpdateUsuario(long id, Usuario usuario)
+        {
+            QConsumer qc = new QConsumer();
+            _ = await qc.UpdateAsync($"{baseEndPoint}/usuarios/{id}", usuario);
+        }
         #endregion
 
 
@@ -91,6 +96,12 @@ namespace BusinessLogic
             List<Especie> especiesTerrario = await qc.GetAsync<List<Especie>>($"{baseEndPoint}/especies?q={idTerrario}");
             return especiesTerrario;
         } // op
+        public static async Task<bool> DeleteEspecie(long id)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.DeleteAsync<Task>($"{baseEndPoint}/especies/{id}");
+            return true;
+        }
         #endregion
 
 
@@ -122,6 +133,20 @@ namespace BusinessLogic
             List<Logro> logros = await qc.GetAsync<List<Logro>>($"{baseEndPoint}/logros-usuario/{id}");
             return logros;
         } // op
+        #endregion
+
+        #region Notificaciones
+        public static async Task<List<Notificacion>> GetNotificacionesByUserId(long id)
+        {
+            QConsumer qc = new QConsumer();
+            return await qc.GetAsync<List<Notificacion>>($"{baseEndPoint}/notificaciones/usuario/{id}");
+        }
+
+        public static async Task UpdateNotificacion(Notificacion notificacion, long id)
+        {
+            QConsumer qc = new QConsumer();
+            _ = await qc.UpdateAsync($"{baseEndPoint}/notificacions/{id}", notificacion);
+        }
         #endregion
     }
 }

@@ -38,7 +38,7 @@ namespace Q_Tech.Paginas {
     /// <summary>
     /// pgEspecies
     /// </summary>
-    public partial class pgEspecies : System.Windows.Controls.Page, System.Windows.Markup.IComponentConnector {
+    public partial class pgListaEspecies : System.Windows.Controls.Page, System.Windows.Markup.IComponentConnector {
         
         private bool _contentLoaded;
         

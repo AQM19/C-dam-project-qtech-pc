@@ -205,14 +205,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToImageConverter.cs" />
-    <Compile Include="Paginas\pgEspecies.xaml.cs">
-      <DependentUpon>pgEspecies.xaml</DependentUpon>
+    <Compile Include="Paginas\pgListaEspecies.xaml.cs">
+      <DependentUpon>pgListaEspecies.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\pgLogros.xaml.cs">
-      <DependentUpon>pgLogros.xaml</DependentUpon>
+    <Compile Include="Paginas\pgListaLogros.xaml.cs">
+      <DependentUpon>pgListaLogros.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\pgListaNotificaciones.xaml.cs">
+      <DependentUpon>pgListaNotificaciones.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\pgUsuario.xaml.cs">
       <DependentUpon>pgUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prop\frmAddEspecie.xaml.cs">
+      <DependentUpon>frmAddEspecie.xaml</DependentUpon>
     </Compile>
     <Compile Include="Prop\frmEspecies.xaml.cs">
       <DependentUpon>frmEspecies.xaml</DependentUpon>
@@ -221,10 +227,6 @@
       <DependentUpon>frmTerraMaker.xaml</DependentUpon>
     </Compile>
     <Page Include="Modales\Dashboard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Paginas\pgEspecies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -250,11 +252,19 @@
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Paginas\pgLogros.xaml">
+    <Page Include="Paginas\pgListaEspecies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\pgTerrarios.xaml">
+    <Page Include="Paginas\pgListaLogros.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\pgListaNotificaciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\pgListaTerrarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -263,6 +273,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paginas\pgListaUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prop\frmAddEspecie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,8 +290,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Paginas\pgTerrarios.xaml.cs">
-      <DependentUpon>pgTerrarios.xaml</DependentUpon>
+    <Compile Include="Paginas\pgListaTerrarios.xaml.cs">
+      <DependentUpon>pgListaTerrarios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\pgListaUsuarios.xaml.cs">
       <DependentUpon>pgListaUsuarios.xaml</DependentUpon>
@@ -386,6 +400,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Iconos\disquete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\cerrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\editar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\anadir.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

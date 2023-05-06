@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Q_Tech.Paginas
+namespace Q_Tech.Prop
 {
     /// <summary>
-    /// Lógica de interacción para pgEspecies.xaml
+    /// Lógica de interacción para frmAddEspecie.xaml
     /// </summary>
-    public partial class pgEspecies : Page
+    public partial class frmAddEspecie : Window
     {
-        public pgEspecies()
+        public frmAddEspecie()
         {
             InitializeComponent();
         }

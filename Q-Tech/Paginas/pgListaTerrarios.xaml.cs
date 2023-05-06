@@ -14,16 +14,16 @@ namespace Q_Tech.Paginas
     /// <summary>
     /// Lógica de interacción para pgTerrarios.xaml
     /// </summary>
-    public partial class pgTerrarios : Page
+    public partial class pgListaTerrarios : Page
     {
 
         private long _id;
-        public pgTerrarios()
+        public pgListaTerrarios()
         {
             InitializeComponent();
         }
 
-        public pgTerrarios(long id) : this()
+        public pgListaTerrarios(long id) : this()
         {
             _id = id;
             CargarTerrarios();

@@ -197,7 +197,7 @@ namespace Q_Tech
             this.Hide();
             if(dashboard.ShowDialog() == false) this.Close();
 
-            this.Show();
+            //this.Show();
         }
 
         private async Task<string> CargarImagenPerfilAzure(string username)

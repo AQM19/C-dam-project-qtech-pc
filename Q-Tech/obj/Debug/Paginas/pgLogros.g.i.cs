@@ -38,7 +38,7 @@ namespace Q_Tech.Paginas {
     /// <summary>
     /// pgLogros
     /// </summary>
-    public partial class pgLogros : System.Windows.Controls.Page, System.Windows.Markup.IComponentConnector {
+    public partial class pgListaLogros : System.Windows.Controls.Page, System.Windows.Markup.IComponentConnector {
         
         
         #line 21 "..\..\..\Paginas\pgLogros.xaml"

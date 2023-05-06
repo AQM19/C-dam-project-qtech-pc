@@ -35,6 +35,8 @@ namespace Q_Tech.Modales
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            movingImage.Visibility = Visibility.Visible;
+
             Border clickedButton = (Border)sender;
             Point targetPoint = clickedButton.TranslatePoint(new Point(0, 0), dkpVerticalMenu);
 
@@ -78,19 +80,19 @@ namespace Q_Tech.Modales
 
         private void CargarTerrarios()
         {
-            pgTerrarios pgTerrarios = new pgTerrarios(_usuario.Id);
+            pgListaTerrarios pgTerrarios = new pgListaTerrarios(_usuario.Id);
             frmMainFrame.Content = pgTerrarios;
         }
 
         private void CargarLogros()
         {
-            pgLogros pgLogros = new pgLogros();
+            pgListaLogros pgLogros = new pgListaLogros();
             frmMainFrame.Content = pgLogros;
         }
 
         private void CargarEspecies()
         {
-            pgEspecies pgEspecies = new pgEspecies();
+            pgListaEspecies pgEspecies = new pgListaEspecies();
             frmMainFrame.Content = pgEspecies;
         }
 
@@ -173,6 +175,20 @@ namespace Q_Tech.Modales
         {
             Keyboard.ClearFocus();
             searchScroll.Visibility = Visibility.Collapsed;
+        }
+
+        private void imgProfile_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            movingImage.Visibility = Visibility.Hidden;
+            pgUsuario pgUsuario = new pgUsuario(_usuario);
+            frmMainFrame.Content = pgUsuario;
+        }
+
+        private void imgNotifications_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            movingImage.Visibility = Visibility.Hidden;
+            pgListaNotificaciones pgListaNotificaciones = new pgListaNotificaciones(_usuario.Id);
+            frmMainFrame.Content = pgListaNotificaciones;
         }
     }
 }

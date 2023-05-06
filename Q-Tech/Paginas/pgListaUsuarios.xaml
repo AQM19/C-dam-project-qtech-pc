@@ -9,7 +9,7 @@
       Title="pgUsuarios">
 
     <Grid>
-        <ListView x:Name="lvUsuarios" Background="#88FFFFFF" BorderThickness="0" Padding="10">
+        <ListView x:Name="lvUsuarios" Background="#88FFFFFF" BorderThickness="0" Padding="10" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <!--Bienvenido al mundo de la fantasía-->
         </ListView>
     </Grid>

@@ -37,7 +37,7 @@ namespace Q_Tech.Paginas {
     /// <summary>
     /// pgTerrarios
     /// </summary>
-    public partial class pgTerrarios : System.Windows.Controls.Page, System.Windows.Markup.IComponentConnector {
+    public partial class pgListaTerrarios : System.Windows.Controls.Page, System.Windows.Markup.IComponentConnector {
         
         
         #line 10 "..\..\..\Paginas\pgTerrarios.xaml"
