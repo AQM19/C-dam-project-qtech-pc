@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -205,7 +206,7 @@ namespace Q_Tech
             if (!string.IsNullOrEmpty(_filename))
             {
                 Uri blobUri = new Uri($"https://qtechstorage.blob.core.windows.net/{username}/profile_pic{Path.GetExtension(_filename)}");
-                StorageSharedKeyCredential storageCredentials = new StorageSharedKeyCredential("qtechstorage", "FlndiCy8EE6+LS8VJp7r2p5gysm6dZG7AQrfHBJnjB0qiOOJh/pja6TwcxTWNhb66nGKcNnlT8/d+AStv7ldAA==");
+                StorageSharedKeyCredential storageCredentials = new StorageSharedKeyCredential("qtechstorage", ConfigurationManager.AppSettings["qtechstorage"].ToString());
                 BlobClient blobClient = new BlobClient(blobUri, storageCredentials);
 
                 FileStream fileStream = File.OpenRead(Path.GetFullPath(_filename));
@@ -223,7 +224,7 @@ namespace Q_Tech
 
         private async Task<BlobContainerClient> CrearContainerBlobAzure(string username)
         {
-            string connectionString = "DefaultEndpointsProtocol=https;AccountName=qtechstorage;AccountKey=FlndiCy8EE6+LS8VJp7r2p5gysm6dZG7AQrfHBJnjB0qiOOJh/pja6TwcxTWNhb66nGKcNnlT8/d+AStv7ldAA==;EndpointSuffix=core.windows.net";
+            string connectionString = ConfigurationManager.AppSettings["azureacc"].ToString();
             BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
 
             string containerName = username;

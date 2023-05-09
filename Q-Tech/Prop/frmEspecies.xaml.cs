@@ -14,17 +14,20 @@ namespace Q_Tech.Prop
         private Especie _especie;
         private List<Especie> _especies;
 
-        public Especie Especie { get => _especie; set => _especie = value; }
+        public Especie Especie { get => _especie; }
 
         public frmEspecies()
         {
             InitializeComponent();
-            ObtenerEspecies();
+        }
+        public frmEspecies(List<Especie> especies) : this()
+        {
+            ObtenerEspecies(especies);
         }
 
-        private async void ObtenerEspecies()
+        private async void ObtenerEspecies(List<Especie> especies)
         {
-            _especies = await Herramientas.GetEspecies();
+            _especies = await Herramientas.GetEspeciesPosibles(especies); // No entiendo por qué es nulo
 
             lvEspecies.Items.Clear();
             string[] item = new string[8];
@@ -46,6 +49,7 @@ namespace Q_Tech.Prop
         private void ListViewItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             _especie = (Especie)((ListViewItem)sender).Content;
+            this.DialogResult = true;
             this.Close();
         }
     }

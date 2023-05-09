@@ -5,6 +5,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -13,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Q_Tech.Prop
 {
@@ -25,8 +27,10 @@ namespace Q_Tech.Prop
         private List<Especie> _especies;
         private List<EspecieTerrario> _especiesTerrario;
         private Terrario _terrario;
+        private string _filename;
 
-        public Terrario Terrario { get => _terrario; set => _terrario = value; }
+        public Terrario Terrario { get => _terrario; }
+        public List<EspecieTerrario> EspeciesTerrario { get => _especiesTerrario; }
 
         public frmTerraMaker()
         {
@@ -34,61 +38,36 @@ namespace Q_Tech.Prop
             _especies = new List<Especie>();
             _especiesTerrario = new List<EspecieTerrario>();
         }
-
         public frmTerraMaker(Usuario usuario, Terrario terrario) : this()
         {
-            _usuario = usuario;
             _terrario = terrario;
+            _usuario = usuario;
             DesplegarInformacion();
 
             this.Title = $"Terrario de {_usuario.NombreUsuario}";
         }
-
         private async void DesplegarInformacion()
         {
             if (_terrario != null)
             {
                 tbName.Text = _terrario.Nombre;
                 chkPrivate.IsChecked = (_terrario.Privado == 0) ? false : true;
-                cmbSustrato.SelectedItem = _terrario.Sustrato;
-                cmbEcosistema.SelectedItem = _terrario.Ecosistema;
+                txbSustrato.Text = _terrario.Sustrato;
+                txbEcosistema.Text = _terrario.Ecosistema;
                 numberPicker.Text = _terrario.Tamano.ToString();
-                txtImageSource.Text = _terrario.Foto;
-                tbDescription.Text = _terrario.Descripcion;
-
-                _especies = await Herramientas.GetEspeciesTerrario(_terrario.Id);
-
-                //for (int i = 0; i < _especiesTerrario.Count; i++)
-                //{
-                //    Especie especie = await Herramientas.GetEspecie(_especiesTerrario[i].Idespecie);
-                //    _especies.Add(especie);
-                //}
+                imgTerraPic.Source = new BitmapImage(new Uri(_terrario.Foto != null ? _terrario.Foto : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
+                txbDescripcion.Text = _terrario.Descripcion;
+                if (_terrario.Id != 0)
+                {
+                    _especies = await Herramientas.GetEspeciesTerrario(_terrario.Id);
+                }
 
                 MostrarEspecies();
             }
         }
-
-        private void spSize_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            numberPicker.Focus();
-        }
-
-        private void numberPicker_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (!IsNumberKey(e.Key) && e.Key != Key.Tab)
-            {
-                e.Handled = true;
-            }
-        }
-
-        private bool IsNumberKey(Key key)
-        {
-            return (key >= Key.D0 && key <= Key.D9) || (key >= Key.NumPad0 && key <= Key.NumPad9);
-        }
-
         private void tbDescription_KeyUp(object sender, KeyEventArgs e)
         {
-            int length = tbDescription.Text.Length;
+            int length = txbDescripcion.Text.Length;
             string text = tbDescription.Text;
             Brush foreground = tbDescription.Foreground;
 
@@ -107,29 +86,13 @@ namespace Q_Tech.Prop
                 foreground = Brushes.Red;
                 tbDescription.Visibility = Visibility.Visible;
             }
-
         }
-
-        private void bdrUpload_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Subir imagen";
-            openFileDialog.Filter = "jpg (*.jpg)|*.jpg|png (*.png)|*.png";
-
-            bool? result = openFileDialog.ShowDialog();
-
-            if (result == true)
-            {
-                string filename = openFileDialog.FileName;
-            }
-        }
-
         private void chkPrivate_Click(object sender, RoutedEventArgs e)
         {
-            spPass.Visibility = (chkPrivate.IsChecked == true) ? Visibility.Visible : Visibility.Hidden;
+            spPassOne.Visibility = (chkPrivate.IsChecked == true) ? Visibility.Visible : Visibility.Hidden;
+            spPassTwo.Visibility = (chkPrivate.IsChecked == true) ? Visibility.Visible : Visibility.Hidden;
         }
-
-        private async void btnAccept_Click(object sender, RoutedEventArgs e)
+        private async void btnSave_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (ValidData())
             {
@@ -139,13 +102,19 @@ namespace Q_Tech.Prop
                 if (chkPrivate.IsChecked == true)
                 {
                     _terrario.Privado = 1;
-                    _terrario.Contrasena = EncriptacionSHA256(pwbPassword.Password);
+                    _terrario.Contrasena = EncriptacionSHA256(pswPassOne.Password);
                 }
 
-                _terrario.Sustrato = cmbSustrato.SelectedItem.ToString();
-                _terrario.Ecosistema = cmbEcosistema.SelectedItem.ToString();
-                _terrario.Tamano = Int32.Parse(numberPicker.Text);
-                _terrario.Foto = CargarImagenAzure();
+                _terrario.Sustrato = txbSustrato.Text;
+                _terrario.Ecosistema = txbEcosistema.Text;
+                if (!string.IsNullOrEmpty(numberPicker.Text))
+                {
+                    _terrario.Tamano = Int32.Parse(numberPicker.Text);
+                }
+                if (_filename != null)
+                {
+                    _terrario.Foto = CargarImagenAzure();
+                }
                 _terrario.Descripcion = tbDescription.Text;
                 _terrario.FechaCreacion = DateTime.Today;
                 _terrario.FechaUltimaModificacion = DateTime.Today;
@@ -180,31 +149,23 @@ namespace Q_Tech.Prop
                     _terrario.PuntuacionMedia = visitas.Average(x => x.Puntuacion);
                 }
 
-                List<long> idEspecies = _especies.Select(x => x.Id).ToList();
-                List<long> idEspeciesTerrario = _especiesTerrario.Select(x => x.Idespecie).ToList();
-                List<long> idFaltantes = idEspecies.Except(idEspeciesTerrario).ToList();
-
-                EspecieTerrario especieTerrario;
-
-                for (int i = 0; i < idFaltantes.Count; i++)
+                for (int i = 0; i < _especies.Count; i++)
                 {
-                    especieTerrario = new EspecieTerrario
+                    _especiesTerrario.Add(new EspecieTerrario
                     {
-                        Idespecie = idFaltantes[i],
+                        Idespecie = _especies[i].Id,
                         Idterrario = _terrario.Id,
                         FechaInsercion = DateTime.Today
-                    };
-
-                    // Crearlo con Herramientas
+                    });
                 }
 
+                this.DialogResult = true;
                 this.Close();
             }
         }
-
         private string CargarImagenAzure()
         {
-            string connectionString = "DefaultEndpointsProtocol=https;AccountName=aquintanalm01@educantabria.es;AccountKey=6e499D18eD86@1;EndpointSuffix=core.windows.net";
+            string connectionString = ConfigurationManager.AppSettings["azureacc"].ToString();
             string containerName = _usuario.NombreUsuario;
             string userName = _usuario.NombreUsuario;
             string imageName = _terrario.Nombre;
@@ -217,14 +178,13 @@ namespace Q_Tech.Prop
 
             CloudBlockBlob blob = container.GetBlockBlobReference(prefix + imageName);
 
-            using (FileStream fileStream = File.OpenRead(txtImageSource.Text))
+            using (FileStream fileStream = File.OpenRead(_filename))
             {
                 blob.UploadFromStream(fileStream);
             }
 
             return $"https://qtechstorage.blob.core.windows.net/{prefix}{imageName}";
         }
-
         private string EncriptacionSHA256(string psw)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(psw);
@@ -238,12 +198,10 @@ namespace Q_Tech.Prop
 
             return hashString;
         }
-
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        private void btnCancel_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
         }
-
         private bool ValidData()
         {
             if (string.IsNullOrEmpty(tbName.Text))
@@ -252,13 +210,13 @@ namespace Q_Tech.Prop
                 tbName.Focus();
                 return false;
             }
-            if (chkPrivate.IsChecked == true && string.IsNullOrEmpty(pwbPassword.Password))
+            if (chkPrivate.IsChecked == true && string.IsNullOrEmpty(pswPassOne.Password))
             {
                 MessageBox.Show("Si el terrario es privado debería tener una contraseña", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                pwbPassword.Focus();
+                pswPassOne.Focus();
                 return false;
             }
-            if (int.Parse(numberPicker.Text) <= 0)
+            if (!string.IsNullOrEmpty(numberPicker.Text) && int.Parse(numberPicker.Text) <= 0)
             {
                 MessageBox.Show("El terrario no puede tener un tamaño negativo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 numberPicker.Focus();
@@ -267,21 +225,20 @@ namespace Q_Tech.Prop
 
             return true;
         }
-
         private void bdrAddSp_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            frmEspecies frmEspecies = new frmEspecies();
-            frmEspecies.ShowDialog();
-
-            Especie especie = frmEspecies.Especie;
-
-            if (_especies.FirstOrDefault(x => x.Id == especie.Id) == null)
+            frmEspecies frmEspecies = new frmEspecies(_especies);
+            if(frmEspecies.ShowDialog() == true)
             {
-                _especies.Add(especie);
-                MostrarEspecies();
+                Especie especie = frmEspecies.Especie;
+
+                if (_especies.FirstOrDefault(x => x.Id == especie.Id) == null)
+                {
+                    _especies.Add(especie);
+                    MostrarEspecies();
+                }
             }
         }
-
         private void bdrDelSp_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (lvEspecies.SelectedItems.Count > 0)
@@ -293,7 +250,6 @@ namespace Q_Tech.Prop
                 MostrarEspecies();
             }
         }
-
         private void MostrarEspecies()
         {
             lvEspecies.Items.Clear();
@@ -307,6 +263,26 @@ namespace Q_Tech.Prop
                 };
 
                 lvEspecies.Items.Add(item);
+            }
+        }
+        private void imgTerraPic_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Subir imagen";
+            openFileDialog.Filter = "jpg (*.jpg)|*.jpg|png (*.png)|*.png";
+
+            bool? result = openFileDialog.ShowDialog();
+
+            if (result == true)
+            {
+                _filename = openFileDialog.FileName;
+            }
+        }
+        private void numberPicker_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, 0) && e.Text != "\t" && e.Text != "\b")
+            {
+                e.Handled = true;
             }
         }
     }

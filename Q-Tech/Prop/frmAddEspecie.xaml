@@ -7,6 +7,116 @@
         mc:Ignorable="d"
         Title="frmAddEspecie" Height="550" Width="450">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.35*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="0.65*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Column="0" x:Name="imgTerraPic" Source="/Recursos/Iconos/MainIcon.png" HorizontalAlignment="Left" Margin="5,0" MouseDown="imgTerraPic_MouseDown"/>
+            <TextBox Grid.Column="1" Text="Genero Especie" VerticalAlignment="Top" x:Name="txbGenSp" HorizontalAlignment="Left" Grid.ColumnSpan="2" FontSize="25" FontWeight="Bold" Padding="5" Background="Transparent" BorderThickness="0" BorderBrush="Transparent"/>
+            <CheckBox Content="Hibernación" Grid.Column="2" x:Name="chkHibernacion" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5" Click="chkHibernacion_Click"/>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <DockPanel LastChildFill="False" Grid.Column="0">
+                <TextBlock Text="Nombre común" DockPanel.Dock="Top" Padding="0,5" Margin="5,0"/>
+                <TextBox DockPanel.Dock="Top" Padding="5" Margin="5,0" x:Name="txbNombreComun"/>
+
+                <TextBlock Text="Años de vida" DockPanel.Dock="Top" Padding="0,5" Margin="5,0"/>
+                <TextBox DockPanel.Dock="Top" Padding="5" Margin="5,0" x:Name="txbAniosVida" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
+
+                <TextBlock Text="Ecosistema" DockPanel.Dock="Top" Padding="0,5" Margin="5,0"/>
+                <TextBox DockPanel.Dock="Top" Padding="5" Margin="5,0" x:Name="txbEcosistema"/>
+
+                <TextBlock Text="Clase" DockPanel.Dock="Top" Padding="0,5" Margin="5,0"/>
+                <ComboBox DockPanel.Dock="Top" Padding="5" Margin="5,0" x:Name="cboClase">
+                    <ComboBoxItem Content="Animal" IsSelected="True"/>
+                    <ComboBoxItem Content="Planta" />
+                    <ComboBoxItem Content="Hongo" />
+                </ComboBox>
+            </DockPanel>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--ROW0-->
+                <StackPanel Grid.Column="0" Grid.Row="0" x:Name="spTempMAX">
+                    <TextBlock Text="Temperatura MAX" Padding="0,5" Margin="5,0"/>
+                    <TextBox Padding="5" Margin="5,0" x:Name="txbMaxTemp" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="0" x:Name="spTempHibMAX">
+                    <TextBlock Text="Temp. MAX Hib" Padding="0,5" Margin="5,0"/>
+                    <TextBox Padding="5" Margin="5,0" x:Name="txbMaxTempHib" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
+                </StackPanel>
+
+                <!--ROW1-->
+                <StackPanel Grid.Column="0" Grid.Row="1" x:Name="spTempmin">
+                    <TextBlock Text="Temperatura min" Padding="0,5" Margin="5,0"/>
+                    <TextBox Padding="5" Margin="5,0" x:Name="txbMinTemp" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="1" x:Name="spTempHibmin">
+                    <TextBlock Text="Temp min Hib" Padding="0,5" Margin="5,0"/>
+                    <TextBox Padding="5" Margin="5,0" x:Name="txbMinTempHib" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
+                </StackPanel>
+
+                <!--ROW2-->
+                <StackPanel Grid.Column="0" Grid.Row="2">
+                    <TextBlock Text="Humedad MAX" Padding="0,5" Margin="5,0"/>
+                    <TextBox Padding="5" Margin="5,0" x:Name="txbMaxHum" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="2">
+                    <TextBlock Text="Humedad min" Padding="0,5" Margin="5,0"/>
+                    <TextBox Padding="5" Margin="5,0" x:Name="txbMinHum" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
+                </StackPanel>
+
+                <!--ROW3-->
+                <StackPanel Grid.Column="0" Grid.Row="3" x:Name="spLuzMAX">
+                    <TextBlock Text="Horas de luz" Padding="0,5" Margin="5,0"/>
+                    <TextBox Padding="5" Margin="5,0" x:Name="txbMaxLuz" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="3" x:Name="spLuzHibMAX">
+                    <TextBlock Text="Horas de luz hib" Padding="0,5" Margin="5,0"/>
+                    <TextBox Padding="5" Margin="5,0" x:Name="txbMaxLuzHib" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <TextBox Grid.Row="2" x:Name="txbDescripcion" MaxLength="300" AcceptsReturn="True" VerticalScrollBarVisibility="Hidden" TextWrapping="Wrap" Padding="5" Margin="5"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right">
+            <Border Width="32" Height="32" x:Name="btnSave" MouseDown="btnSave_MouseDown" Background="#BDECB6" Padding="3" Margin="5,0" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+                <Image Source="/Recursos/Iconos/disquete.png" />
+            </Border>
+            <Border Width="32" Height="32" x:Name="btnCancel" MouseDown="btnCancel_MouseDown" Background="#FF6961" Padding="3" Margin="5,0" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+                <Image Source="/Recursos/Iconos/cerrar.png" />
+            </Border>
+        </StackPanel>
     </Grid>
 </Window>

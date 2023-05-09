@@ -30,6 +30,7 @@ namespace AccesData
                 throw new ApplicationException($"Error al obtener el recurso: {response.StatusCode}");
             }
         }
+        
         public async Task<T> LoginAsync<T>(string url, string user, string contra)
         {
             Dictionary<string, string> data = new Dictionary<string, string>
@@ -75,7 +76,7 @@ namespace AccesData
         public async Task<T> CreateAsync<T>(string url, T data)
         {
             HttpClient client = new HttpClient();
-
+            
             HttpResponseMessage response = await client.PostAsJsonAsync(url, data);
             response.EnsureSuccessStatusCode();
 

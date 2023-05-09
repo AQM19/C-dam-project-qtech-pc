@@ -410,5 +410,8 @@
   <ItemGroup>
     <Resource Include="Recursos\Iconos\anadir.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\menos.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

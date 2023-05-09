@@ -68,7 +68,7 @@ namespace Q_Tech.Modales
 
         private void CargarIndex()
         {
-            pgIndex index = new pgIndex(_usuario.Id);
+            pgIndex index = new pgIndex(_usuario);
             frmMainFrame.Content = index;
         }
 

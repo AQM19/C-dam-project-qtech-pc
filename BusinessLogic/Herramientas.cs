@@ -67,12 +67,21 @@ namespace BusinessLogic
             List<Terrario> terrarios = await qc.GetAsync<List<Terrario>>($"{baseEndPoint}/terrarios");
             return terrarios;
         }
-
         public static async Task<List<Terrario>> GetTerrariosSocial(long id)
         {
             QConsumer qc = new QConsumer();
             List<Terrario> terrarios = await qc.GetAsync<List<Terrario>>($"{baseEndPoint}/terrarios-social/{id}");
             return terrarios;
+        }
+        public static async Task CreateTerrario(Terrario terrario)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.CreateAsync<Terrario>($"{baseEndPoint}/terrarios", terrario);
+        }
+        public static async Task UpdateTerrario(long id, Terrario terrario)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.UpdateAsync<Terrario>($"{baseEndPoint}/terrarios/{id}", terrario);
         }
         #endregion
 
@@ -93,7 +102,7 @@ namespace BusinessLogic
         public static async Task<List<Especie>> GetEspeciesTerrario(long idTerrario)
         {
             QConsumer qc = new QConsumer();
-            List<Especie> especiesTerrario = await qc.GetAsync<List<Especie>>($"{baseEndPoint}/especies?q={idTerrario}");
+            List<Especie> especiesTerrario = await qc.GetAsync<List<Especie>>($"{baseEndPoint}/especies/q={idTerrario}");
             return especiesTerrario;
         } // op
         public static async Task<bool> DeleteEspecie(long id)
@@ -101,6 +110,21 @@ namespace BusinessLogic
             QConsumer qc = new QConsumer();
             await qc.DeleteAsync<Task>($"{baseEndPoint}/especies/{id}");
             return true;
+        }
+        public static async Task AddEspecie(Especie especie)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.CreateAsync<Especie>($"{baseEndPoint}/especies", especie);
+        }
+        public static async Task UpdateEspecie(long id, Especie especie)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.UpdateAsync<Especie>($"{baseEndPoint}/especies/{id}", especie);
+        }
+        public static async Task<List<Especie>> GetEspeciesPosibles(List<Especie> list)
+        {
+            QConsumer qc = new QConsumer();
+            return await qc.PostAsync($"{baseEndPoint}/especies/not-in", list);
         }
         #endregion
 
@@ -146,6 +170,19 @@ namespace BusinessLogic
         {
             QConsumer qc = new QConsumer();
             _ = await qc.UpdateAsync($"{baseEndPoint}/notificacions/{id}", notificacion);
+        }
+        #endregion
+
+        #region EspeciesTerrario
+        public static async Task CreateEspeciesTerrario(EspecieTerrario especieTerrario)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.CreateAsync($"{baseEndPoint}/especie-terrario", especieTerrario);
+        }
+        public static async Task UpdateEspeciesOfTerrario(long id, List<EspecieTerrario> especiesTerrario)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.UpdateAsync<List<EspecieTerrario>>($"{baseEndPoint}/especie-terrario/list/{id}", especiesTerrario);
         }
         #endregion
     }

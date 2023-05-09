@@ -9,131 +9,97 @@
         Title="Terrario de %username%" Height="550" Width="450"
         ResizeMode="NoResize">
     <Grid>
-        <StackPanel Orientation="Vertical">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
+        <!--ROW0-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
 
-                <!--Row 0-->
-                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
-                    <TextBlock Text="Nombre"  VerticalAlignment="Center" Margin="15,15,15,3"/>
-                    <TextBox VerticalAlignment="Center" Margin="15,0" x:Name="tbName"/>
-                </StackPanel>
+            <Image Source="/Recursos/Iconos/MainIcon.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="5" x:Name="imgTerraPic" MouseDown="imgTerraPic_MouseDown"/>
+            <TextBox x:Name="tbName" Text="TerraName" VerticalAlignment="Center" Padding="5" BorderThickness="0" FontSize="28" FontWeight="Bold" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"/>
+            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                <TextBlock Text="Tamaño" Padding="5"/>
+                <TextBox Margin="5,0" Padding="5" x:Name="numberPicker" PreviewTextInput="numberPicker_PreviewTextInput"/>
+            </StackPanel>
+            <CheckBox IsChecked="False" Content="Privado" Grid.Column="2" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5,0" x:Name="chkPrivate" Click="chkPrivate_Click" />
+        </Grid>
 
+        <!--ROW1-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="225*"/>
+                <ColumnDefinition Width="173*"/>
+                <ColumnDefinition Width="52*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-                <!--Row 1-->
-                <CheckBox IsChecked="False" Content="Privado" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15" x:Name="chkPrivate" Click="chkPrivate_Click" />
-                <StackPanel Orientation="Vertical" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Visibility="Hidden" x:Name="spPass">
-                    <TextBlock Text="Contraseña" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0"/>
-                    <PasswordBox Margin="15,3" x:Name="pwbPassword"/>
-                </StackPanel>
-            </Grid>
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" x:Name="spPassOne" Margin="0,0,0,54" Grid.RowSpan="2">
+                <TextBlock Text="Contraseña:" Padding="5"/>
+                <PasswordBox x:Name="pswPassOne" Padding="5" Margin="5,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" x:Name="spPassTwo" Grid.ColumnSpan="2" Margin="0,0,0,54" Grid.RowSpan="2">
+                <TextBlock Text="Repetir contraseña:" Padding="5"/>
+                <PasswordBox x:Name="pswPassTwo" Padding="5" Margin="5,0"/>
+            </StackPanel>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" Margin="0,0,0,126" Grid.RowSpan="2">
+                <TextBlock Text="Sustrato" Padding="5"/>
+                <TextBox x:Name="txbSustrato" Padding="5" Margin="5,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,0,126" Grid.RowSpan="2">
+                <TextBlock Text="Ecosistema" Padding="5"/>
+                <TextBox x:Name="txbEcosistema" Padding="5" Margin="5,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical"  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                <TextBlock Text="Descripcion" Padding="5" Margin="5,0"/>
+                <TextBox x:Name="txbDescripcion" Padding="5" Margin="5,5,5,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Hidden" MaxLength="300" Height="75" KeyUp="tbDescription_KeyUp"/>
+                <TextBlock FontSize="8" Margin="0,0,5,10" HorizontalAlignment="Right" x:Name="tbDescription" Visibility="Hidden"/>
+            </StackPanel>
+        </Grid>
 
-                <!--Row 0-->
-                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" Margin="15,10">
-                    <TextBlock Text="Sustrato" Margin="0,0,0,3"/>
-                    <ComboBox x:Name="cmbSustrato">
-                        <ComboBoxItem IsSelected="True">Turba</ComboBoxItem>
-                        <ComboBoxItem>Arcilla expandida</ComboBoxItem>
-                        <ComboBoxItem>Arena</ComboBoxItem>
-                        <ComboBoxItem>Corteza de pino</ComboBoxItem>
-                        <ComboBoxItem>Fibra de coco</ComboBoxItem>
-                        <ComboBoxItem>Grava</ComboBoxItem>
-                        <ComboBoxItem>Tierra volcánica</ComboBoxItem>
-                        <ComboBoxItem>Lana de roca</ComboBoxItem>
-                        <ComboBoxItem>Perlita</ComboBoxItem>
-                        <ComboBoxItem>Poliestireno expandido</ComboBoxItem>
-                        <ComboBoxItem>Vermiculita</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
+        <!--ROW2-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0" Margin="15,10">
-                    <TextBlock Text="Ecosistema" Margin="0,0,0,3"/>
-                    <ComboBox x:Name="cmbEcosistema">
-                        <ComboBoxItem IsSelected="True">Tropical</ComboBoxItem>
-                        <ComboBoxItem>Desértico</ComboBoxItem>
-                        <ComboBoxItem>Selva</ComboBoxItem>
-                        <ComboBoxItem>Roca</ComboBoxItem>
-                        <ComboBoxItem>Bosque</ComboBoxItem>
-                        <ComboBoxItem>Montaña</ComboBoxItem>
-                        <ComboBoxItem>Pradera</ComboBoxItem>
-                        <ComboBoxItem>Cascada</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
+            <ListView x:Name="lvEspecies" Grid.Column="0" Padding="5" Margin="5" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+            <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5">
+                <Border Width="32" Height="32" x:Name="btnAdd" MouseDown="bdrAddSp_MouseDown" Background="#BDECB6" Padding="3" Margin="0,0,0,5" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+                    <Image Source="/Recursos/Iconos/anadir.png" />
+                </Border>
+                <Border Width="32" Height="32" x:Name="btnDel" MouseDown="bdrDelSp_MouseDown" Background="#FF6961" Padding="3" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+                    <Image Source="/Recursos/Iconos/menos.png" />
+                </Border>
+            </StackPanel>
+        </Grid>
 
-                <!--Row 1-->
-                <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="15,3" x:Name="spSize" MouseDown="spSize_MouseDown">
-                    <TextBlock Text="Tamaño: " Margin="0,0,3,0"/>
-                    <TextBox Text="0" BorderThickness="0" x:Name="numberPicker" PreviewKeyDown="numberPicker_PreviewKeyDown"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Margin="15,3">
-                    <TextBlock Text="Imagen:" Margin="0,0,3,0" />
-                    <DockPanel LastChildFill="True">
-                        <Border x:Name="bdrUpload" Width="16" Height="16" CornerRadius="5" DockPanel.Dock="Right" MouseDown="bdrUpload_MouseDown">
-                            <Border.Background>
-                                <ImageBrush ImageSource="/Recursos/Iconos/subir.png" />
-                            </Border.Background>
-                        </Border>
-                        <TextBlock x:Name="txtImageSource" TextTrimming="CharacterEllipsis" Margin="0,0,5,0"/>
-                    </DockPanel>
-                </StackPanel>
-
-                <!--Row 2-->
-                <DockPanel LastChildFill="True" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="15,3">
-                    <StackPanel Orientation="Vertical" DockPanel.Dock="Right">
-                        <Border x:Name="bdrAddSp" Width="16" Height="16" CornerRadius="5" MouseDown="bdrAddSp_MouseDown" VerticalAlignment="Top">
-                            <Border.Background>
-                                <ImageBrush ImageSource="/Recursos/Iconos/add_16x16.png" />
-                            </Border.Background>
-                        </Border>
-                        <Border x:Name="bdrDelSp" Width="16" Height="16" CornerRadius="5" MouseDown="bdrDelSp_MouseDown" VerticalAlignment="Top" Margin="0,5">
-                            <Border.Background>
-                                <ImageBrush ImageSource="/Recursos/Iconos/del_16x16.png" />
-                            </Border.Background>
-                        </Border>
-                    </StackPanel>
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
-                        <ListView x:Name="lvEspecies" Margin="0,0,5,0" Height="100"/>
-
-                    </ScrollViewer>
-                </DockPanel>
-                
-                
-                <!--Row 3-->
-                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Margin="15,3">
-                    <TextBlock Text="Descripción:" Margin="0,3"/>
-                    <TextBox AcceptsReturn="True" MinHeight="130" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" MaxLength="300" x:Name="tbDescription" KeyUp="tbDescription_KeyUp"/>
-                    <TextBlock HorizontalAlignment="Right" x:Name="txtCharacterCounter" FontSize="9" Visibility="Hidden"/>
-                </StackPanel>
-            </Grid>
+        <!--ROW3-->
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right">
+            <Border Width="32" Height="32" x:Name="btnSave" MouseDown="btnSave_MouseDown" Background="#BDECB6" Padding="3" Margin="5" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+                <Image Source="/Recursos/Iconos/disquete.png" />
+            </Border>
+            <Border Width="32" Height="32" x:Name="btnCancel" MouseDown="btnCancel_MouseDown" Background="#FF6961" Padding="3" Margin="5" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+                <Image Source="/Recursos/Iconos/cerrar.png" />
+            </Border>
         </StackPanel>
-
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
-            <Button Content="Aceptar" Margin="5,0" Padding="3" x:Name="btnAccept" Click="btnAccept_Click"/>
-            <Button Content="Cancelar" Margin="5,0" Padding="3" x:Name="btnCancel" Click="btnCancel_Click"/>
-        </StackPanel>
-        
-        
     </Grid>
 </Window>

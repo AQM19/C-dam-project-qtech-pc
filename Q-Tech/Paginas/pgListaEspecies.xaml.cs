@@ -1,5 +1,6 @@
 ﻿using BusinessLogic;
 using Entities;
+using Q_Tech.Prop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +33,15 @@ namespace Q_Tech.Paginas
             CargarEspecies();
         }
 
-        private void brdAniadirEspecie_MouseDown(object sender, MouseButtonEventArgs e)
+        private async void brdAniadirEspecie_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // abrir ventada propiedades especie.
+            Especie sp = new Especie();
+            frmAddEspecie addEspecie = new frmAddEspecie(sp);
+            if(addEspecie.ShowDialog() == true)
+            {
+                await Herramientas.AddEspecie(sp);
+                CargarEspecies();
+            }
         }
 
         private async void CargarEspecies()
@@ -133,9 +140,14 @@ namespace Q_Tech.Paginas
                     Source = new BitmapImage(new Uri("/Recursos/Iconos/editar.png", UriKind.Relative))
                 };
                 border2.Child = image;
-                border2.MouseDown += (sender, ev) =>
+                border2.MouseDown += async (sender, ev) =>
                 {
-                    // editar con el id
+                    frmAddEspecie frmAdd = new frmAddEspecie(e);
+                    if(frmAdd.ShowDialog() == true)
+                    {
+                        await Herramientas.UpdateEspecie(e.Id, e);
+                        CargarEspecies();
+                    }
                 };
                 stackPanel2.Children.Add(border2);
 
