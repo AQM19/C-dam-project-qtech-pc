@@ -1,0 +1,85 @@
+﻿<Page x:Class="Q_Tech.Paginas.pgTerrario"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Q_Tech.Paginas"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="pgTerrario">
+
+    <Grid Background="#88FFFFFF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <!--ROW0-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Image Source="/Recursos/Iconos/MainIcon.png" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" x:Name="imgTerraPic"/>
+            <TextBlock Text="TERRA NAME" Grid.Row="0" Grid.Column="1" FontSize="28" FontWeight="Bold" Padding="5" x:Name="txbTerraName"/>
+            <TextBlock Text="Descripcion" Grid.Row="1" Grid.Column="1" Padding="5" Margin="5" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" x:Name="txbTerraDescription"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Margin="5">
+                <TextBlock Text="Puntuación" x:Name="txbTerraPunctuation"/>
+                <Image Source="/Recursos/Iconos/star.png" Width="16" Height="16" Margin="5,0"/>
+            </StackPanel>
+            <TextBlock Text="FECHA" Grid.Row="1" Grid.Column="2" Padding="5" Margin="5" VerticalAlignment="Top" x:Name="txbFecha"/>
+        </Grid>
+
+        <!--ROW1-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="SUSTRATO" HorizontalAlignment="Center" Grid.Column="0" Padding="5" Margin="5" x:Name="txbTerraSubstrate"/>
+            <TextBlock Text="Ecosistema" HorizontalAlignment="Center" Grid.Column="1" Padding="5" Margin="5" x:Name="txbTerraEcosystem"/>
+            <TextBlock Text="Tamaño" HorizontalAlignment="Center" Grid.Column="2" Padding="5" Margin="5" x:Name="txbTerraSize"/>
+        </Grid>
+        
+        <!--ROW2-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <ListView x:Name="lvSpList" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Padding="15" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                
+            </ListView>
+
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Margin="5">
+                <TextBlock Text="Temperatura" Margin="5,0"/>
+                <ProgressBar Minimum="0" Maximum="50" Value="28" Margin="5" Height="15" x:Name="pbTemperature"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="5">
+                <TextBlock Text="Humedad" Margin="5,0"/>
+                <ProgressBar Minimum="0" Maximum="100" Value="30" Margin="5" Height="15" x:Name="pbHumid"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Margin="5">
+                <TextBlock Text="Luz" Margin="5,0"/>
+                <ProgressBar Minimum="0" Maximum="24" Value="16" Margin="5" Height="15" x:Name="pbLight"/>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Page>

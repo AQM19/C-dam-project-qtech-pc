@@ -27,7 +27,8 @@ namespace Q_Tech.Prop
 
         private async void ObtenerEspecies(List<Especie> especies)
         {
-            _especies = await Herramientas.GetEspeciesPosibles(especies); // No entiendo por qué es nulo
+            //_especies = await Herramientas.GetEspeciesPosibles(especies); // No entiendo por qué es nulo
+            _especies = await Herramientas.GetEspecies();
 
             lvEspecies.Items.Clear();
             string[] item = new string[8];

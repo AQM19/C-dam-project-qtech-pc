@@ -40,14 +40,11 @@ namespace Q_Tech.Modales
 
             for (int i = 0; i < _terrarios.Count; i++)
             {
-
+                int index = i;
                 ImageBrush myImageBrush = new ImageBrush();
 
-                if (!string.IsNullOrEmpty(_terrarios[i].Foto))
-                {
-                    myImageBrush.ImageSource = new BitmapImage(new Uri(_terrarios[i].Foto, UriKind.Absolute));
+                    myImageBrush.ImageSource = new BitmapImage(new Uri(_terrarios[i].Foto != null ? _terrarios[i].Foto : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
                     myImageBrush.Stretch = Stretch.Fill;
-                }
 
                 Border myBorder = new Border
                 {
@@ -60,7 +57,7 @@ namespace Q_Tech.Modales
                     Tag = i
                 };
 
-                myBorder.MouseDown += (sender, e) => SeleccionarTerrario(_terrarios[i]);
+                myBorder.MouseDown += (sender, e) => SeleccionarTerrario(_terrarios[index]);
 
                 spListTerra.Children.Add(myBorder);
             }
@@ -73,7 +70,7 @@ namespace Q_Tech.Modales
             if (_terrarios.Count > 0)
             {
                 _selectedTerra = terra;
-                SelectedTerra.ImageSource = new BitmapImage(new Uri(_selectedTerra.Foto, UriKind.Absolute));
+                SelectedTerra.ImageSource = new BitmapImage(new Uri( _selectedTerra.Foto != null ? _selectedTerra.Foto : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
             }
         }
 

@@ -16,6 +16,7 @@ using BusinessLogic;
 using Entities;
 using Microsoft.Win32;
 using Q_Tech.Modales;
+using Q_Tech.Paginas;
 
 namespace Q_Tech
 {
@@ -138,7 +139,19 @@ namespace Q_Tech
             {
                 dpLoader.Visibility = Visibility.Visible;
 
-                Usuario usuario = await Herramientas.Login(txtUser.Text, PasswordBind.Password);
+                Usuario usuario = null;
+
+                try
+                {
+
+                    usuario = await Herramientas.Login(txtUser.Text, PasswordBind.Password);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No se pudo establecer una conexión con el servidor. Por favor, inténtelo de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+                    dpLoader.Visibility = Visibility.Collapsed;
+                    return;
+                }
 
                 if (usuario == null)
                 {
@@ -154,49 +167,89 @@ namespace Q_Tech
             }
         }
 
+        //private async void brdRegister_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (await ValidRegisterData())
+        //    {
+        //        try
+        //        {
+        //            dpLoader.Visibility = Visibility.Visible;
+
+        //            byte[] salt = GenerarSalt();
+        //            string password = GenerarContra(salt);
+        //            string username = txbUsername.Text.ToLower();
+
+        //            await CrearContainerBlobAzure(username);
+
+        //            string fotoPerfil = await CargarImagenPerfilAzure(username);
+
+        //            Usuario newRegisterUser = new Usuario
+        //            {
+        //                NombreUsuario = username,
+        //                Email = txbEmail.Text,
+        //                Salt = salt,
+        //                Contrasena = password,
+        //                FotoPerfil = fotoPerfil,
+        //                Perfil = "CLIENTE"
+        //            };
+
+
+        //            Herramientas.CreateUsuario(newRegisterUser);
+        //            IngresarAplicacion(newRegisterUser);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("No se pudo establecer una conexión con el servidor. Por favor, inténtelo de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
+        //            dpLoader.Visibility = Visibility.Collapsed;
+        //            return;
+        //        }
+        //    }
+        //}
+
         private async void brdRegister_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (await ValidRegisterData())
             {
+                dpLoader.Visibility = Visibility.Visible;
+
+                byte[] salt = GenerarSalt();
+                string password = GenerarContra(salt);
+                string username = txbUsername.Text.ToLower();
+
+                await CrearContainerBlobAzure(username);
+
+                string fotoPerfil = await CargarImagenPerfilAzure(username);
+
+                Usuario newRegisterUser = new Usuario
+                {
+                    NombreUsuario = username,
+                    Email = txbEmail.Text,
+                    Salt = salt,
+                    Contrasena = password,
+                    FotoPerfil = fotoPerfil,
+                    Perfil = "CLIENTE"
+                };
+
                 try
                 {
-                    dpLoader.Visibility = Visibility.Visible;
-
-                    byte[] salt = GenerarSalt();
-                    string password = GenerarContra(salt);
-                    string username = txbUsername.Text.ToLower();
-
-                    await CrearContainerBlobAzure(username);
-
-                    string fotoPerfil = await CargarImagenPerfilAzure(username);
-
-                    Usuario newRegisterUser = new Usuario
-                    {
-                        NombreUsuario = username,
-                        Email = txbEmail.Text,
-                        Salt = salt,
-                        Contrasena = password,
-                        FotoPerfil = fotoPerfil,
-                        Perfil = "CLIENTE"
-                    };
-
                     Herramientas.CreateUsuario(newRegisterUser);
-
                     IngresarAplicacion(newRegisterUser);
-
                 }
-                catch (ApplicationException ex)
+                catch (Exception ex)
                 {
+                    MessageBox.Show("No se pudo establecer una conexión con el servidor. Por favor, inténtelo de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
                     dpLoader.Visibility = Visibility.Collapsed;
+                    return;
                 }
             }
         }
+
 
         private void IngresarAplicacion(Usuario usuario)
         {
             FrmDashboard dashboard = new FrmDashboard(usuario);
             this.Hide();
-            if(dashboard.ShowDialog() == false) this.Close();
+            if (dashboard.ShowDialog() == false) this.Close();
 
             //this.Show();
         }
@@ -264,43 +317,51 @@ namespace Q_Tech
 
         private async Task<bool> ValidRegisterData()
         {
-            dpLoader.Visibility = Visibility.Visible;
-            if (string.IsNullOrEmpty(txbUsername.Text))
+            try
             {
-                MessageBox.Show("El campo nombre de usuario no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txbUsername.Focus();
+                dpLoader.Visibility = Visibility.Visible;
+                if (string.IsNullOrEmpty(txbUsername.Text))
+                {
+                    MessageBox.Show("El campo nombre de usuario no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txbUsername.Focus();
+                    dpLoader.Visibility = Visibility.Collapsed;
+                    return false;
+                }
+                if (!await Herramientas.ComprobarUsuario(txbUsername.Text))
+                {
+                    MessageBox.Show("Ese nombre de usuario ya está en uso.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txbUsername.Focus();
+                    dpLoader.Visibility = Visibility.Collapsed;
+                    return false;
+                }
+                if (string.IsNullOrEmpty(txbEmail.Text))
+                {
+                    MessageBox.Show("El campo email no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txbEmail.Focus();
+                    dpLoader.Visibility = Visibility.Collapsed;
+                    return false;
+                }
+                if (!await Herramientas.ComprobarUsuario(txbEmail.Text))
+                {
+                    MessageBox.Show("Ese email ya está en uso.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    txbUsername.Focus();
+                    dpLoader.Visibility = Visibility.Collapsed;
+                    return false;
+                }
+                if (string.IsNullOrEmpty(pwbRegisterPass.Password))
+                {
+                    MessageBox.Show("El campo contraseña no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    _ = _showRegisterPassword == true ? txbRegisterPass.Focus() : pwbRegisterPass.Focus();
+                    dpLoader.Visibility = Visibility.Collapsed;
+                    return false;
+                }
+                dpLoader.Visibility = Visibility.Collapsed;
+            } catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo establecer una conexión con el servidor. Por favor, inténtelo de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
                 dpLoader.Visibility = Visibility.Collapsed;
                 return false;
             }
-            if (!await Herramientas.ComprobarUsuario(txbUsername.Text))
-            {
-                MessageBox.Show("Ese nombre de usuario ya está en uso.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txbUsername.Focus();
-                dpLoader.Visibility = Visibility.Collapsed;
-                return false;
-            }
-            if (string.IsNullOrEmpty(txbEmail.Text))
-            {
-                MessageBox.Show("El campo email no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txbEmail.Focus();
-                dpLoader.Visibility = Visibility.Collapsed;
-                return false;
-            }
-            if (!await Herramientas.ComprobarUsuario(txbEmail.Text))
-            {
-                MessageBox.Show("Ese email ya está en uso.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                txbUsername.Focus();
-                dpLoader.Visibility = Visibility.Collapsed;
-                return false;
-            }
-            if (string.IsNullOrEmpty(pwbRegisterPass.Password))
-            {
-                MessageBox.Show("El campo contraseña no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                _ = _showRegisterPassword == true ? txbRegisterPass.Focus() : pwbRegisterPass.Focus();
-                dpLoader.Visibility = Visibility.Collapsed;
-                return false;
-            }
-            dpLoader.Visibility = Visibility.Collapsed;
             return true;
         }
 

@@ -11,6 +11,7 @@ namespace BusinessLogic
     {
         readonly static string baseEndPoint = ConfigurationManager.AppSettings["urlApiLocal"].ToString();
 
+
         #region Usuario
         public static async Task<List<Usuario>> GetUsuarios() // op
         {
@@ -56,6 +57,11 @@ namespace BusinessLogic
         {
             QConsumer qc = new QConsumer();
             _ = await qc.UpdateAsync($"{baseEndPoint}/usuarios/{id}", usuario);
+        }
+        public static async Task<bool> ComprobarSeguimiento(long idusuario, long idcontacto)
+        {
+            QConsumer qc = new QConsumer();
+            return await qc.GetAsync<bool>($"{baseEndPoint}/usuarios/{idusuario}/check/{idcontacto}");
         }
         #endregion
 
@@ -157,7 +163,13 @@ namespace BusinessLogic
             List<Logro> logros = await qc.GetAsync<List<Logro>>($"{baseEndPoint}/logros-usuario/{id}");
             return logros;
         } // op
+        public static async Task CreateLogro(Logro logro)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.CreateAsync<Logro>($"{baseEndPoint}/logros", logro);
+        }
         #endregion
+
 
         #region Notificaciones
         public static async Task<List<Notificacion>> GetNotificacionesByUserId(long id)
@@ -165,13 +177,13 @@ namespace BusinessLogic
             QConsumer qc = new QConsumer();
             return await qc.GetAsync<List<Notificacion>>($"{baseEndPoint}/notificaciones/usuario/{id}");
         }
-
         public static async Task UpdateNotificacion(Notificacion notificacion, long id)
         {
             QConsumer qc = new QConsumer();
             _ = await qc.UpdateAsync($"{baseEndPoint}/notificacions/{id}", notificacion);
         }
         #endregion
+
 
         #region EspeciesTerrario
         public static async Task CreateEspeciesTerrario(EspecieTerrario especieTerrario)

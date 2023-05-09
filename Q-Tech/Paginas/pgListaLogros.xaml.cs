@@ -1,5 +1,6 @@
 ﻿using BusinessLogic;
 using Entities;
+using Q_Tech.Prop;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -24,6 +25,7 @@ namespace Q_Tech.Paginas
 
         private async void CargarLogros()
         {
+            lvLogros.Items.Clear();
             List<Logro> logros = await Herramientas.GetLogros();
 
             for (int i = 0; i < logros.Count; i++)
@@ -77,6 +79,18 @@ namespace Q_Tech.Paginas
             }
 
             cambiosPendientes.Clear();
+        }
+
+        private async void AddLogro_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Logro logro = new Logro();
+            frmAddLogro addLogro = new frmAddLogro(logro);
+
+            if(addLogro.ShowDialog() == true)
+            {
+                await Herramientas.CreateLogro(logro);
+                CargarLogros();
+            }
         }
     }
 }

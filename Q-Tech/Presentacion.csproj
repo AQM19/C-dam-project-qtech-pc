@@ -214,11 +214,20 @@
     <Compile Include="Paginas\pgListaNotificaciones.xaml.cs">
       <DependentUpon>pgListaNotificaciones.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\pgTerrario.xaml.cs">
+      <DependentUpon>pgTerrario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\pgUsuario.xaml.cs">
       <DependentUpon>pgUsuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\pgUsuarioProfile.xaml.cs">
+      <DependentUpon>pgUsuarioProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Prop\frmAddEspecie.xaml.cs">
       <DependentUpon>frmAddEspecie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prop\frmAddLogro.xaml.cs">
+      <DependentUpon>frmAddLogro.xaml</DependentUpon>
     </Compile>
     <Compile Include="Prop\frmEspecies.xaml.cs">
       <DependentUpon>frmEspecies.xaml</DependentUpon>
@@ -268,7 +277,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Paginas\pgTerrario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Paginas\pgUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\pgUsuarioProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -277,6 +294,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Prop\frmAddEspecie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prop\frmAddLogro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

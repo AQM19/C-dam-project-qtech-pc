@@ -157,7 +157,12 @@ namespace Q_Tech.Modales
                         Cursor = Cursors.Hand
                     };
 
-                    listViewItem.MouseDoubleClick += ListViewItem_MouseDoubleClick;
+                    int index = i;
+                    listViewItem.MouseDoubleClick += (o,s) =>
+                    {
+                        pgUsuario pgUsuario = new pgUsuario(_usuario.Id, list[index], frmMainFrame);
+                        frmMainFrame.Content = pgUsuario;
+                    };
 
                     searchList.Items.Add(listViewItem);
                 }
@@ -180,7 +185,7 @@ namespace Q_Tech.Modales
         private void imgProfile_MouseDown(object sender, MouseButtonEventArgs e)
         {
             movingImage.Visibility = Visibility.Hidden;
-            pgUsuario pgUsuario = new pgUsuario(_usuario);
+            pgUsuarioProfile pgUsuario = new pgUsuarioProfile(_usuario);
             frmMainFrame.Content = pgUsuario;
         }
 

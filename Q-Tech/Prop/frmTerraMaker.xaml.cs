@@ -50,7 +50,7 @@ namespace Q_Tech.Prop
         {
             if (_terrario != null)
             {
-                tbName.Text = _terrario.Nombre;
+                tbName.Text = !string.IsNullOrEmpty(_terrario.Nombre) ? _terrario.Nombre : "Nombre del terrario";
                 chkPrivate.IsChecked = (_terrario.Privado == 0) ? false : true;
                 txbSustrato.Text = _terrario.Sustrato;
                 txbEcosistema.Text = _terrario.Ecosistema;
