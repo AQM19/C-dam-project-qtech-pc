@@ -14,5 +14,7 @@ namespace Entities
         public string Texto { get; set; }
 
         public sbyte Vista { get; set; }
+
+        public string Gravedad { get; set; }
     }
 }

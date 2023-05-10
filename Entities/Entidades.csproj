@@ -41,11 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfiguracionUsuario.cs" />
-    <Compile Include="Dato.cs" />
+    <Compile Include="Lectura.cs" />
     <Compile Include="Especie.cs" />
     <Compile Include="EspecieTerrario.cs" />
-    <Compile Include="Estadistica.cs" />
     <Compile Include="Logro.cs" />
     <Compile Include="Notificacion.cs" />
     <Compile Include="Observacion.cs" />

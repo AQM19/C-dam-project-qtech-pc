@@ -38,17 +38,16 @@ namespace Q_Tech.Paginas
             imgTerraPic.Source = new BitmapImage(new Uri(_terrario.Foto != null ? _terrario.Foto : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
             txbTerraName.Text = _terrario.Nombre;
             txbTerraDescription.Text = _terrario.Descripcion;
-            txbTerraPunctuation.Text = _terrario.PuntuacionMedia.ToString();
             txbFecha.Text = _terrario.FechaCreacion.ToShortDateString();
             txbTerraSubstrate.Text = _terrario.Sustrato;
             txbTerraEcosystem.Text = _terrario.Ecosistema;
             txbTerraSize.Text = _terrario.Tamano.ToString();
+            float puntuacion = await Herramientas.GetPuntuacionTerrario(_terrario.Id);
+            txbTerraPunctuation.Text = puntuacion.ToString();
             pbTemperature.Maximum = (double)_terrario.TemperaturaMaxima;
             pbTemperature.Minimum = (double)_terrario.TemperaturaMinima;
-            pbTemperature.Value = (double)_terrario.TemperaturaMedia;
             pbHumid.Maximum = (double)_terrario.HumedadMaxima;
             pbHumid.Minimum = (double)_terrario.HumedadMinima;
-            pbHumid.Value = (double)_terrario.HumedadMedia;
             pbLight.Value = (double)_terrario.HorasLuz;
 
             List<Especie> list = await Herramientas.GetEspeciesTerrario(_terrario.Id);

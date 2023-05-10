@@ -89,6 +89,11 @@ namespace BusinessLogic
             QConsumer qc = new QConsumer();
             await qc.UpdateAsync<Terrario>($"{baseEndPoint}/terrarios/{id}", terrario);
         }
+        public static async Task<float> GetPuntuacionTerrario(long id)
+        {
+            QConsumer qc = new QConsumer();
+            return await qc.GetAsync<float>($"{baseEndPoint}/terrarios/{id}/puntuacion");
+        }
         #endregion
 
 

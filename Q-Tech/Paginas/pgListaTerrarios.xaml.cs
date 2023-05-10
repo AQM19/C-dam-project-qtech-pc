@@ -89,7 +89,7 @@ namespace Q_Tech.Paginas
 
                 TextBlock ratingTextBlock = new TextBlock
                 {
-                    Text = $"{terrarios[i].PuntuacionMedia}"
+                    Text = $"{await Herramientas.GetPuntuacionTerrario(terrarios[i].Id)}"
                 };
 
                 DockPanel.SetDock(ratingTextBlock, Dock.Left);

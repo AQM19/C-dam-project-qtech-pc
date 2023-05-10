@@ -123,11 +123,9 @@ namespace Q_Tech.Prop
                 {
                     _terrario.TemperaturaMinima = _especies.Max(x => x.TemperaturaMinima);
                     _terrario.TemperaturaMaxima = _especies.Min(x => x.TemperaturaMaxima);
-                    _terrario.TemperaturaMedia = (_terrario.TemperaturaMaxima + _terrario.TemperaturaMinima) / 2;
 
                     _terrario.HumedadMinima = _especies.Max(x => x.HumedadMinima);
                     _terrario.HumedadMaxima = _especies.Min(x => x.HumedadMaxima);
-                    _terrario.HumedadMedia = (_terrario.HumedadMaxima + _terrario.HumedadMinima) / 2;
 
                     _terrario.HorasLuz = _especies.Min(x => x.HorasLuz);
 
@@ -137,16 +135,9 @@ namespace Q_Tech.Prop
                     {
                         _terrario.TemperaturaMinimaHiber = _especies.Max(x => x.TemperaturaHibMinima);
                         _terrario.TemperaturaMaximaHiber = _especies.Min(x => x.TemperaturaHibMaxima);
-                        _terrario.TemperaturaMediaHiber = (_terrario.TemperaturaMaximaHiber + _terrario.TemperaturaMinimaHiber) / 2;
 
                         _terrario.HorasLuzHiber = _especies.Min(x => x.HorasLuzHib);
                     }
-                }
-
-                if (_terrario.Id >= 0)
-                {
-                    List<Visita> visitas = await Herramientas.GetVisitas(_terrario.Id);
-                    _terrario.PuntuacionMedia = visitas.Average(x => x.Puntuacion);
                 }
 
                 for (int i = 0; i < _especies.Count; i++)
