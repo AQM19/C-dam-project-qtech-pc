@@ -38,7 +38,10 @@ namespace Q_Tech.Paginas
 
         private async void DesplegarInformacion(long id)
         {
-            imgUserPic.Source = new BitmapImage(new Uri(_usuario.FotoPerfil != null ? _usuario.FotoPerfil : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
+            if (_usuario.FotoPerfil != null)
+            {
+                imgUserPic.Source = new BitmapImage(new Uri(_usuario.FotoPerfil));
+            }
             txbUserName.Text = _usuario.NombreUsuario;
             txbUserTimeline.Text = $"{_usuario.Nombre} {_usuario.Apellido1} {_usuario.Apellido2}";
             btnFollow.Visibility = await Herramientas.ComprobarSeguimiento(id, _usuario.Id) == true ? Visibility.Visible : Visibility.Hidden;

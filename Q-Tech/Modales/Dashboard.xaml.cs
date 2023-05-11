@@ -106,6 +106,12 @@ namespace Q_Tech.Modales
         private async void DebounceTimer_Tick(object sender, EventArgs e)
         {
             debounceTimer.Stop();
+
+            if (string.IsNullOrEmpty(_textValue))
+            {
+                return;
+            }
+
             List<Usuario> list = await Herramientas.Search(_textValue);
 
             if (list.Count > 0)
@@ -169,13 +175,6 @@ namespace Q_Tech.Modales
             }
         }
 
-        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            long id = (long)((ListViewItem)sender).Tag;
-
-            // mostrar usuario
-        }
-
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Keyboard.ClearFocus();
@@ -194,6 +193,11 @@ namespace Q_Tech.Modales
             movingImage.Visibility = Visibility.Hidden;
             pgListaNotificaciones pgListaNotificaciones = new pgListaNotificaciones(_usuario.Id);
             frmMainFrame.Content = pgListaNotificaciones;
+        }
+
+        private void txtBuscador_LostFocus(object sender, RoutedEventArgs e)
+        {
+            txtBuscador.Clear();
         }
     }
 }

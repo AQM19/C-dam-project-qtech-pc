@@ -100,7 +100,7 @@
                 <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Height="30" Margin="15,0,0,0" ContentElement.MouseDown="Border_MouseDown">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Recursos/Iconos/lupa.png" Height="auto" Margin="5"/>
-                        <TextBox Width="300" Margin="5" BorderThickness="0" x:Name="txtBuscador" VerticalContentAlignment="Center" FontSize="16" TextChanged="txtBuscador_TextChanged"/>
+                        <TextBox Width="300" Margin="5" BorderThickness="0" x:Name="txtBuscador" VerticalContentAlignment="Center" FontSize="16" TextChanged="txtBuscador_TextChanged" LostFocus="txtBuscador_LostFocus"/>
                     </StackPanel>
                 </Border>
 
