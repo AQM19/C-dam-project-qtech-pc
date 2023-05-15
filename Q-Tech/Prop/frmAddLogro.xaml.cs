@@ -20,6 +20,7 @@ using System.Windows.Shapes;
 using System.Xml.Linq;
 using Microsoft.Win32;
 using Path = System.IO.Path;
+using System.Web.UI.WebControls;
 
 namespace Q_Tech.Prop
 {
@@ -28,7 +29,7 @@ namespace Q_Tech.Prop
     /// </summary>
     public partial class frmAddLogro : Window
     {
-        private Logro _logro;
+        private readonly Logro _logro;
         private string _filename;
         public frmAddLogro()
         {
@@ -45,9 +46,10 @@ namespace Q_Tech.Prop
 
         private void DesplegarInformacion()
         {
-            imgLogro.Source = new BitmapImage(new Uri(_logro.Icono != null ? _logro.Icono : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
+            imgLogro.Source = new BitmapImage(new Uri(_logro.Icono ?? "\\Recursos\\Iconos\\MainIcon.png", UriKind.RelativeOrAbsolute));
             txbLogroName.Text = !string.IsNullOrEmpty(_logro.Titulo) ? _logro.Titulo : "Nombre del logro";
-            chkLogroDisponible.IsChecked = _logro.Disponible == 1 ? true : false;
+            dtpFechadesde.SelectedDate = _logro.Fechadesde;
+            dtpFechahasta.SelectedDate = _logro.Fechahasta;
             txbLogroDescripcion.Text = _logro.Descripcion;
         }
         private void btnCancel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -61,8 +63,12 @@ namespace Q_Tech.Prop
             {
                 _logro.Titulo = txbLogroName.Text;
                 _logro.Descripcion = txbLogroDescripcion.Text;
-                _logro.Disponible = (sbyte)(chkLogroDisponible.IsChecked == true ? 1 : 0);
-                _logro.Icono = await CargarImagenAzure();
+                _logro.Fechadesde = dtpFechadesde.SelectedDate;
+                _logro.Fechahasta = dtpFechahasta.SelectedDate;
+                if (_logro.Icono == null)
+                {
+                    _logro.Icono = await CargarImagenAzure();
+                }
 
                 this.DialogResult = true;
                 this.Close();
@@ -91,7 +97,7 @@ namespace Q_Tech.Prop
 
         private bool ValidData()
         {
-            if (imgLogro.Source == null || imgLogro.Source == new BitmapImage(new Uri("C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png")))
+            if (imgLogro.Source == null)
             {
                 MessageBox.Show("Debe haber un icono establecido.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 imgLogro.Focus();
@@ -109,14 +115,22 @@ namespace Q_Tech.Prop
                 txbLogroDescripcion.Focus();
                 return false;
             }
+            if (dtpFechadesde.SelectedDate.HasValue && dtpFechahasta.SelectedDate.HasValue && dtpFechadesde.SelectedDate > dtpFechahasta.SelectedDate)
+            {
+                MessageBox.Show("No se puede poner la fecha de obtención mayor a la fecha de caducidad del logro.");
+                dtpFechadesde.Focus();
+                return false;
+            }
             return true;
         }
 
         private void imgLogro_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Subir imagen";
-            openFileDialog.Filter = "jpg (*.jpg)|*.jpg|png (*.png)|*.png";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Subir imagen",
+                Filter = "jpg (*.jpg)|*.jpg|png (*.png)|*.png"
+            };
 
             bool? result = openFileDialog.ShowDialog();
 

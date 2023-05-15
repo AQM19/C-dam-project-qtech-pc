@@ -23,10 +23,10 @@ namespace Q_Tech.Prop
     /// </summary>
     public partial class frmTerraMaker : Window
     {
-        private Usuario _usuario;
+        private readonly Usuario _usuario;
         private List<Especie> _especies;
-        private List<EspecieTerrario> _especiesTerrario;
-        private Terrario _terrario;
+        private readonly List<EspecieTerrario> _especiesTerrario;
+        private readonly Terrario _terrario;
         private string _filename;
 
         public Terrario Terrario { get => _terrario; }
@@ -51,11 +51,11 @@ namespace Q_Tech.Prop
             if (_terrario != null)
             {
                 tbName.Text = !string.IsNullOrEmpty(_terrario.Nombre) ? _terrario.Nombre : "Nombre del terrario";
-                chkPrivate.IsChecked = (_terrario.Privado == 0) ? false : true;
+                chkPrivate.IsChecked = _terrario.Privado != 0;
                 txbSustrato.Text = _terrario.Sustrato;
                 txbEcosistema.Text = _terrario.Ecosistema;
                 numberPicker.Text = _terrario.Tamano.ToString();
-                imgTerraPic.Source = new BitmapImage(new Uri(_terrario.Foto != null ? _terrario.Foto : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
+                imgTerraPic.Source = new BitmapImage(new Uri(_terrario.Foto ?? "\\Recursos\\Iconos\\MainIcon.png", UriKind.RelativeOrAbsolute));
                 txbDescripcion.Text = _terrario.Descripcion;
                 if (_terrario.Id != 0)
                 {
@@ -65,6 +65,7 @@ namespace Q_Tech.Prop
                 MostrarEspecies();
             }
         }
+
         private void tbDescription_KeyUp(object sender, KeyEventArgs e)
         {
             int length = txbDescripcion.Text.Length;
@@ -92,7 +93,7 @@ namespace Q_Tech.Prop
             spPassOne.Visibility = (chkPrivate.IsChecked == true) ? Visibility.Visible : Visibility.Hidden;
             spPassTwo.Visibility = (chkPrivate.IsChecked == true) ? Visibility.Visible : Visibility.Hidden;
         }
-        private async void btnSave_MouseDown(object sender, MouseButtonEventArgs e)
+        private void btnSave_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (ValidData())
             {
@@ -258,9 +259,11 @@ namespace Q_Tech.Prop
         }
         private void imgTerraPic_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Subir imagen";
-            openFileDialog.Filter = "jpg (*.jpg)|*.jpg|png (*.png)|*.png";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Subir imagen",
+                Filter = "jpg (*.jpg)|*.jpg|png (*.png)|*.png"
+            };
 
             bool? result = openFileDialog.ShowDialog();
 

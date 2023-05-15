@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:Q_Tech.Prop"
         xmlns:dlg="clr-namespace:Microsoft.Win32;assembly=PresentationFramework"
         mc:Ignorable="d"
-        Title="Terrario de %username%" Height="550" Width="450"
+        Title="Terrario de %username%" Height="650" Width="450"
         ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="1*"/>
@@ -77,6 +78,23 @@
         <!--ROW2-->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Width="125" Background="#F7BD56" Padding="5" Margin="5" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+                <TextBlock Text="Observaciones" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+            </Border>
+
+            <Border Grid.Column="1" Width="125" Background="#F7BD56" Padding="5" Margin="5" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+                <TextBlock Text="Tareas" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+            </Border>
+
+        </Grid>
+
+        <!--ROW3-->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
@@ -92,8 +110,8 @@
             </StackPanel>
         </Grid>
 
-        <!--ROW3-->
-        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right">
+        <!--ROW4-->
+        <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Right">
             <Border Width="32" Height="32" x:Name="btnSave" MouseDown="btnSave_MouseDown" Background="#BDECB6" Padding="3" Margin="5" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
                 <Image Source="/Recursos/Iconos/disquete.png" />
             </Border>

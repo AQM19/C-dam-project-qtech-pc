@@ -22,8 +22,8 @@ namespace Q_Tech.Paginas
     /// </summary>
     public partial class pgUsuario : Page
     {
-        private Usuario _usuario;
-        private Frame _mainFrame;
+        private readonly Usuario _usuario;
+        private readonly Frame _mainFrame;
 
         public pgUsuario()
         {
@@ -38,12 +38,12 @@ namespace Q_Tech.Paginas
 
         private async void DesplegarInformacion(long id)
         {
-            imgUserPic.Source = new BitmapImage(new Uri(_usuario.FotoPerfil != null ? _usuario.FotoPerfil : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
+            imgUserPic.Source = new BitmapImage(new Uri(_usuario.FotoPerfil ?? "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
             txbUserName.Text = _usuario.NombreUsuario;
             txbUserTimeline.Text = $"{_usuario.Nombre} {_usuario.Apellido1} {_usuario.Apellido2}";
             btnFollow.Visibility = await Herramientas.ComprobarSeguimiento(id, _usuario.Id) == true ? Visibility.Visible : Visibility.Hidden;
 
-            List<Terrario> terrarios = await Herramientas.GetTerrarios(id);
+            List<Terrario> terrarios = await Herramientas.GetTerrarios();
 
             foreach (Terrario t in terrarios)
             {

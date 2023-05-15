@@ -18,7 +18,7 @@ namespace Q_Tech.Modales
 {
     public partial class pgIndex : Page
     {
-        private Usuario _user;
+        private readonly Usuario _user;
         private Terrario _selectedTerra;
         private List<Terrario> _terrarios;
 
@@ -36,15 +36,16 @@ namespace Q_Tech.Modales
         private async void ObtenerTerrarios()
         {
             spListTerra.Children.Clear();
-            _terrarios = await Herramientas.GetTerrarios(_user.Id);
+            _terrarios = await Herramientas.GetTerrarios();
 
             for (int i = 0; i < _terrarios.Count; i++)
             {
                 int index = i;
-                ImageBrush myImageBrush = new ImageBrush();
-
-                    myImageBrush.ImageSource = new BitmapImage(new Uri(_terrarios[i].Foto != null ? _terrarios[i].Foto : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
-                    myImageBrush.Stretch = Stretch.Fill;
+                ImageBrush myImageBrush = new ImageBrush
+                {
+                    //myImageBrush.ImageSource = new BitmapImage(new Uri(_terrarios[i].Foto != null ? _terrarios[i].Foto : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
+                    Stretch = Stretch.Fill
+                };
 
                 Border myBorder = new Border
                 {
@@ -70,7 +71,7 @@ namespace Q_Tech.Modales
             if (_terrarios.Count > 0)
             {
                 _selectedTerra = terra;
-                SelectedTerra.ImageSource = new BitmapImage(new Uri( _selectedTerra.Foto != null ? _selectedTerra.Foto : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
+                SelectedTerra.ImageSource = new BitmapImage(new Uri(_selectedTerra.Foto ?? "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
             }
         }
 

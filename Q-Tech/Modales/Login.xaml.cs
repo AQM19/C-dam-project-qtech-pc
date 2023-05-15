@@ -91,10 +91,12 @@ namespace Q_Tech
 
         private void Animacion(Border border, bool entrada)
         {
-            DoubleAnimation anim = new DoubleAnimation();
-            anim.From = entrada ? 0 : 1;
-            anim.To = entrada ? 1 : 0;
-            anim.Duration = TimeSpan.FromSeconds(0.5);
+            DoubleAnimation anim = new DoubleAnimation
+            {
+                From = entrada ? 0 : 1,
+                To = entrada ? 1 : 0,
+                Duration = TimeSpan.FromSeconds(0.5)
+            };
 
             border.BeginAnimation(Border.VisibilityProperty, new ObjectAnimationUsingKeyFrames
             {
@@ -114,9 +116,11 @@ namespace Q_Tech
 
         private void pthImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Subir imagen";
-            openFileDialog.Filter = "jpg (*.jpg)|*.jpg|png (*.png)|*.png";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Subir imagen",
+                Filter = "jpg (*.jpg)|*.jpg|png (*.png)|*.png"
+            };
 
             bool? result = openFileDialog.ShowDialog();
 
@@ -139,14 +143,14 @@ namespace Q_Tech
             {
                 dpLoader.Visibility = Visibility.Visible;
 
-                Usuario usuario = null;
+                Usuario usuario;
 
                 try
                 {
 
                     usuario = await Herramientas.Login(txtUser.Text, PasswordBind.Password);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show("No se pudo establecer una conexión con el servidor. Por favor, inténtelo de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
                     dpLoader.Visibility = Visibility.Collapsed;
@@ -235,7 +239,7 @@ namespace Q_Tech
                     Herramientas.CreateUsuario(newRegisterUser);
                     IngresarAplicacion(newRegisterUser);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show("No se pudo establecer una conexión con el servidor. Por favor, inténtelo de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
                     dpLoader.Visibility = Visibility.Collapsed;
@@ -356,7 +360,7 @@ namespace Q_Tech
                     return false;
                 }
                 dpLoader.Visibility = Visibility.Collapsed;
-            } catch (Exception ex)
+            } catch (Exception)
             {
                 MessageBox.Show("No se pudo establecer una conexión con el servidor. Por favor, inténtelo de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
                 dpLoader.Visibility = Visibility.Collapsed;

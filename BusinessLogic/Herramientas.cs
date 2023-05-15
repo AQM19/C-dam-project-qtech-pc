@@ -67,10 +67,16 @@ namespace BusinessLogic
 
 
         #region Terrarios
-        public static async Task<List<Terrario>> GetTerrarios(long id) //op
+        public static async Task<List<Terrario>> GetTerrarios() //op
         {
             QConsumer qc = new QConsumer();
             List<Terrario> terrarios = await qc.GetAsync<List<Terrario>>($"{baseEndPoint}/terrarios");
+            return terrarios;
+        }
+        public static async Task<List<Terrario>> GetTerrariosUsuario(long id)
+        {
+            QConsumer qc = new QConsumer();
+            List<Terrario> terrarios = await qc.GetAsync<List<Terrario>>($"{baseEndPoint}/terrarios/usuario/{id}");
             return terrarios;
         }
         public static async Task<List<Terrario>> GetTerrariosSocial(long id)
@@ -93,6 +99,11 @@ namespace BusinessLogic
         {
             QConsumer qc = new QConsumer();
             return await qc.GetAsync<float>($"{baseEndPoint}/terrarios/{id}/puntuacion");
+        }
+        public static async Task DeleteTerrario(long id)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.DeleteAsync<Terrario>($"{baseEndPoint}/terrarios/{id}");
         }
         #endregion
 
@@ -157,7 +168,7 @@ namespace BusinessLogic
             List<Logro> logros = await qc.GetAsync<List<Logro>>($"{baseEndPoint}/logros");
             return logros;
         }
-        public static async void UpdateLogro(Logro logro)
+        public static async Task UpdateLogro(Logro logro)
         {
             QConsumer qc = new QConsumer();
             _ = await qc.UpdateAsync($"{baseEndPoint}/logros/{logro.Id}", logro);

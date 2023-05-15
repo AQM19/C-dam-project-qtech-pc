@@ -37,3 +37,14 @@ C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\AccesData\obj\Debug\AccesoD
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\AccesData\obj\Debug\AccesoDatos.csproj.CopyComplete
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\AccesData\obj\Debug\AccesData.dll
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\AccesData\obj\Debug\AccesData.pdb
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\bin\Debug\AccesData.dll
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\bin\Debug\AccesData.pdb
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\bin\Debug\Newtonsoft.Json.dll
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\bin\Debug\Newtonsoft.Json.xml
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\obj\Debug\AccesoDatos.csproj.AssemblyReference.cache
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\obj\Debug\AccesoDatos.csproj.CoreCompileInputs.cache
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\obj\Debug\AccesoDatos.csproj.CopyComplete
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\obj\Debug\AccesData.dll
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\obj\Debug\AccesData.pdb
