@@ -241,6 +241,9 @@
     <Compile Include="Prop\frmListaObservaciones.xaml.cs">
       <DependentUpon>frmListaObservaciones.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Prop\frmListaTareas.xaml.cs">
+      <DependentUpon>frmListaTareas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Prop\frmTerraMaker.xaml.cs">
       <DependentUpon>frmTerraMaker.xaml</DependentUpon>
     </Compile>
@@ -323,6 +326,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Prop\frmListaObservaciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prop\frmListaTareas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

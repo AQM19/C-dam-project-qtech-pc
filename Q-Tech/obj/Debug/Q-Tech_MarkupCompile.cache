@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\obj\Debug\
 Q_Tech
 none
 false
 DEBUG;TRACE
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\App.xaml
-17974711868
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\App.xaml
+18593746740
 
-22-1700956207
-162267042679
-Modales\Dashboard.xaml;Paginas\pgIndex.xaml;Modales\Login.xaml;Paginas\pgListaEspecies.xaml;Paginas\pgListaLogros.xaml;Paginas\pgListaNotificaciones.xaml;Paginas\pgListaTerrarios.xaml;Paginas\pgTerrario.xaml;Paginas\pgUsuario.xaml;Paginas\pgUsuarioProfile.xaml;Paginas\pgListaUsuarios.xaml;Prop\frmAddEspecie.xaml;Prop\frmAddLogro.xaml;Prop\frmAddObservacion.xaml;Prop\frmEspecies.xaml;Prop\frmListaObservaciones.xaml;Prop\frmTerraMaker.xaml;
+24-1207247681
+1621384753185
+Modales\Dashboard.xaml;Paginas\pgIndex.xaml;Modales\Login.xaml;Paginas\pgListaEspecies.xaml;Paginas\pgListaLogros.xaml;Paginas\pgListaNotificaciones.xaml;Paginas\pgListaTerrarios.xaml;Paginas\pgTerrario.xaml;Paginas\pgUsuario.xaml;Paginas\pgUsuarioProfile.xaml;Paginas\pgListaUsuarios.xaml;Prop\frmAddEspecie.xaml;Prop\frmAddLogro.xaml;Prop\frmAddObservacion.xaml;Prop\frmAddTarea.xaml;Prop\frmEspecies.xaml;Prop\frmListaObservaciones.xaml;Prop\frmTerraMaker.xaml;
 
-False
+True
 

@@ -233,5 +233,25 @@ namespace BusinessLogic
             await qc.CreateAsync<Observacion>($"{baseEndPoint}/observaciones", observacion);
         }
         #endregion
+
+
+        #region Tareas
+        public static async Task<List<Tarea>> GetTareasByTerra(long id)
+        {
+            QConsumer qc = new QConsumer();
+            List<Tarea> tareas = await qc.GetAsync<List<Tarea>>($"{baseEndPoint}/tareas/terrario/{id}");
+            return tareas;
+        }
+        public static async Task UpdateTarea(long id, Tarea tarea)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.UpdateAsync<Tarea>($"{baseEndPoint}/tareas/{id}", tarea);
+        }
+        public static async Task CreateTarea(Tarea tarea)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.CreateAsync<Tarea>($"{baseEndPoint}/tareas", tarea);
+        }
+        #endregion
     }
 }
