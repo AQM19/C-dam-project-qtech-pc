@@ -509,3 +509,7 @@ C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\frmAd
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\frmListaObservaciones.g.cs
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\frmAddObservacion.baml
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\frmListaObservaciones.baml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\frmAddTarea.g.cs
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\frmListaTareas.g.cs
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\frmAddTarea.baml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\frmListaTareas.baml

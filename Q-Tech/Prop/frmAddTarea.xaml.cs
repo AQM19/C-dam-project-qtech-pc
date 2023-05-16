@@ -30,6 +30,7 @@ namespace Q_Tech.Prop
         {
             _id = id;
             _tarea = tarea;
+
             if (_tarea.Id > 0)
             {
                 _tarea.FechaCreacion = DateTime.Now;
@@ -39,16 +40,21 @@ namespace Q_Tech.Prop
 
         private void DesplegarInformacion()
         {
-            txtTitulo.Text = _tarea.Titulo;
-            cboStatus.Text = _tarea.Estado;
-            txtTarea.Text = _tarea.Descripcion;
+            if (_tarea.Id > 0)
+            {
+                txtTitulo.Text = _tarea.Titulo;
+                cboStatus.Text = _tarea.Estado;
+                txtTarea.Text = _tarea.Descripcion;
+            }
+            _tarea.Idterrario = _id;
         }
 
         private void btnSave_MouseDown(object sender, MouseButtonEventArgs e)
         {
             _tarea.Titulo = txtTitulo.Text;
             _tarea.Descripcion = txtTarea.Text;
-            _tarea.Estado = cboStatus.SelectedItem.ToString().ToUpper();
+            _tarea.Estado = cboStatus.Text;
+
             if (cboStatus.Text.Equals("Realizada"))
             {
                 _tarea.FechaResolucion = DateTime.Now;

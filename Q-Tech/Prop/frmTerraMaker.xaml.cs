@@ -288,7 +288,8 @@ namespace Q_Tech.Prop
 
         private void btnTareas_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            frmListaTareas lista = new frmListaTareas(_terrario.Id);
+            lista.ShowDialog();
         }
     }
 }

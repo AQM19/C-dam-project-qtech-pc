@@ -10,7 +10,7 @@ namespace Entities
 
         public long Idterrario { get; set; }
 
-        public DateTime FechaCreacion { get; set; }
+        public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
         public DateTime? FechaResolucion { get; set; }
 

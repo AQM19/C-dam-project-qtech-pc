@@ -62,7 +62,7 @@ namespace Q_Tech.Paginas
                 Grid.SetColumn(logroTextBlock, 1);
                 Grid.SetRow(logroTextBlock, 0);
 
-                TextBlock descripcionTextBlock = new TextBlock 
+                TextBlock descripcionTextBlock = new TextBlock
                 {
                     Text = logro.Descripcion,
                     Padding = new Thickness(5),
@@ -84,7 +84,7 @@ namespace Q_Tech.Paginas
                 Grid.SetRow(dtpFechaDesde, 0);
                 Grid.SetRowSpan(dtpFechaDesde, 2);
 
-                DatePicker dtpFechaHasta = new DatePicker 
+                DatePicker dtpFechaHasta = new DatePicker
                 {
                     VerticalAlignment = VerticalAlignment.Center,
                     Padding = new Thickness(5),
@@ -129,19 +129,22 @@ namespace Q_Tech.Paginas
 
         private async void SaveLogros_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            foreach (Logro logro in cambiosPendientes)
+            if (cambiosPendientes.Count > 0)
             {
-                if(logro.Fechadesde.HasValue && logro.Fechahasta.HasValue && logro.Fechadesde > logro.Fechahasta)
+                foreach (Logro logro in cambiosPendientes)
                 {
-                    MessageBox.Show("No se puede poner la fecha de obtención mayor a la fecha de caducidad del logro.");
-                    cambiosPendientes.Remove(logro);
-                    return;
+                    if (logro.Fechadesde.HasValue && logro.Fechahasta.HasValue && logro.Fechadesde > logro.Fechahasta)
+                    {
+                        MessageBox.Show("No se puede poner la fecha de obtención mayor a la fecha de caducidad del logro.");
+                        cambiosPendientes.Remove(logro);
+                        return;
+                    }
+
+                    await Herramientas.UpdateLogro(logro);
                 }
 
-                await Herramientas.UpdateLogro(logro);
+                cambiosPendientes.Clear();
             }
-
-            cambiosPendientes.Clear();
         }
 
         private async void AddLogro_MouseDown(object sender, MouseButtonEventArgs e)

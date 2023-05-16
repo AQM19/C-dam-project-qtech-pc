@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,7 @@ namespace Q_Tech.Prop
     public partial class frmListaTareas : Window
     {
         private long _id;
+        private List<Tarea> _tareasCambiadas;
         public frmListaTareas()
         {
             InitializeComponent();
@@ -29,7 +31,7 @@ namespace Q_Tech.Prop
         public frmListaTareas(long id) : this()
         {
             _id = id;
-
+            _tareasCambiadas = new List<Tarea>();
             CargarTareas();
         }
 
@@ -117,38 +119,43 @@ namespace Q_Tech.Prop
 
                 ComboBoxItem startedItem = new ComboBoxItem
                 {
-                    IsSelected = t.Estado == "INICIADA" ? true : false,
+                    IsSelected = t.Estado == "Iniciada" ? true : false,
                     Content = "Iniciada"
                 };
                 statusComboBox.Items.Add(startedItem);
 
                 ComboBoxItem inProgressItem = new ComboBoxItem
                 {
-                    IsSelected = t.Estado == "EN PROGRESO" ? true : false,
+                    IsSelected = t.Estado == "En progreso" ? true : false,
                     Content = "En progreso"
                 };
                 statusComboBox.Items.Add(inProgressItem);
 
                 ComboBoxItem completedItem = new ComboBoxItem
                 {
-                    IsSelected = t.Estado == "REALIZADA" ? true : false,
+                    IsSelected = t.Estado == "Realizada" ? true : false,
                     Content = "Realizada"
                 };
                 statusComboBox.Items.Add(completedItem);
 
                 ComboBoxItem cancelledItem = new ComboBoxItem
                 {
-                    IsSelected = t.Estado == "CANCELADA" ? true : false,
+                    IsSelected = t.Estado == "Cancelada" ? true : false,
                     Content = "Cancelada"
                 };
                 statusComboBox.Items.Add(cancelledItem);
 
                 statusComboBox.SelectionChanged += (sender, e) =>
                 {
-                    if(statusComboBox.SelectedItem == "Realizada")
+                    string selectedText = ((ComboBoxItem)statusComboBox.SelectedItem).Content.ToString();
+
+                    if (selectedText == "Realizada")
                     {
-                        
+                        t.FechaResolucion = DateTime.Now;
                     }
+
+                    t.Estado = selectedText;
+                    _tareasCambiadas.Add(t);
                 };
 
                 grid.Children.Add(titleTextBlock);
@@ -158,7 +165,46 @@ namespace Q_Tech.Prop
 
                 listViewItem.Content = grid;
 
+                listViewItem.MouseDoubleClick += (sender, e) => UpdateTarea(t);
+
                 lvListaTareas.Items.Add(listViewItem);
+            }
+        }
+
+        private async void UpdateTarea(Tarea tarea)
+        {
+            frmAddTarea frmAddTarea = new frmAddTarea(_id, tarea);
+
+            if (frmAddTarea.ShowDialog() == true)
+            {
+                await Herramientas.UpdateTarea(tarea.Id, tarea);
+                CargarTareas();
+            }
+        }
+
+        private async void BtnSaveTareas_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (_tareasCambiadas.Count > 0)
+            {
+                foreach (Tarea t in _tareasCambiadas)
+                {
+                    await Herramientas.UpdateTarea(t.Id, t);
+                }
+
+                _tareasCambiadas.Clear();
+                CargarTareas();
+            }
+        }
+
+        private async void BtnNewTarea_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Tarea tarea = new Tarea();
+            frmAddTarea frmAddTarea = new frmAddTarea(_id, tarea);
+
+            if (frmAddTarea.ShowDialog() == true)
+            {
+                await Herramientas.CreateTarea(tarea);
+                CargarTareas();
             }
         }
     }
