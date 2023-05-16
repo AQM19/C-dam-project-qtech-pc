@@ -3,8 +3,10 @@ using Entities;
 using Q_Tech.Prop;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -15,7 +17,7 @@ namespace Q_Tech.Paginas
     /// </summary>
     public partial class pgListaLogros : Page
     {
-        private List<Logro> cambiosPendientes = new List<Logro>();
+        private readonly List<Logro> cambiosPendientes = new List<Logro>();
 
         public pgListaLogros()
         {
@@ -28,67 +30,139 @@ namespace Q_Tech.Paginas
             lvLogros.Items.Clear();
             List<Logro> logros = await Herramientas.GetLogros();
 
-            for (int i = 0; i < logros.Count; i++)
+            foreach (Logro logro in logros)
             {
-                ListViewItem newItem = new ListViewItem { HorizontalContentAlignment = HorizontalAlignment.Stretch };
-                StackPanel stackPanel = new StackPanel { Orientation = Orientation.Horizontal, Height = 50, Margin = new Thickness(10) };
-                ImageBrush imageBrush = new ImageBrush { ImageSource = new BitmapImage(new Uri($"{logros[i].Icono}", UriKind.Absolute)), };
-                Border border = new Border { CornerRadius = new CornerRadius(5), BorderThickness = new Thickness(0), Height = 50, Width = 50, Margin = new Thickness(0, 0, 10, 0), Background = imageBrush };
-                StackPanel secondStackPanel = new StackPanel { Orientation = Orientation.Vertical, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(10, 0, 0, 0), Width = 250 };
-                TextBlock logroTextBlock = new TextBlock { Text = $"{logros[i].Titulo}" };
-                TextBlock descripcionTextBlock = new TextBlock { Text = $"{logros[i].Descripcion}" };
-                ComboBox comboBox = new ComboBox { VerticalContentAlignment = VerticalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(10, 0, 0, 0), Tag = logros[i] };
-                ComboBoxItem deshabilitadoItem = new ComboBoxItem { Content = "Deshabilitado", IsSelected = logros[i].Disponible == 1 ? false : true };
-                ComboBoxItem habilitadoItem = new ComboBoxItem { Content = "Habilitado", IsSelected = logros[i].Disponible == 0 ? false : true };
+                ListViewItem listViewItem = new ListViewItem();
 
-                stackPanel.Children.Add(border);
-                secondStackPanel.Children.Add(logroTextBlock);
-                secondStackPanel.Children.Add(descripcionTextBlock);
-                stackPanel.Children.Add(secondStackPanel);
-                comboBox.Items.Add(deshabilitadoItem);
-                comboBox.Items.Add(habilitadoItem);
-                stackPanel.Children.Add(comboBox);
-                newItem.Content = stackPanel;
-                lvLogros.Items.Add(newItem);
+                Grid grid = new Grid();
+                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100, GridUnitType.Pixel) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(350, GridUnitType.Pixel) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100, GridUnitType.Pixel) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100, GridUnitType.Pixel) });
+                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
+                grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
 
-                comboBox.SelectionChanged += ComboBox_SelectionChanged;
+                Image image = new Image
+                {
+                    Width = 50,
+                    Margin = new Thickness(5),
+                    Source = new BitmapImage(new Uri(logro.Icono ?? "/Recursos/Iconos/MainIcon.png", UriKind.RelativeOrAbsolute))
+                };
+
+                Grid.SetColumn(image, 0);
+                Grid.SetRow(image, 0);
+                Grid.SetRowSpan(image, 2);
+
+                TextBlock logroTextBlock = new TextBlock
+                {
+                    Text = logro.Titulo,
+                    Padding = new Thickness(5)
+
+                };
+                Grid.SetColumn(logroTextBlock, 1);
+                Grid.SetRow(logroTextBlock, 0);
+
+                TextBlock descripcionTextBlock = new TextBlock 
+                {
+                    Text = logro.Descripcion,
+                    Padding = new Thickness(5),
+                    TextWrapping = TextWrapping.Wrap,
+                    TextTrimming = TextTrimming.CharacterEllipsis
+                };
+                Grid.SetColumn(descripcionTextBlock, 1);
+                Grid.SetRow(descripcionTextBlock, 1);
+
+                DatePicker dtpFechaDesde = new DatePicker
+                {
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Padding = new Thickness(5),
+                    Margin = new Thickness(5),
+                    SelectedDate = logro.Fechadesde
+                };
+                dtpFechaDesde.SelectedDateChanged += (sender, e) => ActualizarFechaLogro(sender, logro, "Fechadesde");
+                Grid.SetColumn(dtpFechaDesde, 2);
+                Grid.SetRow(dtpFechaDesde, 0);
+                Grid.SetRowSpan(dtpFechaDesde, 2);
+
+                DatePicker dtpFechaHasta = new DatePicker 
+                {
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Padding = new Thickness(5),
+                    Margin = new Thickness(5),
+                    SelectedDate = logro.Fechahasta
+
+                };
+                dtpFechaHasta.SelectedDateChanged += (sender, e) => ActualizarFechaLogro(sender, logro, "Fechahasta");
+                Grid.SetColumn(dtpFechaHasta, 3);
+                Grid.SetRow(dtpFechaHasta, 0);
+                Grid.SetRowSpan(dtpFechaHasta, 2);
+
+                grid.Children.Add(image);
+                grid.Children.Add(logroTextBlock);
+                grid.Children.Add(descripcionTextBlock);
+                grid.Children.Add(dtpFechaDesde);
+                grid.Children.Add(dtpFechaHasta);
+
+                listViewItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+                listViewItem.Content = grid;
+                listViewItem.MouseDoubleClick += (sender, e) => UpdateLogro(logro);
+
+                lvLogros.Items.Add(listViewItem);
             }
         }
 
-        private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ActualizarFechaLogro(object sender, Logro logro, string param)
         {
-            ComboBox comboBox = (ComboBox)sender;
-            ComboBoxItem deshabilitadoItem = (ComboBoxItem)comboBox.Items[0];
-            ComboBoxItem habilitadoItem = (ComboBoxItem)comboBox.Items[1];
+            DatePicker dtp = (DatePicker)sender;
 
-            Logro logro = (Logro)comboBox.Tag;
-
-            logro.Disponible = deshabilitadoItem.IsSelected ? (sbyte)0 : (sbyte)1;
-
-            if (!cambiosPendientes.Contains(logro))
+            if (dtp.SelectedDate.HasValue)
             {
-                cambiosPendientes.Add(logro);
+                typeof(Logro).GetProperty(param)?.SetValue(logro, dtp.SelectedDate.Value);
             }
+            else
+            {
+                typeof(Logro).GetProperty(param)?.SetValue(logro, null);
+            }
+
+            cambiosPendientes.Add(logro);
         }
 
-        private async void SaveLogros_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private async void SaveLogros_MouseDown(object sender, MouseButtonEventArgs e)
         {
             foreach (Logro logro in cambiosPendientes)
             {
-                Herramientas.UpdateLogro(logro);
+                if(logro.Fechadesde.HasValue && logro.Fechahasta.HasValue && logro.Fechadesde > logro.Fechahasta)
+                {
+                    MessageBox.Show("No se puede poner la fecha de obtención mayor a la fecha de caducidad del logro.");
+                    cambiosPendientes.Remove(logro);
+                    return;
+                }
+
+                await Herramientas.UpdateLogro(logro);
             }
 
             cambiosPendientes.Clear();
         }
 
-        private async void AddLogro_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private async void AddLogro_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Logro logro = new Logro();
             frmAddLogro addLogro = new frmAddLogro(logro);
 
-            if(addLogro.ShowDialog() == true)
+            if (addLogro.ShowDialog() == true)
             {
                 await Herramientas.CreateLogro(logro);
+                CargarLogros();
+            }
+        }
+
+        private async void UpdateLogro(Logro logro)
+        {
+            frmAddLogro addLogro = new frmAddLogro(logro);
+
+            if (addLogro.ShowDialog() == true)
+            {
+                await Herramientas.UpdateLogro(logro);
                 CargarLogros();
             }
         }

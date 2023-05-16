@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
+        Icon="/Recursos/Fondos/logo-qtech-full.png"
         Title="Q-TECH" Height="500" Width="800">
     <Window.Background>
         <ImageBrush ImageSource="/Recursos/Fondos/login_green_background.jpeg"/>

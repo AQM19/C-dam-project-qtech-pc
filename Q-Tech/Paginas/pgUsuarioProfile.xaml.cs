@@ -1,6 +1,7 @@
 ﻿using BusinessLogic;
 using Entities;
 using Microsoft.Win32;
+using Q_Tech.Prop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,8 +47,43 @@ namespace Q_Tech.Paginas
             txbTelephone.Text = _usuario.Telefono;
             dtpBirth.Text = _usuario.FechaNacimiento.ToString();
             cboRol.Text = _usuario.Perfil == "CLIENTE" ? "Cliente" : "Admin";
+            CargarTerrarios();
 
             if (_usuario.Perfil.Equals("ADMIN")) stpDoABarrerRoll.Visibility = Visibility.Visible;
+        }
+
+        private async void CargarTerrarios()
+        {
+            lvListaTerrarios.Items.Clear();
+            List<Terrario> terrarios = await Herramientas.GetTerrarios();
+
+            foreach (Terrario t in terrarios)
+            {
+
+                TextBlock text = new TextBlock
+                {
+                    Text = t.Nombre
+                };
+
+                ListViewItem item = new ListViewItem
+                {
+                    Content = text,
+                    Tag = t.Id
+                };
+
+                item.MouseDoubleClick += async (sender, e) =>
+                {
+                    frmTerraMaker terraMaker = new frmTerraMaker(_usuario, t);
+
+                    if (terraMaker.ShowDialog() == true)
+                    {
+                        await Herramientas.UpdateTerrario(t.Id, t);
+                        CargarTerrarios();
+                    }
+                };
+
+                lvListaTerrarios.Items.Add(item);
+            }
         }
 
         private void btnChangePassword_Click(object sender, RoutedEventArgs e)
@@ -123,6 +159,31 @@ namespace Q_Tech.Paginas
                 bitmap.EndInit();
 
                 imgProfilePic.Source = bitmap;
+            }
+        }
+
+        private async void btnAddTerra_Click(object sender, RoutedEventArgs e)
+        {
+            Terrario terra = new Terrario();
+
+            frmTerraMaker terraMaker = new frmTerraMaker(_usuario, terra);
+
+            if (terraMaker.ShowDialog() == true)
+            {
+                await Herramientas.CreateTerrario(terra);
+                CargarTerrarios();
+            }
+        }
+
+        private async void btnDelTerra_Click(object sender, RoutedEventArgs e)
+        {
+            long id = (long)((ListViewItem)sender).Tag;
+
+            MessageBoxResult result = MessageBox.Show("¿Estás seguro de querer borrar este terrario?", "Aviso", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+
+            if(result == MessageBoxResult.Yes)
+            {
+                await Herramientas.DeleteTerrario(id);
             }
         }
     }

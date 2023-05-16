@@ -14,6 +14,7 @@ namespace Entities
 
         public string Icono { get; set; }
 
-        public sbyte Disponible { get; set; }
+        public DateTime? Fechadesde { get; set; }
+        public DateTime? Fechahasta { get; set; }
     }
 }

@@ -1,0 +1,16 @@
+﻿<Window x:Class="Q_Tech.Prop.frmListaObservaciones"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Q_Tech.Prop"
+        mc:Ignorable="d"
+        Title="frmListaObservaciones" Height="450" Width="500">
+    <Grid>
+        <ListView x:Name="lvObservaciones" />
+        
+        <Border Width="32" Height="32" x:Name="AddObservacion" MouseDown="AddObservacion_MouseDown" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="#BDECB6" Padding="3" Margin="15" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+            <Image Source="/Recursos/Iconos/anadir.png" />
+        </Border>
+    </Grid>
+</Window>

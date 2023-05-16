@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\App.xaml
-151217663192
+18593746740
 
-21-1175071721
+24-1207247681
 162267042679
-Modales\Dashboard.xaml;Paginas\pgIndex.xaml;Modales\Login.xaml;Paginas\pgListaEspecies.xaml;Paginas\pgListaLogros.xaml;Paginas\pgListaNotificaciones.xaml;Paginas\pgListaTerrarios.xaml;Paginas\pgTerrario.xaml;Paginas\pgUsuario.xaml;Paginas\pgUsuarioProfile.xaml;Paginas\pgListaUsuarios.xaml;Prop\frmAddEspecie.xaml;Prop\frmAddLogro.xaml;Prop\frmEspecies.xaml;Prop\frmTerraMaker.xaml;
+Modales\Dashboard.xaml;Paginas\pgIndex.xaml;Modales\Login.xaml;Paginas\pgListaEspecies.xaml;Paginas\pgListaLogros.xaml;Paginas\pgListaNotificaciones.xaml;Paginas\pgListaTerrarios.xaml;Paginas\pgTerrario.xaml;Paginas\pgUsuario.xaml;Paginas\pgUsuarioProfile.xaml;Paginas\pgListaUsuarios.xaml;Prop\frmAddEspecie.xaml;Prop\frmAddLogro.xaml;Prop\frmAddObservacion.xaml;Prop\frmAddTarea.xaml;Prop\frmEspecies.xaml;Prop\frmListaObservaciones.xaml;Prop\frmTerraMaker.xaml;
 
 True
 

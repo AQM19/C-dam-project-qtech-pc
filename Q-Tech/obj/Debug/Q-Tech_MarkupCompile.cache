@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\App.xaml
-151217663192
+17974711868
 
-21-1175071721
+22-1700956207
 162267042679
-Modales\Dashboard.xaml;Paginas\pgIndex.xaml;Modales\Login.xaml;Paginas\pgListaEspecies.xaml;Paginas\pgListaLogros.xaml;Paginas\pgListaNotificaciones.xaml;Paginas\pgListaTerrarios.xaml;Paginas\pgTerrario.xaml;Paginas\pgUsuario.xaml;Paginas\pgUsuarioProfile.xaml;Paginas\pgListaUsuarios.xaml;Prop\frmAddEspecie.xaml;Prop\frmAddLogro.xaml;Prop\frmEspecies.xaml;Prop\frmTerraMaker.xaml;
+Modales\Dashboard.xaml;Paginas\pgIndex.xaml;Modales\Login.xaml;Paginas\pgListaEspecies.xaml;Paginas\pgListaLogros.xaml;Paginas\pgListaNotificaciones.xaml;Paginas\pgListaTerrarios.xaml;Paginas\pgTerrario.xaml;Paginas\pgUsuario.xaml;Paginas\pgUsuarioProfile.xaml;Paginas\pgListaUsuarios.xaml;Prop\frmAddEspecie.xaml;Prop\frmAddLogro.xaml;Prop\frmAddObservacion.xaml;Prop\frmEspecies.xaml;Prop\frmListaObservaciones.xaml;Prop\frmTerraMaker.xaml;
 
-True
+False
 

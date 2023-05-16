@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:Q_Tech.Prop"
         xmlns:dlg="clr-namespace:Microsoft.Win32;assembly=PresentationFramework"
         mc:Ignorable="d"
-        Title="Terrario de %username%" Height="550" Width="450"
+        Title="Terrario de %username%" Height="600" Width="450"
         ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <!--ROW0-->
@@ -78,6 +78,29 @@
         <!--ROW2-->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Width="160" x:Name="btnObservaciones" MouseDown="btnObservaciones_MouseDown" Background="#F7BD56" Padding="5" Margin="5" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="/Recursos/Iconos/observacion.png" Height="24" Margin="0,0,5,0"/>
+                    <TextBlock Text="Observaciones" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" Width="160" x:Name="btnTareas" MouseDown="btnTareas_MouseDown" Background="#F7BD56" Padding="5" Margin="5" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="/Recursos/Iconos/portapapeles.png" Height="24" Margin="0,0,5,0"/>
+                    <TextBlock Text="Tareas" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+        </Grid>
+
+        <!--ROW3-->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
@@ -93,26 +116,6 @@
             </StackPanel>
         </Grid>
 
-        <!--ROW3-->
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border Width="125" Height="32" Grid.Column="0" Background="#F7BD56" Padding="5" Margin="5" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="/Recursos/Iconos/observacion.png" Margin="0,0,5,0" VerticalAlignment="Center"/>
-                    <TextBlock Text="Observaciones" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Border>
-            <Border Width="125" Grid.Column="1" Background="#F7BD56" Padding="5" Margin="5" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="/Recursos/Iconos/portapapeles.png" Margin="22,0,5,0" VerticalAlignment="Center"/>
-                    <TextBlock Text="Tareas" TextAlignment="Center" FontWeight="Bold" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Border>
-        </Grid>
-        
         <!--ROW4-->
         <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Right">
             <Border Width="32" Height="32" x:Name="btnSave" MouseDown="btnSave_MouseDown" Background="#BDECB6" Padding="3" Margin="5" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">

@@ -229,8 +229,17 @@
     <Compile Include="Prop\frmAddLogro.xaml.cs">
       <DependentUpon>frmAddLogro.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Prop\frmAddObservacion.xaml.cs">
+      <DependentUpon>frmAddObservacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prop\frmAddTarea.xaml.cs">
+      <DependentUpon>frmAddTarea.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Prop\frmEspecies.xaml.cs">
       <DependentUpon>frmEspecies.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Prop\frmListaObservaciones.xaml.cs">
+      <DependentUpon>frmListaObservaciones.xaml</DependentUpon>
     </Compile>
     <Compile Include="Prop\frmTerraMaker.xaml.cs">
       <DependentUpon>frmTerraMaker.xaml</DependentUpon>
@@ -301,7 +310,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Prop\frmAddObservacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prop\frmAddTarea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Prop\frmEspecies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prop\frmListaObservaciones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

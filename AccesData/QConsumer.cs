@@ -9,7 +9,7 @@ namespace AccesData
 {
     public class QConsumer
     {
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
 
         public QConsumer()
         {
@@ -93,7 +93,7 @@ namespace AccesData
         public async Task<T> DeleteAsync<T>(string url)
         {
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.DeleteAsync(url);
+            await client.DeleteAsync(url);
             return default;
         }
     }

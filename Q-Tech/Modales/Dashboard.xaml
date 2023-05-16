@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Q_Tech.Modales"
         mc:Ignorable="d"
         ResizeMode="NoResize"
+        Icon="/Recursos/Fondos/logo-qtech-full.png"
         Title="FrmDashboard" Height="600" Width="900">
     <Window.Background>
         <ImageBrush ImageSource="/Recursos/Fondos/login_green_background.jpeg"/>

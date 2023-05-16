@@ -35,7 +35,7 @@ namespace Q_Tech.Paginas
 
         private async void DesplegarInfo()
         {
-            imgTerraPic.Source = new BitmapImage(new Uri(_terrario.Foto != null ? _terrario.Foto : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
+            //imgTerraPic.Source = new BitmapImage(new Uri(_terrario.Foto != null ? _terrario.Foto : "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTECH_PC\\Q-Tech\\Recursos\\Iconos\\MainIcon.png"));
             txbTerraName.Text = _terrario.Nombre;
             txbTerraDescription.Text = _terrario.Descripcion;
             txbFecha.Text = _terrario.FechaCreacion.ToShortDateString();
