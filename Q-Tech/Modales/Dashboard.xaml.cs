@@ -19,6 +19,7 @@ namespace Q_Tech.Modales
         private Usuario _usuario;
         private string _textValue;
         private DispatcherTimer debounceTimer = new DispatcherTimer();
+
         public FrmDashboard()
         {
             InitializeComponent();
@@ -30,7 +31,34 @@ namespace Q_Tech.Modales
         public FrmDashboard(Usuario usuario) : this()
         {
             _usuario = usuario;
+
+            if (!string.IsNullOrEmpty(_usuario.FotoPerfil))
+                imgProfileUser.Source = new BitmapImage(new Uri(_usuario.FotoPerfil));
+
+            if(_usuario.Perfil == "CLIENTE")
+            {
+                btnLogros.Visibility = Visibility.Collapsed;
+                btnEspecies.Visibility = Visibility.Collapsed;
+            }
+
+
+            StartNotificationPolling();
+            NotificationPollingComponent.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(NotificationPollingComponent.PendingNotifications))
+                {
+                    imgNotificationBell.Source = new BitmapImage(new Uri(NotificationPollingComponent.PendingNotifications
+                        ? "/Recursos/Iconos/notification_yes.png"
+                        : "/Recursos/Iconos/notification_no.png",
+                        UriKind.RelativeOrAbsolute));
+                }
+            };
             CargarIndex();
+        }
+
+        private async void StartNotificationPolling()
+        {
+            await NotificationPollingComponent.StartPeriodicQuery(_usuario.Id);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -164,7 +192,7 @@ namespace Q_Tech.Modales
                     };
 
                     int index = i;
-                    listViewItem.MouseDoubleClick += (o,s) =>
+                    listViewItem.MouseDoubleClick += (o, s) =>
                     {
                         pgUsuario pgUsuario = new pgUsuario(_usuario.Id, list[index], frmMainFrame);
                         frmMainFrame.Content = pgUsuario;
@@ -198,6 +226,12 @@ namespace Q_Tech.Modales
         private void txtBuscador_LostFocus(object sender, RoutedEventArgs e)
         {
             txtBuscador.Clear();
+        }
+
+        private void BtnLogout_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
         }
     }
 }

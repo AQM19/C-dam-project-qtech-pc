@@ -406,9 +406,6 @@
     <Resource Include="Recursos\Iconos\help.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\Iconos\bell.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Recursos\Iconos\usuariob.png" />
   </ItemGroup>
   <ItemGroup>
@@ -467,6 +464,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Iconos\observacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\apagado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\notification_no.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Iconos\notification_yes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

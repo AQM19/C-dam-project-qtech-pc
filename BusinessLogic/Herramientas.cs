@@ -28,7 +28,7 @@ namespace BusinessLogic
         public static async Task<bool> ComprobarUsuario(string param) // op
         {
             QConsumer qc = new QConsumer();
-            return await qc.GetAsync<bool>($"{baseEndPoint}/usuarios?c={param}");
+            return await qc.GetAsync<bool>($"{baseEndPoint}/usuarios/c={param}");
         }
         public static async Task<Usuario> GetUsuario(int id) // op
         {

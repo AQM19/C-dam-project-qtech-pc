@@ -171,45 +171,6 @@ namespace Q_Tech
             }
         }
 
-        //private async void brdRegister_MouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    if (await ValidRegisterData())
-        //    {
-        //        try
-        //        {
-        //            dpLoader.Visibility = Visibility.Visible;
-
-        //            byte[] salt = GenerarSalt();
-        //            string password = GenerarContra(salt);
-        //            string username = txbUsername.Text.ToLower();
-
-        //            await CrearContainerBlobAzure(username);
-
-        //            string fotoPerfil = await CargarImagenPerfilAzure(username);
-
-        //            Usuario newRegisterUser = new Usuario
-        //            {
-        //                NombreUsuario = username,
-        //                Email = txbEmail.Text,
-        //                Salt = salt,
-        //                Contrasena = password,
-        //                FotoPerfil = fotoPerfil,
-        //                Perfil = "CLIENTE"
-        //            };
-
-
-        //            Herramientas.CreateUsuario(newRegisterUser);
-        //            IngresarAplicacion(newRegisterUser);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("No se pudo establecer una conexión con el servidor. Por favor, inténtelo de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
-        //            dpLoader.Visibility = Visibility.Collapsed;
-        //            return;
-        //        }
-        //    }
-        //}
-
         private async void brdRegister_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (await ValidRegisterData())
@@ -255,7 +216,8 @@ namespace Q_Tech
             this.Hide();
             if (dashboard.ShowDialog() == false) this.Close();
 
-            //this.Show();
+            //InitializeComponent();
+            this.Show();
         }
 
         private async Task<string> CargarImagenPerfilAzure(string username)
