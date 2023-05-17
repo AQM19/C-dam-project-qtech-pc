@@ -103,7 +103,7 @@
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,25,0">
 
                     <Border CornerRadius="25" Width="30" Height="30" Margin="5,0" Padding="3" Cursor="Hand" x:Name="imgNotifications" MouseDown="imgNotifications_MouseDown" Background="#EBFF82">
-                        <Image Source="/Recursos/Iconos/notification_yes.png" x:Name="imgNotificationBell"/>
+                        <Image Source="/Recursos/Iconos/notification_no.png" x:Name="imgNotificationBell"/>
                     </Border>
 
                     <Border CornerRadius="25" Width="30" Height="30" Margin="5,0" Padding="3" Cursor="Hand" x:Name="imgProfile" MouseDown="imgProfile_MouseDown" Background="#EBFF82">

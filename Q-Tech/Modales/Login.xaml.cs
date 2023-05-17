@@ -147,7 +147,6 @@ namespace Q_Tech
 
                 try
                 {
-
                     usuario = await Herramientas.Login(txtUser.Text, PasswordBind.Password);
                 }
                 catch (Exception)
@@ -209,15 +208,19 @@ namespace Q_Tech
             }
         }
 
-
         private void IngresarAplicacion(Usuario usuario)
         {
             FrmDashboard dashboard = new FrmDashboard(usuario);
             this.Hide();
-            if (dashboard.ShowDialog() == false) this.Close();
-
-            //InitializeComponent();
-            this.Show();
+            if (dashboard.ShowDialog() == false)
+            {
+                this.Close();
+            }
+            else
+            {
+                dpLoader.Visibility = Visibility.Collapsed;
+                this.Show();
+            }
         }
 
         private async Task<string> CargarImagenPerfilAzure(string username)
@@ -322,7 +325,8 @@ namespace Q_Tech
                     return false;
                 }
                 dpLoader.Visibility = Visibility.Collapsed;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 MessageBox.Show("No se pudo establecer una conexión con el servidor. Por favor, inténtelo de nuevo más tarde.", "Error de conexión", MessageBoxButton.OK, MessageBoxImage.Error);
                 dpLoader.Visibility = Visibility.Collapsed;
