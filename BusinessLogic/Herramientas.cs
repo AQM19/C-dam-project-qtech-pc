@@ -253,5 +253,15 @@ namespace BusinessLogic
             await qc.CreateAsync<Tarea>($"{baseEndPoint}/tareas", tarea);
         }
         #endregion
+
+
+        #region Lecturas
+        public static async Task<Lectura> GetLecturaActual(long id)
+        {
+            QConsumer qc = new QConsumer();
+            Lectura lectura = await qc.GetAsync<Lectura>($"{baseEndPoint}/lecturas/terrario/{id}");
+            return lectura;
+        }
+        #endregion
     }
 }

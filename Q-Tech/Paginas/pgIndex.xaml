@@ -4,14 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Q_Tech.Modales"
-      xmlns:gauge ="clr-namespace:Syncfusion.UI.Xaml.Gauges;assembly=Syncfusion.SfGauge.Wpf"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Index"
       Background="#88FFFFFF">
 
     <Grid>
-        <DockPanel LastChildFill="True">
+        <DockPanel LastChildFill="True" x:Name="dpMainPanel" Visibility="Collapsed">
 
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" x:Name="spListTerra" ScrollViewer.HorizontalScrollBarVisibility="Hidden" />
 
@@ -30,70 +30,52 @@
                     <Image  Stretch="Fill" x:Name="SelectedTerra"/>
                 </Border>
 
-                <gauge:SfCircularGauge Height="250"
-                       Width="250"
-                       HeaderAlignment="Custom"
-                       GaugeHeaderPosition="0.63,0.75" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="25">
+                <lvc:Gauge Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Width="200" From="0" To="50" Value="0" LabelsVisibility="Collapsed" Margin="25" x:Name="chartTemperature">
+                    <lvc:Gauge.GaugeActiveFill>
+                        <LinearGradientBrush>
+                            <GradientStop Color="Yellow" Offset="0.0" />
+                            <GradientStop Color="Orange" Offset="0.35" />
+                            <GradientStop Color="Red" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </lvc:Gauge.GaugeActiveFill>
+                </lvc:Gauge>
 
-                    <gauge:SfCircularGauge.GaugeHeader>
-                        <TextBlock Text="Speedometer"
-                   Height="40"
-                   Width="140"
-                   FontSize="13"
-                   Foreground="Black"
-                   FontWeight="SemiBold" />
-                    </gauge:SfCircularGauge.GaugeHeader>
+                <lvc:Gauge Grid.Row="1" Grid.Column="1" Width="100" From="0" To="100" Value="0" LabelsVisibility="Collapsed" Margin="25" x:Name="chartHumid">
+                    <lvc:Gauge.GaugeRenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="-90"></RotateTransform>
+                            <ScaleTransform ScaleX="1"></ScaleTransform>
+                        </TransformGroup>
+                    </lvc:Gauge.GaugeRenderTransform>
+                    <lvc:Gauge.GaugeActiveFill>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#F2F8FF" Offset="0.0" />
+                            <GradientStop Color="#B0D4FF" Offset="0.35" />
+                            <GradientStop Color="#5C9CFF" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </lvc:Gauge.GaugeActiveFill>
+                </lvc:Gauge>
 
-                    <gauge:SfCircularGauge.Scales>
-                        <gauge:CircularScale ShowRim="True"
-                             RimStroke="LightGray"
-                             RimStrokeThickness="3"
-                             LabelOffset="0.1">
-
-                            <gauge:CircularScale.MajorTickSettings>
-                                <gauge:MajorTickSetting Length="10"
-                                        StrokeThickness="1" />
-                            </gauge:CircularScale.MajorTickSettings>
-
-                            <gauge:CircularScale.MinorTickSettings>
-                                <gauge:MinorTickSetting Length="5"
-                                        StrokeThickness="1" />
-                            </gauge:CircularScale.MinorTickSettings>
-
-                            <gauge:CircularScale.Ranges>
-                                <gauge:CircularRange StartValue="0"
-                                     EndValue="60"
-                                     Stroke="Gray" />
-                            </gauge:CircularScale.Ranges>
-                            <gauge:CircularScale.Pointers>
-                                <gauge:CircularPointer PointerType="NeedlePointer"
-                                       Value="60"
-                                       NeedleLengthFactor="0.5"
-                                       NeedlePointerType="Triangle"
-                                       PointerCapDiameter="12"
-                                       NeedlePointerStroke="#757575"
-                                       KnobFill="#757575"
-                                       KnobStroke="#757575"
-                                       NeedlePointerStrokeThickness="7" />
-                                <gauge:CircularPointer PointerType="RangePointer"
-                                       Value="40"
-                                       RangePointerStrokeThickness="5"
-                                       RangePointerStroke="#27beb6" />
-                                <gauge:CircularPointer PointerType="SymbolPointer"
-                                       Value="70"
-                                       SymbolPointerHeight="12"
-                                       SymbolPointerWidth="12"
-                                       Symbol="InvertedTriangle"
-                                       SymbolPointerStroke="#757575" />
-                            </gauge:CircularScale.Pointers>
-                        </gauge:CircularScale>
-                    </gauge:SfCircularGauge.Scales>
-                </gauge:SfCircularGauge>
+                <lvc:Gauge Grid.Row="1" Grid.Column="2" Width="100" From="0" To="100" Value="0" LabelsVisibility="Collapsed" Margin="25" x:Name="chartLight">
+                    <lvc:Gauge.GaugeRenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="-90"></RotateTransform>
+                            <ScaleTransform ScaleX="-1"></ScaleTransform>
+                        </TransformGroup>
+                    </lvc:Gauge.GaugeRenderTransform>
+                    <lvc:Gauge.GaugeActiveFill>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#000000" Offset="0.0" />
+                            <GradientStop Color="#808080" Offset="0.35" />
+                            <GradientStop Color="#FFFF00" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </lvc:Gauge.GaugeActiveFill>
+                </lvc:Gauge>
 
             </Grid>
         </DockPanel>
 
-        <Border CornerRadius="25" Width="350" Height="150" Background="#88FFFFFF" BorderBrush="#888" BorderThickness="2" x:Name="brMessage" Visibility="Collapsed">
+        <Border CornerRadius="25" Width="350" Height="150" Background="#88FFFFFF" BorderBrush="#888" BorderThickness="2" x:Name="brMessage" Visibility="Visible">
             <TextBlock Text="No hay terrarios." VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32" FontWeight="Bold" Foreground="#000"/>
         </Border>
 
