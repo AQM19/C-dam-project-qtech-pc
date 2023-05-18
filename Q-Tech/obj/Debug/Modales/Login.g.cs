@@ -10,8 +10,6 @@
 //------------------------------------------------------------------------------
 
 using Q_Tech;
-using Q_Tech.Modales;
-using Syncfusion.UI.Xaml.Charts;
 using System;
 using System.Diagnostics;
 using System.Windows;

@@ -30,29 +30,65 @@
                     <Image  Stretch="Fill" x:Name="SelectedTerra"/>
                 </Border>
 
-                <!--<TextBlock Text="30º" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" FontSize="100" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="txbTemperatura"/>
-                <TextBlock Text="30%" Grid.Column="1" Grid.Row="2" FontSize="100" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="txbHumedad"/>
-                <TextBlock Text="30" Grid.Column="2" Grid.Row="2" FontSize="100" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="txbLuz"/>-->
+                <gauge:SfCircularGauge Height="250"
+                       Width="250"
+                       HeaderAlignment="Custom"
+                       GaugeHeaderPosition="0.63,0.75" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="25">
 
-                <gauge:SfCircularGauge Margin="10" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="200" Width="200" HeaderAlignment="Custom" GaugeHeaderPosition="0.65,0.85">
                     <gauge:SfCircularGauge.GaugeHeader>
-                        <TextBlock Text="Temperatiura" Height="40" Width="140" FontSize="13" Foreground="Black" FontWeight="SemiBold" />
+                        <TextBlock Text="Speedometer"
+                   Height="40"
+                   Width="140"
+                   FontSize="13"
+                   Foreground="Black"
+                   FontWeight="SemiBold" />
                     </gauge:SfCircularGauge.GaugeHeader>
+
                     <gauge:SfCircularGauge.Scales>
-                        <gauge:CircularScale StartValue="0" EndValue="60" Interval="10" LabelStroke="AliceBlue" RimStroke="AliceBlue" ShowRim="True" RimStrokeThickness="3" LabelOffset="0.1">
+                        <gauge:CircularScale ShowRim="True"
+                             RimStroke="LightGray"
+                             RimStrokeThickness="3"
+                             LabelOffset="0.1">
+
                             <gauge:CircularScale.MajorTickSettings>
-                                <gauge:MajorTickSetting Length="10" StrokeThickness="1" Stroke="AliceBlue"/>
+                                <gauge:MajorTickSetting Length="10"
+                                        StrokeThickness="1" />
                             </gauge:CircularScale.MajorTickSettings>
+
                             <gauge:CircularScale.MinorTickSettings>
-                                <gauge:MinorTickSetting Length="5" StrokeThickness="1" Stroke="AliceBlue"/>
+                                <gauge:MinorTickSetting Length="5"
+                                        StrokeThickness="1" />
                             </gauge:CircularScale.MinorTickSettings>
+
                             <gauge:CircularScale.Ranges>
-                                <gauge:CircularRange StartValue="0" EndValue="28" Stroke="Red" />
+                                <gauge:CircularRange StartValue="0"
+                                     EndValue="60"
+                                     Stroke="Gray" />
                             </gauge:CircularScale.Ranges>
+                            <gauge:CircularScale.Pointers>
+                                <gauge:CircularPointer PointerType="NeedlePointer"
+                                       Value="60"
+                                       NeedleLengthFactor="0.5"
+                                       NeedlePointerType="Triangle"
+                                       PointerCapDiameter="12"
+                                       NeedlePointerStroke="#757575"
+                                       KnobFill="#757575"
+                                       KnobStroke="#757575"
+                                       NeedlePointerStrokeThickness="7" />
+                                <gauge:CircularPointer PointerType="RangePointer"
+                                       Value="40"
+                                       RangePointerStrokeThickness="5"
+                                       RangePointerStroke="#27beb6" />
+                                <gauge:CircularPointer PointerType="SymbolPointer"
+                                       Value="70"
+                                       SymbolPointerHeight="12"
+                                       SymbolPointerWidth="12"
+                                       Symbol="InvertedTriangle"
+                                       SymbolPointerStroke="#757575" />
+                            </gauge:CircularScale.Pointers>
                         </gauge:CircularScale>
                     </gauge:SfCircularGauge.Scales>
                 </gauge:SfCircularGauge>
-
 
             </Grid>
         </DockPanel>

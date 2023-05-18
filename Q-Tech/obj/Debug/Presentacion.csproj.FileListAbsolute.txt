@@ -522,3 +522,8 @@ C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\obj\
 C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\obj\Debug\Prop\frmListaObservaciones.baml
 C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\obj\Debug\Prop\frmListaTareas.baml
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\LiveCharts.dll
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\bin\Debug\Syncfusion.Licensing.dll
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\bin\Debug\Syncfusion.SfGauge.WPF.dll
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\bin\Debug\Syncfusion.Shared.WPF.dll
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\bin\Debug\Syncfusion.SfGauge.WPF.xml
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\bin\Debug\Syncfusion.Shared.WPF.xml
