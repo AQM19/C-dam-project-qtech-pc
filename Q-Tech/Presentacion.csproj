@@ -242,6 +242,9 @@
     <Compile Include="Prop\frmAddTarea.xaml.cs">
       <DependentUpon>frmAddTarea.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Prop\frmCodeConfirmation.xaml.cs">
+      <DependentUpon>frmCodeConfirmation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Prop\frmEspecies.xaml.cs">
       <DependentUpon>frmEspecies.xaml</DependentUpon>
     </Compile>
@@ -328,6 +331,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Prop\frmCodeConfirmation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Prop\frmEspecies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -369,6 +376,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Config\qtechautoterra-a5d311a44bda.p12" />
+    <None Include="Config\tokens.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

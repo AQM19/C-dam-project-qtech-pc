@@ -17,6 +17,7 @@ using Entities;
 using Microsoft.Win32;
 using Q_Tech.Modales;
 using Q_Tech.Paginas;
+using Q_Tech.Prop;
 
 namespace Q_Tech
 {
@@ -79,23 +80,23 @@ namespace Q_Tech
 
         private void txtRegistro_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Animacion(brdRegistro, true);
-            Animacion(brdInicio, false);
+            Animacion(brdRegistro, true, 0.5f);
+            Animacion(brdInicio, false, 0.5f);
         }
 
         private void txtVerInicio_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Animacion(brdInicio, true);
-            Animacion(brdRegistro, false);
+            Animacion(brdInicio, true, 0.5f);
+            Animacion(brdRegistro, false, 0.5f);
         }
 
-        private void Animacion(Border border, bool entrada)
+        private void Animacion(Border border, bool entrada, float duration)
         {
             DoubleAnimation anim = new DoubleAnimation
             {
                 From = entrada ? 0 : 1,
                 To = entrada ? 1 : 0,
-                Duration = TimeSpan.FromSeconds(0.5)
+                Duration = TimeSpan.FromSeconds(duration)
             };
 
             border.BeginAnimation(Border.VisibilityProperty, new ObjectAnimationUsingKeyFrames
@@ -219,6 +220,19 @@ namespace Q_Tech
             else
             {
                 dpLoader.Visibility = Visibility.Collapsed;
+
+                Animacion(brdInicio, true, 0);
+                Animacion(brdRegistro, false, 0);
+
+                txtUser.Text = string.Empty;
+                PasswordBind.Password = string.Empty;
+                PasswordUnbind.Text = string.Empty;
+
+                txbUsername.Text = string.Empty;
+                txbEmail.Text = string.Empty;
+                txbRegisterPass.Text = string.Empty;
+                pwbRegisterPass.Password = string.Empty;
+
                 this.Show();
             }
         }
@@ -324,6 +338,17 @@ namespace Q_Tech
                     dpLoader.Visibility = Visibility.Collapsed;
                     return false;
                 }
+
+                string codeConfirmation = Guid.NewGuid().ToString();
+                EmailSender.SendVerificationEmail(txbEmail.Text, codeConfirmation);
+                frmCodeConfirmation frmCode = new frmCodeConfirmation(codeConfirmation);
+
+                if(frmCode.ShowDialog() == false)
+                {
+                    MessageBox.Show("No se ha podido confirmar la cuenta.", "Error de registro", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+
                 dpLoader.Visibility = Visibility.Collapsed;
             }
             catch (Exception)

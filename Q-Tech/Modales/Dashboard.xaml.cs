@@ -32,9 +32,6 @@ namespace Q_Tech.Modales
         {
             _usuario = usuario;
 
-            if (!string.IsNullOrEmpty(_usuario.FotoPerfil))
-                imgProfileUser.Source = new BitmapImage(new Uri(_usuario.FotoPerfil));
-
             if(_usuario.Perfil == "CLIENTE")
             {
                 btnLogros.Visibility = Visibility.Collapsed;
