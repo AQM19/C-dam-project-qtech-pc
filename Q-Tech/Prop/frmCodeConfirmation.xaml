@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Q_Tech.Prop"
         mc:Ignorable="d"
-        Title="Verificacion de cuenta" Height="auto" Width="auto" ResizeMode="NoResize">
+        Title="Verificacion de cuenta" Height="115" Width="210" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

@@ -339,7 +339,7 @@ namespace Q_Tech
                     return false;
                 }
 
-                string codeConfirmation = Guid.NewGuid().ToString();
+                string codeConfirmation = GenerateRandomCode();
                 EmailSender.SendVerificationEmail(txbEmail.Text, codeConfirmation);
                 frmCodeConfirmation frmCode = new frmCodeConfirmation(codeConfirmation);
 
@@ -358,6 +358,20 @@ namespace Q_Tech
                 return false;
             }
             return true;
+        }
+
+        private string GenerateRandomCode()
+        {
+            string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            Random random = new Random();
+            StringBuilder code = new StringBuilder();
+
+            for(int i = 0; i < 6; i++)
+            {
+                code.Append(characters[random.Next(characters.Length)]);
+            }
+
+            return code.ToString();
         }
 
         private bool ValidLoginData()

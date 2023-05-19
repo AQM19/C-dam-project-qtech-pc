@@ -14,31 +14,34 @@ namespace BusinessLogic
     {
         private static string _remitent = ConfigurationManager.AppSettings["remitent"].ToString();
         private static string _password = ConfigurationManager.AppSettings["passremitent"].ToString();
-        private static string _clientId = ConfigurationManager.AppSettings["clientId"].ToString();
-        private static string _clientSecret = ConfigurationManager.AppSettings["clientSecret"].ToString();
 
         public static void SendVerificationEmail(string dest, string confirmationCode)
         {
-            string affair = "Confirmación de registro.";
-            string body = $"Gracias por registrarte en QTech - AutoTerra. Tu código de confirmación es: {confirmationCode}";
+            MailAddress to = new MailAddress(dest);
+            MailAddress from = new MailAddress(_remitent);
 
-            SmtpClient clienteSmtp = new SmtpClient("smtp.gmail.com", 587);
-            clienteSmtp.EnableSsl = true;
-            clienteSmtp.Credentials = new NetworkCredential(_remitent, _password);
-            clienteSmtp.UseDefaultCredentials = false;
-            clienteSmtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            MailMessage email = new MailMessage(from, to);
+            email.Subject = "Testing out email sending";
+            email.Body = confirmationCode;
 
-            clienteSmtp.ClientCertificates.Add(new X509Certificate2("ruta_al_archivo_certificado.p12", "contraseña_certificado"));
-
-            MailMessage mensaje = new MailMessage(_remitent, dest, affair, body);
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 25;
+            smtp.Credentials = new NetworkCredential(_remitent, _password);
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.EnableSsl = true;
 
             try
             {
-                clienteSmtp.Send(mensaje);
+                smtp.Send(email);
             }
-            catch (Exception)
+            catch (SmtpException e)
             {
                 throw;
+            }
+            finally
+            {
+                smtp.Dispose();
             }
         }
 
