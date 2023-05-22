@@ -260,19 +260,27 @@ namespace Q_Tech
 
         private async Task<BlobContainerClient> CrearContainerBlobAzure(string username)
         {
-            string connectionString = ConfigurationManager.AppSettings["azureacc"].ToString();
-            BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
-
-            string containerName = username;
-
-            BlobContainerClient container = await blobServiceClient.CreateBlobContainerAsync(containerName);
-
-            if (await container.ExistsAsync())
+            try
             {
-                return container;
-            }
+                string connectionString = ConfigurationManager.AppSettings["azureacc"].ToString();
+                BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
 
-            return null;
+                string containerName = username;
+
+                BlobContainerClient container = await blobServiceClient.CreateBlobContainerAsync(containerName);
+                container.SetAccessPolicy(Azure.Storage.Blobs.Models.PublicAccessType.BlobContainer);
+
+                if (await container.ExistsAsync())
+                {
+                    return container;
+                }
+
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private string GenerarContra(byte[] salt)
@@ -343,7 +351,7 @@ namespace Q_Tech
                 EmailSender.SendVerificationEmail(txbEmail.Text, codeConfirmation);
                 frmCodeConfirmation frmCode = new frmCodeConfirmation(codeConfirmation);
 
-                if(frmCode.ShowDialog() == false)
+                if (frmCode.ShowDialog() == false)
                 {
                     MessageBox.Show("No se ha podido confirmar la cuenta.", "Error de registro", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
@@ -366,7 +374,7 @@ namespace Q_Tech
             Random random = new Random();
             StringBuilder code = new StringBuilder();
 
-            for(int i = 0; i < 6; i++)
+            for (int i = 0; i < 6; i++)
             {
                 code.Append(characters[random.Next(characters.Length)]);
             }

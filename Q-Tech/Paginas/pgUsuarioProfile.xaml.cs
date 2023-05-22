@@ -1,10 +1,16 @@
-﻿using BusinessLogic;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage;
+using BusinessLogic;
 using Entities;
 using Microsoft.Win32;
 using Q_Tech.Prop;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net.PeerToPeer;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,6 +22,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace Q_Tech.Paginas
 {
@@ -38,7 +45,14 @@ namespace Q_Tech.Paginas
 
         private void CargarUsuario()
         {
-            //imgProfilePic.Source = _usuario.FotoPerfil;
+
+            if (!string.IsNullOrEmpty(_usuario.FotoPerfil))
+            {
+                imgProfilePic.Source = new BitmapImage(new Uri(_usuario.FotoPerfil));
+                imgProfilePic.Stretch = Stretch.UniformToFill;
+                _filename = _usuario.FotoPerfil;
+            }
+
             txtUsername.Text = _usuario.NombreUsuario;
             txbEmail.Text = _usuario.Email;
             pswPassword.Password = _usuario.Contrasena;
@@ -99,7 +113,7 @@ namespace Q_Tech.Paginas
                 _usuario.Email = txbEmail.Text;
                 _usuario.Contrasena = pswPassword.Password;
                 _usuario.Nombre = txbName.Text;
-                string[] apellidos = txbSurname.Text.Split(' '); // error no se por qué
+                string[] apellidos = txbSurname.Text.Split(' ');
                 _usuario.Apellido1 = apellidos[0];
                 _usuario.Apellido2 = apellidos[1];
                 _usuario.Telefono = txbTelephone.Text;
@@ -108,9 +122,29 @@ namespace Q_Tech.Paginas
                     _usuario.FechaNacimiento = fecha;
                 }
                 _usuario.Perfil = cboRol.Text == "Cliente" ? "CLIENTE" : "ADMIN";
+                _usuario.FotoPerfil = CambiarImagenUsuarioAsync().Result;
 
                 Herramientas.UpdateUsuario(_usuario.Id, _usuario);
             }
+        }
+
+        private async Task<string> CambiarImagenUsuarioAsync()
+        {
+            if (!string.IsNullOrEmpty(_filename))
+            {
+                Uri blobUri = new Uri($"https://qtechstorage.blob.core.windows.net/{_usuario.NombreUsuario}/profile_pic{Path.GetExtension(_filename)}");
+                StorageSharedKeyCredential storageCredentials = new StorageSharedKeyCredential("qtechstorage", ConfigurationManager.AppSettings["qtechstorage"].ToString());
+                BlobClient blobClient = new BlobClient(blobUri, storageCredentials);
+
+                FileStream fileStream = File.OpenRead(Path.GetFullPath(_filename));
+                //await blobClient.UploadAsync(fileStream, true);
+                blobClient.Upload(fileStream, true);
+                fileStream.Close();
+
+                return blobUri.ToString();
+            }
+
+            return string.Empty;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e) => CargarUsuario();
@@ -137,7 +171,7 @@ namespace Q_Tech.Paginas
         {
             if (!char.IsDigit(e.Text[0]) && e.Text[0] != ' ' && e.Text[0] != '\b' && e.Text[0] != '\t' || (txbTelephone.Text + e.Text).Length > 12)
             {
-                e.Handled = true; // Detener la propagación del evento
+                e.Handled = true;
             }
         }
 
@@ -181,7 +215,7 @@ namespace Q_Tech.Paginas
 
             MessageBoxResult result = MessageBox.Show("¿Estás seguro de querer borrar este terrario?", "Aviso", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
 
-            if(result == MessageBoxResult.Yes)
+            if (result == MessageBoxResult.Yes)
             {
                 await Herramientas.DeleteTerrario(id);
             }
