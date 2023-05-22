@@ -57,28 +57,20 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <ListView x:Name="lvSpList" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Padding="15" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                
+            <ListView x:Name="lvSpList" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Padding="15" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+            <ListView x:Name="lvComentsList" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Padding="15" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListViewItem HorizontalAlignment="Stretch">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ListViewItem>
             </ListView>
-
-            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Margin="5">
-                <TextBlock Text="Temperatura" Margin="5,0"/>
-                <ProgressBar Minimum="0" Maximum="50" Value="28" Margin="5" Height="15" x:Name="pbTemperature"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="5">
-                <TextBlock Text="Humedad" Margin="5,0"/>
-                <ProgressBar Minimum="0" Maximum="100" Value="30" Margin="5" Height="15" x:Name="pbHumid"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Margin="5">
-                <TextBlock Text="Luz" Margin="5,0"/>
-                <ProgressBar Minimum="0" Maximum="24" Value="16" Margin="5" Height="15" x:Name="pbLight"/>
-            </StackPanel>
 
         </Grid>
     </Grid>

@@ -81,7 +81,7 @@
 
 
 
-                    <Border Grid.Column="1" Grid.Row="1" DockPanel.Dock="Bottom" Style="{StaticResource MenuButtonBot}" x:Name="BtnLogout" MouseDown="BtnLogout_MouseDown">
+                    <Border Grid.Column="1" Grid.Row="1" DockPanel.Dock="Bottom" Cursor="Hand" Style="{StaticResource MenuButtonBot}" x:Name="BtnLogout" MouseDown="BtnLogout_MouseDown">
                         <StackPanel Orientation="Horizontal" Margin="15,0">
                             <Image Source="/Recursos/Iconos/apagado.png" Width="28" />
                             <TextBlock Text="Cerrar sesión" Margin="10,0" FontSize="20"/>

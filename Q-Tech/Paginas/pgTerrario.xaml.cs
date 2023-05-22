@@ -44,11 +44,7 @@ namespace Q_Tech.Paginas
             txbTerraSize.Text = _terrario.Tamano.ToString();
             float puntuacion = await Herramientas.GetPuntuacionTerrario(_terrario.Id);
             txbTerraPunctuation.Text = puntuacion.ToString();
-            pbTemperature.Maximum = (double)_terrario.TemperaturaMaxima;
-            pbTemperature.Minimum = (double)_terrario.TemperaturaMinima;
-            pbHumid.Maximum = (double)_terrario.HumedadMaxima;
-            pbHumid.Minimum = (double)_terrario.HumedadMinima;
-            pbLight.Value = (double)_terrario.HorasLuz;
+
 
             List<Especie> list = await Herramientas.GetEspeciesTerrario(_terrario.Id);
 
