@@ -105,7 +105,7 @@ namespace Q_Tech.Modales
 
         private void CargarTerrarios()
         {
-            pgListaTerrarios pgTerrarios = new pgListaTerrarios(_usuario.Id);
+            pgListaTerrarios pgTerrarios = new pgListaTerrarios(_usuario.Id, frmMainFrame);
             frmMainFrame.Content = pgTerrarios;
         }
 

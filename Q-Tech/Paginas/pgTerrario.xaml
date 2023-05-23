@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Q_Tech.Paginas"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="pgTerrario">
@@ -11,14 +13,13 @@
     <Grid Background="#88FFFFFF">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.75*"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
         <!--ROW0-->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
@@ -30,48 +31,105 @@
             <Image Source="/Recursos/Iconos/MainIcon.png" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" x:Name="imgTerraPic"/>
             <TextBlock Text="TERRA NAME" Grid.Row="0" Grid.Column="1" FontSize="28" FontWeight="Bold" Padding="5" x:Name="txbTerraName"/>
             <TextBlock Text="Descripcion" Grid.Row="1" Grid.Column="1" Padding="5" Margin="5" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" x:Name="txbTerraDescription"/>
-            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Margin="5">
-                <TextBlock Text="Puntuación" x:Name="txbTerraPunctuation"/>
-                <Image Source="/Recursos/Iconos/star.png" Width="16" Height="16" Margin="5,0"/>
-            </StackPanel>
-            <TextBlock Text="FECHA" Grid.Row="1" Grid.Column="2" Padding="5" Margin="5" VerticalAlignment="Top" x:Name="txbFecha"/>
+            <Grid Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <lvc:Gauge Width="100" From="0" To="50" Value="30" LabelsVisibility="Collapsed" x:Name="charTemp" Grid.Column="0">
+                    <lvc:Gauge.GaugeRenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="-90"></RotateTransform>
+                            <ScaleTransform ScaleX="1"></ScaleTransform>
+                        </TransformGroup>
+                    </lvc:Gauge.GaugeRenderTransform>
+                    <lvc:Gauge.GaugeActiveFill>
+                        <LinearGradientBrush>
+                            <GradientStop Color="Yellow" Offset="0.0" />
+                            <GradientStop Color="Orange" Offset="0.35" />
+                            <GradientStop Color="Red" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </lvc:Gauge.GaugeActiveFill>
+                </lvc:Gauge>
+
+                <lvc:Gauge Width="100" From="0" To="100" Value="80" LabelsVisibility="Collapsed" x:Name="chartHumid" Grid.Column="1">
+                    <lvc:Gauge.GaugeRenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="-90"></RotateTransform>
+                            <ScaleTransform ScaleX="-1"></ScaleTransform>
+                        </TransformGroup>
+                    </lvc:Gauge.GaugeRenderTransform>
+                    <lvc:Gauge.GaugeActiveFill>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#F2F8FF" Offset="0.0" />
+                            <GradientStop Color="#B0D4FF" Offset="0.35" />
+                            <GradientStop Color="#5C9CFF" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </lvc:Gauge.GaugeActiveFill>
+                </lvc:Gauge>
+
+            </Grid>
         </Grid>
 
-        <!--ROW1-->
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="SUSTRATO" HorizontalAlignment="Center" Grid.Column="0" Padding="5" Margin="5" x:Name="txbTerraSubstrate"/>
-            <TextBlock Text="Ecosistema" HorizontalAlignment="Center" Grid.Column="1" Padding="5" Margin="5" x:Name="txbTerraEcosystem"/>
-            <TextBlock Text="Tamaño" HorizontalAlignment="Center" Grid.Column="2" Padding="5" Margin="5" x:Name="txbTerraSize"/>
-        </Grid>
-        
         <!--ROW2-->
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1" Margin="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.4*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <ListView x:Name="lvSpList" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Padding="15" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-            <ListView x:Name="lvComentsList" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Padding="15" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                <ListViewItem HorizontalAlignment="Stretch">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                    </Grid>
-                </ListViewItem>
-            </ListView>
+            <Border CornerRadius="5" BorderThickness="0.5" BorderBrush="#88FFFFFF" Grid.Row="0" Grid.Column="0" Margin="5">
+                <StackPanel Orientation="Vertical" >
+                    <TextBlock Text="Lista de especies" Padding="5" HorizontalAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
+                    <ListView x:Name="lvSpList" Background="Transparent" BorderThickness="0" Grid.RowSpan="3" Padding="5" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <!--<ListViewItem HorizontalAlignment="Stretch" Cursor="Hand">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/Recursos/Iconos/MainIcon.png" Grid.Column="0"/>
+                            <TextBlock Text="GENERO ESPECIE" FontSize="16" FontWeight="Bold" Padding="5" VerticalAlignment="Center" Grid.Column="1"/>
+                        </Grid>
+                    </ListViewItem>-->
+                    </ListView>
+                </StackPanel>
+            </Border>
 
+            <Border CornerRadius="5" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" BorderThickness="0.5" Margin="5" BorderBrush="#88FFFFFF">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Cajon de comentarios" FontSize="16" FontWeight="DemiBold" HorizontalAlignment="Center" Padding="5"/>
+                    <ListView Visibility="Visible" x:Name="lvComentsList" Background="Transparent" BorderThickness="0" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                        <!--<ListViewItem HorizontalContentAlignment="Stretch">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="/Recursos/Iconos/MainIcon.png" Width="75"/>
+                                <StackPanel Orientation="Vertical" Grid.Column="1">
+                                    <TextBlock Text="NOMBRE" Padding="5" FontSize="16" FontWeight="DemiBold"/>
+                                    <TextBlock Text="Descripcion" TextWrapping="Wrap" Padding="5"/>
+                                    <TextBlock Text="fecha" HorizontalAlignment="Right" FontWeight="Light" Padding="3"/>
+                                </StackPanel>
+                            </Grid>
+                        </ListViewItem>-->
+
+                    </ListView>
+                    <TextBox AcceptsReturn="True" Height="200" Margin="5" x:Name="TxbComment" Visibility="Collapsed"/>
+                </StackPanel>
+            </Border>
+            <Border Width="32" Height="32" x:Name="AddComment" MouseDown="AddComment_MouseDown" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" Background="#BDECB6" Padding="3" Margin="15" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+                <Image Source="/Recursos/Iconos/anadir.png" />
+            </Border>
+            <Border Visibility="Collapsed" Width="32" Height="32" x:Name="SaveComment" MouseDown="SaveComment_MouseDown" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" Background="#F7BD56" Padding="3" Margin="15" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">
+                <Image Source="/Recursos/Iconos/disquete.png" />
+            </Border>
         </Grid>
     </Grid>
 </Page>

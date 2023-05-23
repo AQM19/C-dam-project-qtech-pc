@@ -35,7 +35,7 @@ namespace BusinessLogic
             {
                 smtp.Send(email);
             }
-            catch (SmtpException e)
+            catch (SmtpException)
             {
                 throw;
             }

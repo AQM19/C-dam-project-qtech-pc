@@ -18,14 +18,16 @@ namespace Q_Tech.Paginas
     {
 
         private long _id;
+        private Frame _mainFrame;
         public pgListaTerrarios()
         {
             InitializeComponent();
         }
 
-        public pgListaTerrarios(long id) : this()
+        public pgListaTerrarios(long id, Frame mainFrame) : this()
         {
             _id = id;
+            _mainFrame = mainFrame;
             CargarTerrarios();
         }
 
@@ -33,7 +35,7 @@ namespace Q_Tech.Paginas
         {
             List<Terrario> terrarios = await Herramientas.GetTerrariosSocial(_id);
 
-            for (int i = 0; i < terrarios.Count; i++)
+            foreach (Terrario t in terrarios)
             {
                 ListViewItem item = new ListViewItem();
                 StackPanel stackPanel = new StackPanel
@@ -41,9 +43,9 @@ namespace Q_Tech.Paginas
                     Orientation = Orientation.Horizontal
                 };
 
-                ImageBrush imageBrush = new ImageBrush
+                Image image = new Image
                 {
-                    ImageSource = new BitmapImage(new Uri($"{terrarios[i].Foto}"))
+                    Source = new BitmapImage(new Uri(string.IsNullOrEmpty(t.Foto) ? "/Recursos/Iconos/MainIcon.png" : t.Foto, UriKind.RelativeOrAbsolute))
                 };
 
                 Border imageBorder = new Border
@@ -52,7 +54,7 @@ namespace Q_Tech.Paginas
                     BorderThickness = new Thickness(0),
                     Width = 50,
                     Height = 50,
-                    Background = imageBrush
+                    Child = image
                 };
 
                 stackPanel.Children.Add(imageBorder);
@@ -66,7 +68,7 @@ namespace Q_Tech.Paginas
 
                 TextBlock titleTextBlock = new TextBlock
                 {
-                    Text = $"{terrarios[i].Nombre}"
+                    Text = t.Nombre
                 };
 
 
@@ -74,7 +76,7 @@ namespace Q_Tech.Paginas
 
                 TextBlock descriptionTextBlock = new TextBlock
                 {
-                    Text = $"{terrarios[i].Descripcion}",
+                    Text = t.Descripcion,
                     TextTrimming = TextTrimming.CharacterEllipsis,
                     MaxWidth = 250,
 
@@ -89,7 +91,7 @@ namespace Q_Tech.Paginas
 
                 TextBlock ratingTextBlock = new TextBlock
                 {
-                    Text = $"{await Herramientas.GetPuntuacionTerrario(terrarios[i].Id)}"
+                    Text = $"{await Herramientas.GetPuntuacionTerrario(t.Id)}"
                 };
 
                 DockPanel.SetDock(ratingTextBlock, Dock.Left);
@@ -107,7 +109,7 @@ namespace Q_Tech.Paginas
 
                 TextBlock dateTextBlock = new TextBlock
                 {
-                    Text = $"{terrarios[i].FechaCreacion.ToShortDateString()}"
+                    Text = t.FechaCreacion.ToShortDateString()
                 };
 
                 DockPanel.SetDock(dateTextBlock, Dock.Right);
@@ -116,29 +118,15 @@ namespace Q_Tech.Paginas
                 infoStackPanel.Children.Add(dockPanel);
                 stackPanel.Children.Add(infoStackPanel);
 
-                Border exportBorder = new Border
-                {
-                    CornerRadius = new CornerRadius(5),
-                    BorderThickness = new Thickness(0),
-                    Background = Brushes.GhostWhite,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Margin = new Thickness(5, 0, 5, 0),
-                    Padding = new Thickness(5),
-                    Cursor = Cursors.Hand
-                };
-
-                Image exportImage = new Image
-                {
-                    Source = new BitmapImage(new Uri("/Recursos/Iconos/exportar.png", UriKind.Relative)),
-                    Width = 20
-                };
-
-                exportBorder.AddHandler(ContentElement.MouseDownEvent, new MouseButtonEventHandler(Border_MouseDown));
-
-                exportBorder.Child = exportImage;
-                stackPanel.Children.Add(exportBorder);
                 item.Content = stackPanel;
-                item.Tag = terrarios[i].Id;
+                item.Cursor = Cursors.Hand;
+                item.Tag = t.Id;
+
+                item.MouseDoubleClick += (sender, e) =>
+                {
+                    pgTerrario pgTerrario = new pgTerrario(t);
+                    _mainFrame.Content = pgTerrario;
+                };
 
                 lvTerrarios.Items.Add(item);
             }

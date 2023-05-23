@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaNegocio", "BusinessLo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entities\Entidades.csproj", "{70CA9E01-159B-49EA-9489-502B634F7446}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AutoTerra", "AutoTerraSetup\AutoTerraSetup.vdproj", "{006401DB-601E-4635-A4CB-14662A48CA61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.CI", "5.CI", "{ADDEEF30-3EC6-4A47-9B0B-D2C16EC6F5A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,8 @@ Global
 		{70CA9E01-159B-49EA-9489-502B634F7446}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70CA9E01-159B-49EA-9489-502B634F7446}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70CA9E01-159B-49EA-9489-502B634F7446}.Release|Any CPU.Build.0 = Release|Any CPU
+		{006401DB-601E-4635-A4CB-14662A48CA61}.Debug|Any CPU.ActiveCfg = Debug
+		{006401DB-601E-4635-A4CB-14662A48CA61}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{D705353F-4A46-411D-AD56-9AC947162F6F} = {C92F9871-0721-4538-A4A0-4CDD0A8DBE68}
 		{4AB4322C-3B35-475F-AFA9-42FF6000CAA0} = {582584BB-62C5-4EBF-81E5-3E8F7EB8D08A}
 		{70CA9E01-159B-49EA-9489-502B634F7446} = {DB5EAB58-A31A-4E4B-A0E0-F731E07A45C8}
+		{006401DB-601E-4635-A4CB-14662A48CA61} = {ADDEEF30-3EC6-4A47-9B0B-D2C16EC6F5A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07BE0EF3-E030-42EC-8685-3BB8A519BE99}

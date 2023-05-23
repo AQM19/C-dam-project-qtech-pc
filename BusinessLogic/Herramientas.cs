@@ -30,7 +30,7 @@ namespace BusinessLogic
             QConsumer qc = new QConsumer();
             return await qc.GetAsync<bool>($"{baseEndPoint}/usuarios/c={param}");
         }
-        public static async Task<Usuario> GetUsuario(int id) // op
+        public static async Task<Usuario> GetUsuario(long id) // op
         {
             QConsumer qc = new QConsumer();
             Usuario usuario = await qc.GetAsync<Usuario>($"{baseEndPoint}/usuarios/{id}");
@@ -146,7 +146,7 @@ namespace BusinessLogic
         public static async Task<List<Especie>> GetEspeciesPosibles(List<Especie> list)
         {
             QConsumer qc = new QConsumer();
-            return await qc.PostAsync($"{baseEndPoint}/especies/not-in", list);
+            return await qc.PostAsync($"{baseEndPoint}/especies/posibles", list);
         }
         #endregion
 
@@ -155,8 +155,15 @@ namespace BusinessLogic
         public static async Task<List<Visita>> GetVisitas(long idTerrario) // op
         {
             QConsumer qc = new QConsumer();
-            List<Visita> visitas = await qc.GetAsync<List<Visita>>($"{baseEndPoint}/visitas?q={idTerrario}");
+            List<Visita> visitas = await qc.GetAsync<List<Visita>>($"{baseEndPoint}/visitas/q={idTerrario}");
             return visitas;
+        }
+
+        public static async Task<Visita> GetVisita(long idTerrario, long idUsuario)
+        {
+            QConsumer qc = new QConsumer();
+            Visita visita = await qc.GetAsync<Visita>($"{baseEndPoint}/visitas/{idTerrario}/{idUsuario}");
+            return visita;
         }
         #endregion
 

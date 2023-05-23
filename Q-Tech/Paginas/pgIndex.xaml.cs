@@ -127,13 +127,5 @@ namespace Q_Tech.Modales
             }
 
         }
-
-        //private void charts_MouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    float rng = new Random().Next(101);
-        //    chartTemperature.Value = rng;
-        //    chartHumid.Value = rng;
-        //    chartLight.Value = rng;
-        //}
     }
 }
