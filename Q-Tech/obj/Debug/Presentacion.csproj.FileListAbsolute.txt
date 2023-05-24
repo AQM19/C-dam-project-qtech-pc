@@ -394,18 +394,6 @@ C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\LiveCharts
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\LiveCharts.Wpf.xml
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\frmCodeConfirmation.g.cs
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\frmCodeConfirmation.baml
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Google.Apis.Auth.dll
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Google.Apis.Gmail.v1.dll
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Google.Apis.dll
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Google.Apis.Core.dll
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Google.Apis.Auth.pdb
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Google.Apis.Auth.xml
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Google.Apis.Gmail.v1.pdb
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Google.Apis.Gmail.v1.xml
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Google.Apis.pdb
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Google.Apis.xml
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Google.Apis.Core.pdb
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Google.Apis.Core.xml
 C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\bin\Debug\Q-Tech.exe.config
 C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\bin\Debug\Q-Tech.exe.manifest
 C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\bin\Debug\Q-Tech.application
@@ -553,3 +541,7 @@ C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\obj\
 C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\obj\Debug\Presentacion.csproj.CopyComplete
 C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\obj\Debug\Q-Tech.exe
 C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\obj\Debug\Q-Tech.pdb
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Q-Tech.exe.manifest
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\Q-Tech.application
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Q-Tech.exe.manifest
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Q-Tech.application

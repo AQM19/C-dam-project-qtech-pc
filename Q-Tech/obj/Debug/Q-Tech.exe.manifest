@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0ViBXQuledbb4DEJ5g0/k9kJPEPplsOKFRQP5EEbH+A=</dsig:DigestValue>
+        <dsig:DigestValue>V/5N/h9/+Zb+gnVwUTkMHB4EaPEHgYEWL6StJTaKnRk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BusinessLogic.dll" size="40960">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BusinessLogic.dll" size="45056">
       <assemblyIdentity name="BusinessLogic" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Tag9PiktwsbYQvwO7JqdBaph/zh2yPBubozvMRAEmlg=</dsig:DigestValue>
+        <dsig:DigestValue>xlGABNXsSjh5bx73hh6lnl4arpwbmcYfHmPKFqRU2as=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -234,14 +234,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Q-Tech.exe" size="2861016">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Q-Tech.exe" size="2860504">
       <assemblyIdentity name="Q-Tech" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>LRKaRlYVps8AsF2kmQkP5Spx0qMxbIqGTsFqpXsflXA=</dsig:DigestValue>
+        <dsig:DigestValue>aaBL/xGRSx8EeW8KRrKgAlpslraz+rxys3MMpLDsYSY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

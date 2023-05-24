@@ -112,7 +112,7 @@ namespace Q_Tech
 
         private void txtRecordar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // TODO
+            EmailSender.SendVerificationEmail("korbatos@gmail.com", "hola");
         }
 
         private void pthImage_MouseDown(object sender, MouseButtonEventArgs e)
