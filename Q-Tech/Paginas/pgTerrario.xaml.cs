@@ -3,6 +3,7 @@ using Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace Q_Tech.Paginas
         private Timer _timer;
         private Visita _visita;
         private long _idUsuario;
+        private bool _created = false;
         public pgTerrario()
         {
             InitializeComponent();
@@ -35,7 +37,23 @@ namespace Q_Tech.Paginas
         {
             _terrario = terrario;
             _idUsuario = idUsuario;
+
+            _visita = new Visita
+            {
+                Idusuario = _idUsuario,
+                Idterrario = _terrario.Id,
+                Fecha = DateTime.Now
+            };
+
+            Unloaded += PgTerrario_Unloaded;
+
             DesplegarInfo();
+        }
+
+        private async void PgTerrario_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if(!_created)
+                await Herramientas.CreateVisita(_visita);
         }
 
         private async Task ObtenerValoresTerrario()
@@ -140,6 +158,8 @@ namespace Q_Tech.Paginas
                     grid.Children.Add(stackPanel);
 
                     listViewItem.Content = grid;
+
+                    lvComentsList.Items.Add(listViewItem);
                 }
             }
         }
@@ -204,7 +224,7 @@ namespace Q_Tech.Paginas
             SaveComment.Visibility = Visibility.Visible;
         }
 
-        private void SaveComment_MouseDown(object sender, MouseButtonEventArgs e)
+        private async void SaveComment_MouseDown(object sender, MouseButtonEventArgs e)
         {
             lvComentsList.Visibility = Visibility.Visible;
             AddComment.Visibility = Visibility.Visible;
@@ -213,7 +233,8 @@ namespace Q_Tech.Paginas
 
             _visita.Comentario = TxbComment.Text;
 
-            // crear visita completa
+            await Herramientas.CreateVisita(_visita);
+            _created = true;
 
             CargarComentarios();
         }

@@ -165,6 +165,16 @@ namespace BusinessLogic
             Visita visita = await qc.GetAsync<Visita>($"{baseEndPoint}/visitas/{idTerrario}/{idUsuario}");
             return visita;
         }
+        public static async Task CreateVisita(Visita visita)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.CreateAsync<Visita>($"{baseEndPoint}/visitas", visita);
+        }
+        public static async Task UpdateVisita(long id, Visita visita)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.UpdateAsync<Visita>($"{baseEndPoint}/visitas/{id}", visita);
+        }
         #endregion
 
 

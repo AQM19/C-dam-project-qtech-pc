@@ -95,13 +95,13 @@ namespace Q_Tech.Modales
             };
         }
 
-        private void SeleccionarTerrario(Terrario terra)
+        private async void SeleccionarTerrario(Terrario terra)
         {
             if (_terrarios.Count > 0)
             {
                 _selectedTerra = terra;
                 SelectedTerra.Source = new BitmapImage(new Uri(_selectedTerra.Foto ?? "/Recursos/Iconos/MainIcon.png", UriKind.RelativeOrAbsolute));
-                ObtenerValoresTerrario();
+                await ObtenerValoresTerrario();
             }
         }
 

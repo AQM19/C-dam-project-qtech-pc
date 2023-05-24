@@ -85,7 +85,7 @@
             <Border CornerRadius="5" BorderThickness="0.5" BorderBrush="#88FFFFFF" Grid.Row="0" Grid.Column="0" Margin="5">
                 <StackPanel Orientation="Vertical" >
                     <TextBlock Text="Lista de especies" Padding="5" HorizontalAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
-                    <ListView x:Name="lvSpList" Background="Transparent" BorderThickness="0" Grid.RowSpan="3" Padding="5" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView x:Name="lvSpList" Height="185" Background="Transparent" BorderThickness="0" Grid.RowSpan="3" Padding="5" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <!--<ListViewItem HorizontalAlignment="Stretch" Cursor="Hand">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -103,7 +103,7 @@
             <Border CornerRadius="5" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" BorderThickness="0.5" Margin="5" BorderBrush="#88FFFFFF">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Cajon de comentarios" FontSize="16" FontWeight="DemiBold" HorizontalAlignment="Center" Padding="5"/>
-                    <ListView Visibility="Visible" x:Name="lvComentsList" Background="Transparent" BorderThickness="0" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListView Visibility="Visible" Height="185" x:Name="lvComentsList" Background="Transparent" BorderThickness="0" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
 
                         <!--<ListViewItem HorizontalContentAlignment="Stretch">
                             <Grid>

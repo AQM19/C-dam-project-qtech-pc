@@ -54,7 +54,7 @@ namespace Q_Tech.Paginas
 
                 item.MouseDoubleClick += (o, e) =>
                 {
-                    pgTerrario pgTerrario = new pgTerrario(t);
+                    pgTerrario pgTerrario = new pgTerrario(t, _usuario.Id);
                     _mainFrame.Content = pgTerrario;
                 };
 
