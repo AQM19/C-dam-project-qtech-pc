@@ -39,17 +39,17 @@ namespace Q_Tech.Modales
             }
 
 
-            //StartNotificationPolling();
-            //NotificationPollingComponent.PropertyChanged += (sender, e) =>
-            //{
-            //    if (e.PropertyName == nameof(NotificationPollingComponent.PendingNotifications))
-            //    {
-            //        imgNotificationBell.Source = new BitmapImage(new Uri(NotificationPollingComponent.PendingNotifications
-            //            ? "/Recursos/Iconos/notification_yes.png"
-            //            : "/Recursos/Iconos/notification_no.png",
-            //            UriKind.RelativeOrAbsolute));
-            //    }
-            //};
+            StartNotificationPolling();
+            NotificationPollingComponent.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(NotificationPollingComponent.PendingNotifications))
+                {
+                    imgNotificationBell.Source = new BitmapImage(new Uri(NotificationPollingComponent.PendingNotifications
+                        ? "/Recursos/Iconos/notification_yes.png"
+                        : "/Recursos/Iconos/notification_no.png",
+                        UriKind.RelativeOrAbsolute));
+                }
+            };
 
             CargarIndex();
         }

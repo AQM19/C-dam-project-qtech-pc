@@ -53,7 +53,7 @@ namespace Q_Tech.Prop
             }
             txbNombreComun.Text = _especie.NombreComun;
             txbDescripcion.Text = _especie.Descripcion;
-            imgTerraPic.Source = new BitmapImage(new Uri(_especie.Imagen ?? "/Recursos/Iconos/MainIcon.png", UriKind.Relative));
+            imgTerraPic.Source = new BitmapImage(new Uri(_especie.Imagen ?? "/Recursos/Iconos/MainIcon.png", UriKind.RelativeOrAbsolute));
             txbEcosistema.Text = _especie.Ecosistema;
             txbAniosVida.Text = _especie.DuracionVida.ToString();
             txbMinTemp.Text = _especie.TemperaturaMinima.ToString();

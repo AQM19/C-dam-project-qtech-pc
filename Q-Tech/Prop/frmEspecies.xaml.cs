@@ -22,16 +22,16 @@ namespace Q_Tech.Prop
         }
         public FrmEspecies(List<Especie> especies) : this()
         {
+            _especies = new List<Especie>();
             ObtenerEspecies(especies);
         }
 
         private async void ObtenerEspecies(List<Especie> especies)
         {
-            _especies = await Herramientas.GetEspeciesPosibles(especies); // No entiendo por qué es nulo, debería ser []
-            //_especies = await Herramientas.GetEspecies();
+            _especies = await Herramientas.GetEspeciesPosibles(especies);
 
             lvEspecies.Items.Clear();
-            string[] item = new string[8];
+            //string[] item = new string[8];
 
             for (int i = 0; i < _especies.Count; i++)
             {
