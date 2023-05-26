@@ -22,18 +22,18 @@ namespace Q_Tech.Paginas
     /// <summary>
     /// Lógica de interacción para pgTerrario.xaml
     /// </summary>
-    public partial class pgTerrario : Page
+    public partial class PgTerrario : Page
     {
-        private Terrario _terrario;
+        private readonly Terrario _terrario;
         private Timer _timer;
-        private Visita _visita;
-        private long _idUsuario;
+        private readonly Visita _visita;
+        private readonly long _idUsuario;
         private bool _created = false;
-        public pgTerrario()
+        public PgTerrario()
         {
             InitializeComponent();
         }
-        public pgTerrario(Terrario terrario, long idUsuario) : this()
+        public PgTerrario(Terrario terrario, long idUsuario) : this()
         {
             _terrario = terrario;
             _idUsuario = idUsuario;
@@ -73,7 +73,7 @@ namespace Q_Tech.Paginas
 
         private void DesplegarInfo()
         {
-            imgTerraPic.Source = new BitmapImage(new Uri(_terrario.Foto != null ? _terrario.Foto : "/Recursos/Iconos/MainIcon.png", UriKind.RelativeOrAbsolute));
+            imgTerraPic.Source = new BitmapImage(new Uri(_terrario.Foto ?? "/Recursos/Iconos/MainIcon.png", UriKind.RelativeOrAbsolute));
             txbTerraName.Text = _terrario.Nombre;
             txbTerraDescription.Text = _terrario.Descripcion;
 
@@ -127,7 +127,7 @@ namespace Q_Tech.Paginas
                     };
                     Grid.SetColumn(stackPanel, 1);
 
-                    var textBlock1 = new TextBlock
+                    TextBlock textBlock1 = new TextBlock
                     {
                         Text = user.NombreUsuario,
                         Padding = new Thickness(5),
@@ -135,14 +135,14 @@ namespace Q_Tech.Paginas
                         FontWeight = FontWeights.DemiBold
                     };
 
-                    var textBlock2 = new TextBlock
+                    TextBlock textBlock2 = new TextBlock
                     {
                         Text = v.Comentario,
                         TextWrapping = TextWrapping.Wrap,
                         Padding = new Thickness(5)
                     };
 
-                    var textBlock3 = new TextBlock
+                    TextBlock textBlock3 = new TextBlock
                     {
                         Text = v.Fecha.ToShortDateString(),
                         HorizontalAlignment = HorizontalAlignment.Right,

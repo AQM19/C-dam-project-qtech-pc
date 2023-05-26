@@ -16,9 +16,9 @@ namespace Q_Tech.Modales
     public partial class FrmDashboard : Window
     {
 
-        private Usuario _usuario;
+        private readonly Usuario _usuario;
         private string _textValue;
-        private DispatcherTimer debounceTimer = new DispatcherTimer();
+        private readonly DispatcherTimer debounceTimer = new DispatcherTimer();
 
         public FrmDashboard()
         {
@@ -39,17 +39,18 @@ namespace Q_Tech.Modales
             }
 
 
-            StartNotificationPolling();
-            NotificationPollingComponent.PropertyChanged += (sender, e) =>
-            {
-                if (e.PropertyName == nameof(NotificationPollingComponent.PendingNotifications))
-                {
-                    imgNotificationBell.Source = new BitmapImage(new Uri(NotificationPollingComponent.PendingNotifications
-                        ? "/Recursos/Iconos/notification_yes.png"
-                        : "/Recursos/Iconos/notification_no.png",
-                        UriKind.RelativeOrAbsolute));
-                }
-            };
+            //StartNotificationPolling();
+            //NotificationPollingComponent.PropertyChanged += (sender, e) =>
+            //{
+            //    if (e.PropertyName == nameof(NotificationPollingComponent.PendingNotifications))
+            //    {
+            //        imgNotificationBell.Source = new BitmapImage(new Uri(NotificationPollingComponent.PendingNotifications
+            //            ? "/Recursos/Iconos/notification_yes.png"
+            //            : "/Recursos/Iconos/notification_no.png",
+            //            UriKind.RelativeOrAbsolute));
+            //    }
+            //};
+
             CargarIndex();
         }
 
@@ -65,9 +66,11 @@ namespace Q_Tech.Modales
             Border clickedButton = (Border)sender;
             Point targetPoint = clickedButton.TranslatePoint(new Point(0, 0), dkpVerticalMenu);
 
-            DoubleAnimation animationY = new DoubleAnimation();
-            animationY.To = targetPoint.Y - 65;
-            animationY.Duration = TimeSpan.FromSeconds(0.3);
+            DoubleAnimation animationY = new DoubleAnimation
+            {
+                To = targetPoint.Y - 65,
+                Duration = TimeSpan.FromSeconds(0.3)
+            };
 
             TranslateTransform transform = (TranslateTransform)movingImage.RenderTransform;
 
@@ -93,31 +96,31 @@ namespace Q_Tech.Modales
 
         private void CargarIndex()
         {
-            pgIndex index = new pgIndex(_usuario);
+            PgIndex index = new PgIndex(_usuario);
             frmMainFrame.Content = index;
         }
 
         private void CargarUsuarios()
         {
-            pgListaUsuarios pgUsuarios = new pgListaUsuarios(_usuario);
+            PgListaUsuarios pgUsuarios = new PgListaUsuarios(_usuario, frmMainFrame);
             frmMainFrame.Content = pgUsuarios;
         }
 
         private void CargarTerrarios()
         {
-            pgListaTerrarios pgTerrarios = new pgListaTerrarios(_usuario.Id, frmMainFrame);
+            PgListaTerrarios pgTerrarios = new PgListaTerrarios(_usuario.Id, frmMainFrame);
             frmMainFrame.Content = pgTerrarios;
         }
 
         private void CargarLogros()
         {
-            pgListaLogros pgLogros = new pgListaLogros();
+            PgListaLogros pgLogros = new PgListaLogros();
             frmMainFrame.Content = pgLogros;
         }
 
         private void CargarEspecies()
         {
-            pgListaEspecies pgEspecies = new pgListaEspecies();
+            PgListaEspecies pgEspecies = new PgListaEspecies();
             frmMainFrame.Content = pgEspecies;
         }
 
@@ -155,7 +158,7 @@ namespace Q_Tech.Modales
                     {
                         Height = 30,
                         Width = 30,
-                        Source = new BitmapImage(new Uri(list[i].FotoPerfil == null ? "/Recursos/Iconos/MainIcon.png" : list[i].FotoPerfil, UriKind.RelativeOrAbsolute)),
+                        Source = new BitmapImage(new Uri(list[i].FotoPerfil ?? "/Recursos/Iconos/MainIcon.png", UriKind.RelativeOrAbsolute)),
                     };
 
                     stackPanel.Children.Add(image1);
@@ -191,7 +194,7 @@ namespace Q_Tech.Modales
                     int index = i;
                     listViewItem.MouseDoubleClick += (o, s) =>
                     {
-                        pgUsuario pgUsuario = new pgUsuario(_usuario.Id, list[index], frmMainFrame);
+                        PgUsuario pgUsuario = new PgUsuario(_usuario.Id, list[index], frmMainFrame);
                         frmMainFrame.Content = pgUsuario;
                     };
 
@@ -209,14 +212,14 @@ namespace Q_Tech.Modales
         private void imgProfile_MouseDown(object sender, MouseButtonEventArgs e)
         {
             movingImage.Visibility = Visibility.Hidden;
-            pgUsuarioProfile pgUsuario = new pgUsuarioProfile(_usuario);
+            PgUsuarioProfile pgUsuario = new PgUsuarioProfile(_usuario);
             frmMainFrame.Content = pgUsuario;
         }
 
         private void imgNotifications_MouseDown(object sender, MouseButtonEventArgs e)
         {
             movingImage.Visibility = Visibility.Hidden;
-            pgListaNotificaciones pgListaNotificaciones = new pgListaNotificaciones(_usuario.Id);
+            PgListaNotificaciones pgListaNotificaciones = new PgListaNotificaciones(_usuario.Id);
             frmMainFrame.Content = pgListaNotificaciones;
         }
 

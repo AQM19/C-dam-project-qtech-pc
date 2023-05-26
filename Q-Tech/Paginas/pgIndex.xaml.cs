@@ -17,20 +17,19 @@ using System.Threading;
 
 namespace Q_Tech.Modales
 {
-    public partial class pgIndex : Page
+    public partial class PgIndex : Page
     {
         private readonly Usuario _user;
         private Terrario _selectedTerra;
         private List<Terrario> _terrarios;
         private Timer _timer;
-        private int _intervalInSeconds = 10;
 
-        public pgIndex()
+        public PgIndex()
         {
             InitializeComponent();
         }
 
-        public pgIndex(Usuario user) : this()
+        public PgIndex(Usuario user) : this()
         {
             _user = user;
             ObtenerTerrarios();
@@ -74,7 +73,7 @@ namespace Q_Tech.Modales
 
             if (_terrarios.Count > 0) SeleccionarTerrario(_terrarios[0]);
 
-            _timer = new Timer(async (_) => await ObtenerValoresTerrario(), null, TimeSpan.Zero, TimeSpan.FromSeconds(_intervalInSeconds));
+            _timer = new Timer(async (_) => await ObtenerValoresTerrario(), null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
         }
 
         private async Task ObtenerValoresTerrario()
@@ -107,7 +106,7 @@ namespace Q_Tech.Modales
 
         private async void bdrMainTerra_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            frmTerraMaker terraMaker = new frmTerraMaker(_user, _selectedTerra);
+            FrmTerraMaker terraMaker = new FrmTerraMaker(_user, _selectedTerra);
             if (terraMaker.ShowDialog() == true)
             {
                 await Herramientas.UpdateTerrario(_selectedTerra.Id, _selectedTerra);
@@ -119,7 +118,7 @@ namespace Q_Tech.Modales
         private async void btnAddTerra_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Terrario terra = new Terrario();
-            frmTerraMaker terraMaker = new frmTerraMaker(_user, terra);
+            FrmTerraMaker terraMaker = new FrmTerraMaker(_user, terra);
             if (terraMaker.ShowDialog() == true)
             {
                 await Herramientas.CreateTerrario(terra);

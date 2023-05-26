@@ -15,11 +15,11 @@ namespace Q_Tech.Paginas
     /// <summary>
     /// Lógica de interacción para pgLogros.xaml
     /// </summary>
-    public partial class pgListaLogros : Page
+    public partial class PgListaLogros : Page
     {
         private readonly List<Logro> cambiosPendientes = new List<Logro>();
 
-        public pgListaLogros()
+        public PgListaLogros()
         {
             InitializeComponent();
             CargarLogros();
@@ -150,7 +150,7 @@ namespace Q_Tech.Paginas
         private async void AddLogro_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Logro logro = new Logro();
-            frmAddLogro addLogro = new frmAddLogro(logro);
+            FrmAddLogro addLogro = new FrmAddLogro(logro);
 
             if (addLogro.ShowDialog() == true)
             {
@@ -161,7 +161,7 @@ namespace Q_Tech.Paginas
 
         private async void UpdateLogro(Logro logro)
         {
-            frmAddLogro addLogro = new frmAddLogro(logro);
+            FrmAddLogro addLogro = new FrmAddLogro(logro);
 
             if (addLogro.ShowDialog() == true)
             {

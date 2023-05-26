@@ -30,9 +30,10 @@ namespace AccesData
                 throw new ApplicationException($"Error al obtener el recurso: {response.StatusCode}");
             }
         }
-        
+
         public async Task<T> LoginAsync<T>(string url, string user, string contra)
         {
+
             Dictionary<string, string> data = new Dictionary<string, string>
             {
                 { "param", user },
@@ -42,8 +43,8 @@ namespace AccesData
             string json = JsonConvert.SerializeObject(data);
             HttpClient client = new HttpClient();
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                   HttpResponseMessage response = await client.PostAsync(url, content);
-                    if (response.IsSuccessStatusCode)
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            if (response.IsSuccessStatusCode)
             {
                 string responseJson = await response.Content.ReadAsStringAsync();
                 T responseObject = JsonConvert.DeserializeObject<T>(responseJson);
@@ -76,12 +77,13 @@ namespace AccesData
         public async Task<T> CreateAsync<T>(string url, T data)
         {
             HttpClient client = new HttpClient();
-            
+
             HttpResponseMessage response = await client.PostAsJsonAsync(url, data);
             response.EnsureSuccessStatusCode();
 
             return default;
         }
+
         public async Task<T> UpdateAsync<T>(string url, T data)
         {
             HttpClient client = new HttpClient();
@@ -90,6 +92,7 @@ namespace AccesData
             T genericObject = await response.Content.ReadAsAsync<T>();
             return genericObject;
         }
+
         public async Task<T> DeleteAsync<T>(string url)
         {
             HttpClient client = new HttpClient();

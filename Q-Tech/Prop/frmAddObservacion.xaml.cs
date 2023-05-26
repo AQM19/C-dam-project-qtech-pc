@@ -18,15 +18,15 @@ namespace Q_Tech.Prop
     /// <summary>
     /// Lógica de interacción para frmAddObservacion.xaml
     /// </summary>
-    public partial class frmAddObservacion : Window
+    public partial class FrmAddObservacion : Window
     {
-        private long _id;
-        private Observacion _observacion;
-        public frmAddObservacion()
+        private readonly long _id;
+        private readonly Observacion _observacion;
+        public FrmAddObservacion()
         {
             InitializeComponent();
         }
-        public frmAddObservacion(long id, Observacion observacion) : this()
+        public FrmAddObservacion(long id, Observacion observacion) : this()
         {
             _id = id;
             _observacion = observacion;

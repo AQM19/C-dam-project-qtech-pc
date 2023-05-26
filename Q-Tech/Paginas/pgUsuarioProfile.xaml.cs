@@ -7,7 +7,6 @@ using Q_Tech.Prop;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.PeerToPeer;
@@ -29,15 +28,15 @@ namespace Q_Tech.Paginas
     /// <summary>
     /// Lógica de interacción para pgUsuario.xaml
     /// </summary>
-    public partial class pgUsuarioProfile : Page
+    public partial class PgUsuarioProfile : Page
     {
-        private Usuario _usuario;
+        private readonly Usuario _usuario;
         private string _filename;
-        public pgUsuarioProfile()
+        public PgUsuarioProfile()
         {
             InitializeComponent();
         }
-        public pgUsuarioProfile(Usuario usuario) : this()
+        public PgUsuarioProfile(Usuario usuario) : this()
         {
             this._usuario = usuario;
             CargarUsuario();
@@ -55,54 +54,143 @@ namespace Q_Tech.Paginas
 
             txtUsername.Text = _usuario.NombreUsuario;
             txbEmail.Text = _usuario.Email;
-            pswPassword.Password = _usuario.Contrasena;
-            txbName.Text = _usuario.Nombre;
-            txbSurname.Text = $"{_usuario.Apellido1} {_usuario.Apellido2}";
+            txbNombre.Text = _usuario.Nombre;
+            txbApellidos.Text = $"{_usuario.Apellido1} {_usuario.Apellido2}";
             txbTelephone.Text = _usuario.Telefono;
             dtpBirth.Text = _usuario.FechaNacimiento.ToString();
-            cboRol.Text = _usuario.Perfil == "CLIENTE" ? "Cliente" : "Admin";
+            //cboRol.Text = _usuario.Perfil == "CLIENTE" ? "Cliente" : "Admin";
             CargarTerrarios();
 
-            if (_usuario.Perfil.Equals("ADMIN")) stpDoABarrerRoll.Visibility = Visibility.Visible;
+            //if (_usuario.Perfil.Equals("ADMIN")) stpDoABarrerRoll.Visibility = Visibility.Visible;
         }
+
+        //private async void CargarTerrarios()
+        //{
+        //    lvListaTerrarios.Items.Clear();
+        //    List<Terrario> terrarios = await Herramientas.GetTerrarios();
+
+        //    foreach (Terrario t in terrarios)
+        //    {
+
+        //        TextBlock text = new TextBlock
+        //        {
+        //            Text = t.Nombre
+        //        };
+
+        //        ListViewItem item = new ListViewItem
+        //        {
+        //            Content = text,
+        //            Tag = t.Id
+        //        };
+
+        //        item.MouseDoubleClick += async (sender, e) =>
+        //        {
+        //            FrmTerraMaker terraMaker = new FrmTerraMaker(_usuario, t);
+
+        //            if (terraMaker.ShowDialog() == true)
+        //            {
+        //                await Herramientas.UpdateTerrario(t.Id, t);
+        //                CargarTerrarios();
+        //            }
+        //        };
+
+        //        lvListaTerrarios.Items.Add(item);
+        //    }
+        //}
 
         private async void CargarTerrarios()
         {
             lvListaTerrarios.Items.Clear();
-            List<Terrario> terrarios = await Herramientas.GetTerrarios();
 
-            foreach (Terrario t in terrarios)
+            List<Terrario> terrarios = await Herramientas.GetTerrariosUsuario(_usuario.Id);
+
+            if (terrarios.Count > 0)
             {
-
-                TextBlock text = new TextBlock
+                foreach (Terrario t in terrarios)
                 {
-                    Text = t.Nombre
-                };
-
-                ListViewItem item = new ListViewItem
-                {
-                    Content = text,
-                    Tag = t.Id
-                };
-
-                item.MouseDoubleClick += async (sender, e) =>
-                {
-                    frmTerraMaker terraMaker = new frmTerraMaker(_usuario, t);
-
-                    if (terraMaker.ShowDialog() == true)
+                    ListViewItem listViewItem = new ListViewItem
                     {
-                        await Herramientas.UpdateTerrario(t.Id, t);
-                        CargarTerrarios();
-                    }
-                };
+                        HorizontalContentAlignment = HorizontalAlignment.Stretch
+                    };
 
-                lvListaTerrarios.Items.Add(item);
+                    Grid grid = new Grid();
+
+                    ColumnDefinition columnDefinition1 = new ColumnDefinition
+                    {
+                        Width = new GridLength(1, GridUnitType.Auto)
+                    };
+                    ColumnDefinition columnDefinition2 = new ColumnDefinition
+                    {
+                        Width = new GridLength(1, GridUnitType.Star)
+                    };
+
+                    grid.ColumnDefinitions.Add(columnDefinition1);
+                    grid.ColumnDefinitions.Add(columnDefinition2);
+
+                    Image image = new Image
+                    {
+                        Source = new BitmapImage(new Uri(t.Foto ?? "/Recursos/Iconos/MainIcon.png", UriKind.RelativeOrAbsolute)),
+                        Width = 75
+                    };
+                    Grid.SetColumn(image, 0);
+
+                    StackPanel stackPanel = new StackPanel
+                    {
+                        Orientation = Orientation.Vertical
+                    };
+                    Grid.SetColumn(stackPanel, 1);
+
+                    TextBlock textBlock1 = new TextBlock
+                    {
+                        Text = t.Nombre,
+                        Padding = new Thickness(5),
+                        FontSize = 16,
+                        FontWeight = FontWeights.DemiBold
+                    };
+
+                    TextBlock textBlock2 = new TextBlock
+                    {
+                        Text = t.Descripcion,
+                        TextWrapping = TextWrapping.Wrap,
+                        Padding = new Thickness(5)
+                    };
+
+                    TextBlock textBlock3 = new TextBlock
+                    {
+                        Text = t.FechaCreacion.ToShortDateString(),
+                        HorizontalAlignment = HorizontalAlignment.Right,
+                        FontWeight = FontWeights.Light,
+                        Padding = new Thickness(3)
+                    };
+
+                    stackPanel.Children.Add(textBlock1);
+                    stackPanel.Children.Add(textBlock2);
+                    stackPanel.Children.Add(textBlock3);
+
+                    grid.Children.Add(image);
+                    grid.Children.Add(stackPanel);
+
+                    listViewItem.Content = grid;
+
+                    listViewItem.MouseDoubleClick += async (sender, e) =>
+                    {
+                        FrmTerraMaker terraMaker = new FrmTerraMaker(_usuario, t);
+
+                        if (terraMaker.ShowDialog() == true)
+                        {
+                            await Herramientas.UpdateTerrario(t.Id, t);
+                            CargarTerrarios();
+                        }
+                    };
+
+                    lvListaTerrarios.Items.Add(listViewItem);
+                }
             }
         }
 
-        private void btnChangePassword_Click(object sender, RoutedEventArgs e)
+        private void BtnChangePassword_Click(object sender, RoutedEventArgs e)
         {
-            spPassword.Visibility = Visibility.Visible;
+            //spPassword.Visibility = Visibility.Visible;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -111,9 +199,9 @@ namespace Q_Tech.Paginas
             {
                 _usuario.NombreUsuario = txtUsername.Text;
                 _usuario.Email = txbEmail.Text;
-                _usuario.Contrasena = pswPassword.Password;
-                _usuario.Nombre = txbName.Text;
-                string[] apellidos = txbSurname.Text.Split(' ');
+                //_usuario.Contrasena = pswPassword.Password;
+                _usuario.Nombre = txbNombre.Text;
+                string[] apellidos = txbApellidos.Text.Split(' ');
                 _usuario.Apellido1 = apellidos[0];
                 _usuario.Apellido2 = apellidos[1];
                 _usuario.Telefono = txbTelephone.Text;
@@ -121,14 +209,14 @@ namespace Q_Tech.Paginas
                 {
                     _usuario.FechaNacimiento = fecha;
                 }
-                _usuario.Perfil = cboRol.Text == "Cliente" ? "CLIENTE" : "ADMIN";
-                _usuario.FotoPerfil = CambiarImagenUsuarioAsync().Result;
+                //_usuario.Perfil = cboRol.Text == "Cliente" ? "CLIENTE" : "ADMIN";
+                _usuario.FotoPerfil = CambiarImagenUsuario();
 
                 Herramientas.UpdateUsuario(_usuario.Id, _usuario);
             }
         }
 
-        private async Task<string> CambiarImagenUsuarioAsync()
+        private string CambiarImagenUsuario()
         {
             if (!string.IsNullOrEmpty(_filename))
             {
@@ -157,13 +245,13 @@ namespace Q_Tech.Paginas
                 txbEmail.Focus();
                 return false;
             }
-            if (string.IsNullOrEmpty(pswPassword.Password))
-            {
-                MessageBox.Show("El campo de contraseña no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                spPassword.Visibility = Visibility.Visible;
-                pswPassword.Focus();
-                return false;
-            }
+            //if (string.IsNullOrEmpty(pswPassword.Password))
+            //{
+            //    MessageBox.Show("El campo de contraseña no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    spPassword.Visibility = Visibility.Visible;
+            //    pswPassword.Focus();
+            //    return false;
+            //}
             return true;
         }
 
@@ -177,9 +265,11 @@ namespace Q_Tech.Paginas
 
         private void imgProfilePic_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Subir imagen";
-            openFileDialog.Filter = "jpg (*.jpg)|*.jpg|png (*.png)|*.png";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Subir imagen",
+                Filter = "jpg (*.jpg)|*.jpg|png (*.png)|*.png"
+            };
 
             bool? result = openFileDialog.ShowDialog();
 
@@ -200,7 +290,7 @@ namespace Q_Tech.Paginas
         {
             Terrario terra = new Terrario();
 
-            frmTerraMaker terraMaker = new frmTerraMaker(_usuario, terra);
+            FrmTerraMaker terraMaker = new FrmTerraMaker(_usuario, terra);
 
             if (terraMaker.ShowDialog() == true)
             {

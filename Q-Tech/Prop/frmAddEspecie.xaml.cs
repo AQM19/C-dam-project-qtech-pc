@@ -24,16 +24,16 @@ namespace Q_Tech.Prop
     /// <summary>
     /// Lógica de interacción para frmAddEspecie.xaml
     /// </summary>
-    public partial class frmAddEspecie : Window
+    public partial class FrmAddEspecie : Window
     {
-        private Especie _especie;
+        private readonly Especie _especie;
         private string _filename;
 
-        public frmAddEspecie()
+        public FrmAddEspecie()
         {
             InitializeComponent();
         }
-        public frmAddEspecie(Especie especie) : this()
+        public FrmAddEspecie(Especie especie) : this()
         {
             _especie = especie;
             CargarEspecie();
@@ -157,16 +157,13 @@ namespace Q_Tech.Prop
         }
         private bool ValidData()
         {
-            // Confío en que esté bien planteado todo. Es un lúnes por la mañana y no me funciona la cabeza al 100%.
-            int aux;
-            // Controles rellenados
             if (string.IsNullOrEmpty(txbGenSp.Text) || txbGenSp.Text.Equals("Genero Especie"))
             {
                 MessageBox.Show("La especie debe tener su nombre científico asignado.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 txbGenSp.Focus();
                 return false;
             }
-            if (!string.IsNullOrEmpty(txbAniosVida.Text) && !Int32.TryParse(txbAniosVida.Text, out aux))
+            if (!string.IsNullOrEmpty(txbAniosVida.Text) && !Int32.TryParse(txbAniosVida.Text, out _))
             {
                 MessageBox.Show("Los años de vida de una especie han de ser numéricos.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 txbAniosVida.Focus();
@@ -178,38 +175,39 @@ namespace Q_Tech.Prop
                 cboClase.Focus();
                 return false;
             }
-            if (string.IsNullOrEmpty(txbMaxTemp.Text) && !Int32.TryParse(txbMaxTemp.Text, out aux))
+
+            if (string.IsNullOrEmpty(txbMaxTemp.Text) && !Int32.TryParse(txbMaxTemp.Text, out _))
             {
                 MessageBox.Show("Se ha de establecer el valor máximo de temperatura.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 txbMaxTemp.Focus();
                 return false;
             }
-            if (string.IsNullOrEmpty(txbMinTemp.Text) && !Int32.TryParse(txbMinTemp.Text, out aux))
+
+            if (string.IsNullOrEmpty(txbMinTemp.Text) && !Int32.TryParse(txbMinTemp.Text, out _))
             {
                 MessageBox.Show("Se ha de establecer el valor mínimo de temperatura.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 txbMinTemp.Focus();
                 return false;
             }
-            if (string.IsNullOrEmpty(txbMaxHum.Text) && !Int32.TryParse(txbMaxHum.Text, out aux))
+            if (string.IsNullOrEmpty(txbMaxHum.Text) && !Int32.TryParse(txbMaxHum.Text, out _))
             {
                 MessageBox.Show("Se ha de establecer el valor máximo de humedad.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 txbMaxHum.Focus();
                 return false;
             }
-            if (string.IsNullOrEmpty(txbMinHum.Text) && !Int32.TryParse(txbMinHum.Text, out aux))
+            if (string.IsNullOrEmpty(txbMinHum.Text) && !Int32.TryParse(txbMinHum.Text, out _))
             {
                 MessageBox.Show("Se ha de establecer el valor máximo de humedad.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 txbMinHum.Focus();
                 return false;
             }
-            if (string.IsNullOrEmpty(txbMaxLuz.Text) && !Int32.TryParse(txbMaxLuz.Text, out aux))
+            if (string.IsNullOrEmpty(txbMaxLuz.Text) && !Int32.TryParse(txbMaxLuz.Text, out _))
             {
                 MessageBox.Show("Se ha de establecer el valor máximo de horas de luz.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 txbMaxLuz.Focus();
                 return false;
             }
 
-            // Coherencia
             if (Int32.Parse(txbAniosVida.Text) < 0)
             {
                 MessageBox.Show("No se puede poner un valor negativo a los años de vida.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -241,23 +239,22 @@ namespace Q_Tech.Prop
                 return false;
             }
 
-            // Si hibernan
             if (chkHibernacion.IsChecked == true)
             {
                 // Controles
-                if (string.IsNullOrEmpty(txbMaxTempHib.Text) && !Int32.TryParse(txbMaxTempHib.Text, out aux))
+                if (string.IsNullOrEmpty(txbMaxTempHib.Text) && !Int32.TryParse(txbMaxTempHib.Text, out _))
                 {
                     MessageBox.Show("Se ha de establecer el valor máximo de temperatura en hibernación.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     txbMaxTempHib.Focus();
                     return false;
                 }
-                if (string.IsNullOrEmpty(txbMinTempHib.Text) && !Int32.TryParse(txbMinTempHib.Text, out aux))
+                if (string.IsNullOrEmpty(txbMinTempHib.Text) && !Int32.TryParse(txbMinTempHib.Text, out _))
                 {
                     MessageBox.Show("Se ha de establecer el valor mínimo de temperatura en hibernación.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     txbMinTempHib.Focus();
                     return false;
                 }
-                if (string.IsNullOrEmpty(txbMaxLuzHib.Text) && !Int32.TryParse(txbMaxLuzHib.Text, out aux))
+                if (string.IsNullOrEmpty(txbMaxLuzHib.Text) && !Int32.TryParse(txbMaxLuzHib.Text, out _))
                 {
                     MessageBox.Show("Se ha de establecer el valor máximo de horas de luz en hibernación.", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     txbMaxLuzHib.Focus();
@@ -289,9 +286,11 @@ namespace Q_Tech.Prop
         }
         private void imgTerraPic_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Subir imagen";
-            openFileDialog.Filter = "jpg (*.jpg)|*.jpg|png (*.png)|*.png";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Subir imagen",
+                Filter = "jpg (*.jpg)|*.jpg|png (*.png)|*.png"
+            };
 
             bool? result = openFileDialog.ShowDialog();
 

@@ -10,18 +10,18 @@ namespace Q_Tech.Paginas
     /// <summary>
     /// Lógica de interacción para pgListaNotificaciones.xaml
     /// </summary>
-    public partial class pgListaNotificaciones : Page
+    public partial class PgListaNotificaciones : Page
     {
-        private long _id;
-        private List<Notificacion> _notificaciones;
+        private readonly long _id;
+        private readonly List<Notificacion> _notificaciones;
 
         public List<Notificacion> Notificaciones { get; }
 
-        public pgListaNotificaciones()
+        public PgListaNotificaciones()
         {
             InitializeComponent();
         }
-        public pgListaNotificaciones(long id) : this()
+        public PgListaNotificaciones(long id) : this()
         {
             this._id = id;
             this._notificaciones = new List<Notificacion>();

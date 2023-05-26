@@ -349,7 +349,7 @@ namespace Q_Tech
 
                 string codeConfirmation = GenerateRandomCode();
                 EmailSender.SendVerificationEmail(txbEmail.Text, codeConfirmation);
-                frmCodeConfirmation frmCode = new frmCodeConfirmation(codeConfirmation);
+                FrmCodeConfirmation frmCode = new FrmCodeConfirmation(codeConfirmation);
 
                 if (frmCode.ShowDialog() == false)
                 {

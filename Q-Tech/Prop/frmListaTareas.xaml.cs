@@ -20,15 +20,18 @@ namespace Q_Tech.Prop
     /// <summary>
     /// Lógica de interacción para frmListaTareas.xaml
     /// </summary>
-    public partial class frmListaTareas : Window
+    public partial class FrmListaTareas : Window
     {
-        private long _id;
-        private List<Tarea> _tareasCambiadas;
-        public frmListaTareas()
+        private readonly long _id;
+        private readonly List<Tarea> _tareasCambiadas;
+
+        public List<Tarea> TareasCambiadas => _tareasCambiadas;
+
+        public FrmListaTareas()
         {
             InitializeComponent();
         }
-        public frmListaTareas(long id) : this()
+        public FrmListaTareas(long id) : this()
         {
             _id = id;
             _tareasCambiadas = new List<Tarea>();
@@ -119,28 +122,28 @@ namespace Q_Tech.Prop
 
                 ComboBoxItem startedItem = new ComboBoxItem
                 {
-                    IsSelected = t.Estado == "Iniciada" ? true : false,
+                    IsSelected = t.Estado == "Iniciada",
                     Content = "Iniciada"
                 };
                 statusComboBox.Items.Add(startedItem);
 
                 ComboBoxItem inProgressItem = new ComboBoxItem
                 {
-                    IsSelected = t.Estado == "En progreso" ? true : false,
+                    IsSelected = t.Estado == "En progreso",
                     Content = "En progreso"
                 };
                 statusComboBox.Items.Add(inProgressItem);
 
                 ComboBoxItem completedItem = new ComboBoxItem
                 {
-                    IsSelected = t.Estado == "Realizada" ? true : false,
+                    IsSelected = t.Estado == "Realizada",
                     Content = "Realizada"
                 };
                 statusComboBox.Items.Add(completedItem);
 
                 ComboBoxItem cancelledItem = new ComboBoxItem
                 {
-                    IsSelected = t.Estado == "Cancelada" ? true : false,
+                    IsSelected = t.Estado == "Cancelada",
                     Content = "Cancelada"
                 };
                 statusComboBox.Items.Add(cancelledItem);
@@ -155,7 +158,7 @@ namespace Q_Tech.Prop
                     }
 
                     t.Estado = selectedText;
-                    _tareasCambiadas.Add(t);
+                    TareasCambiadas.Add(t);
                 };
 
                 grid.Children.Add(titleTextBlock);
@@ -173,7 +176,7 @@ namespace Q_Tech.Prop
 
         private async void UpdateTarea(Tarea tarea)
         {
-            frmAddTarea frmAddTarea = new frmAddTarea(_id, tarea);
+            FrmAddTarea frmAddTarea = new FrmAddTarea(_id, tarea);
 
             if (frmAddTarea.ShowDialog() == true)
             {
@@ -184,14 +187,14 @@ namespace Q_Tech.Prop
 
         private async void BtnSaveTareas_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (_tareasCambiadas.Count > 0)
+            if (TareasCambiadas.Count > 0)
             {
-                foreach (Tarea t in _tareasCambiadas)
+                foreach (Tarea t in TareasCambiadas)
                 {
                     await Herramientas.UpdateTarea(t.Id, t);
                 }
 
-                _tareasCambiadas.Clear();
+                TareasCambiadas.Clear();
                 CargarTareas();
             }
         }
@@ -199,7 +202,7 @@ namespace Q_Tech.Prop
         private async void BtnNewTarea_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Tarea tarea = new Tarea();
-            frmAddTarea frmAddTarea = new frmAddTarea(_id, tarea);
+            FrmAddTarea frmAddTarea = new FrmAddTarea(_id, tarea);
 
             if (frmAddTarea.ShowDialog() == true)
             {

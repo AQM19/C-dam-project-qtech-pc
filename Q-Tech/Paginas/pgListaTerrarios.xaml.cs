@@ -14,17 +14,17 @@ namespace Q_Tech.Paginas
     /// <summary>
     /// Lógica de interacción para pgTerrarios.xaml
     /// </summary>
-    public partial class pgListaTerrarios : Page
+    public partial class PgListaTerrarios : Page
     {
 
-        private long _id;
-        private Frame _mainFrame;
-        public pgListaTerrarios()
+        private readonly long _id;
+        private readonly Frame _mainFrame;
+        public PgListaTerrarios()
         {
             InitializeComponent();
         }
 
-        public pgListaTerrarios(long id, Frame mainFrame) : this()
+        public PgListaTerrarios(long id, Frame mainFrame) : this()
         {
             _id = id;
             _mainFrame = mainFrame;
@@ -89,24 +89,6 @@ namespace Q_Tech.Paginas
                     LastChildFill = false
                 };
 
-                TextBlock ratingTextBlock = new TextBlock
-                {
-                    Text = $"{await Herramientas.GetPuntuacionTerrario(t.Id)}"
-                };
-
-                DockPanel.SetDock(ratingTextBlock, Dock.Left);
-                dockPanel.Children.Add(ratingTextBlock);
-
-                Image ratingImage = new Image
-                {
-                    Source = new BitmapImage(new Uri("/Recursos/Iconos/star.png", UriKind.Relative)),
-                    Width = 16,
-                    Margin = new Thickness(5, 0, 15, 0)
-                };
-
-                DockPanel.SetDock(ratingImage, Dock.Left);
-                dockPanel.Children.Add(ratingImage);
-
                 TextBlock dateTextBlock = new TextBlock
                 {
                     Text = t.FechaCreacion.ToShortDateString()
@@ -124,7 +106,7 @@ namespace Q_Tech.Paginas
 
                 item.MouseDoubleClick += (sender, e) =>
                 {
-                    pgTerrario pgTerrario = new pgTerrario(t, _id);
+                    PgTerrario pgTerrario = new PgTerrario(t, _id);
                     _mainFrame.Content = pgTerrario;
                 };
 

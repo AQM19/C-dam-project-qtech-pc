@@ -13,36 +13,36 @@ namespace BusinessLogic
 
 
         #region Usuario
-        public static async Task<List<Usuario>> GetUsuarios() // op
+        public static async Task<List<Usuario>> GetUsuarios()
         {
             QConsumer qc = new QConsumer();
             List<Usuario> usuarios = await qc.GetAsync<List<Usuario>>($"{baseEndPoint}/usuarios");
             return usuarios;
         }
-        public static async Task<List<Usuario>> GetSocial(long id) // op
+        public static async Task<List<Usuario>> GetSocial(long id)
         {
             QConsumer qc = new QConsumer();
             List<Usuario> usuarios = await qc.GetAsync<List<Usuario>>($"{baseEndPoint}/usuarios/social/{id}");
             return usuarios;
         }
-        public static async Task<bool> ComprobarUsuario(string param) // op
+        public static async Task<bool> ComprobarUsuario(string param)
         {
             QConsumer qc = new QConsumer();
             return await qc.GetAsync<bool>($"{baseEndPoint}/usuarios/c={param}");
         }
-        public static async Task<Usuario> GetUsuario(long id) // op
+        public static async Task<Usuario> GetUsuario(long id)
         {
             QConsumer qc = new QConsumer();
             Usuario usuario = await qc.GetAsync<Usuario>($"{baseEndPoint}/usuarios/{id}");
             return usuario;
         }
-        public static async Task<Usuario> Login(string param, string password)// op
+        public static async Task<Usuario> Login(string param, string password)
         {
             QConsumer qc = new QConsumer();
             Usuario usuario = await qc.LoginAsync<Usuario>($"{baseEndPoint}/login", param, password);
             return usuario;
         }
-        public static async void CreateUsuario(Usuario usuario)// op
+        public static async void CreateUsuario(Usuario usuario)
         {
             QConsumer qc = new QConsumer();
             await qc.CreateAsync($"{baseEndPoint}/usuarios", usuario);
@@ -52,7 +52,7 @@ namespace BusinessLogic
             QConsumer qc = new QConsumer();
             List<Usuario> usuarios = await qc.GetAsync<List<Usuario>>($"{baseEndPoint}/usuarios/q={query}");
             return usuarios;
-        }// op
+        }
         public static async void UpdateUsuario(long id, Usuario usuario)
         {
             QConsumer qc = new QConsumer();
@@ -62,6 +62,16 @@ namespace BusinessLogic
         {
             QConsumer qc = new QConsumer();
             return await qc.GetAsync<bool>($"{baseEndPoint}/usuarios/{idusuario}/check/{idcontacto}");
+        }
+        public static async Task FollowUser(UsuarioUsuario follow)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.PostAsync<UsuarioUsuario>($"{baseEndPoint}/usuarioUsuarios/follow", follow);
+        }
+        public static async Task UnfollowUser(long idUsuario, long idContacto)
+        {
+            QConsumer qc = new QConsumer();
+            await qc.DeleteAsync<UsuarioUsuario>($"{baseEndPoint}/usuarioUsuarios/unfollow/usuario/{idUsuario}/contacto/{idContacto}");
         }
         #endregion
 

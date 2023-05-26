@@ -17,15 +17,15 @@ namespace Q_Tech.Prop
     /// <summary>
     /// Lógica de interacción para frmCodeConfirmation.xaml
     /// </summary>
-    public partial class frmCodeConfirmation : Window
+    public partial class FrmCodeConfirmation : Window
     {
-        private string _codeConfirmation;
+        private readonly string _codeConfirmation;
         private int _try = 3;
-        public frmCodeConfirmation()
+        public FrmCodeConfirmation()
         {
             InitializeComponent();
         }
-        public frmCodeConfirmation(string codeConfirmation) : this()
+        public FrmCodeConfirmation(string codeConfirmation) : this()
         {
             _codeConfirmation = codeConfirmation;
         }

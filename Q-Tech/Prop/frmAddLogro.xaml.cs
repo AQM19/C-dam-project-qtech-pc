@@ -27,15 +27,15 @@ namespace Q_Tech.Prop
     /// <summary>
     /// Lógica de interacción para frmAddLogro.xaml
     /// </summary>
-    public partial class frmAddLogro : Window
+    public partial class FrmAddLogro : Window
     {
         private readonly Logro _logro;
         private string _filename;
-        public frmAddLogro()
+        public FrmAddLogro()
         {
             InitializeComponent();
         }
-        public frmAddLogro(Logro logro) : this()
+        public FrmAddLogro(Logro logro) : this()
         {
             _logro = logro;
 

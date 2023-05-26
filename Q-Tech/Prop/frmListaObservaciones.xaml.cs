@@ -19,14 +19,14 @@ namespace Q_Tech.Prop
     /// <summary>
     /// Lógica de interacción para frmListaObservaciones.xaml
     /// </summary>
-    public partial class frmListaObservaciones : Window
+    public partial class FrmListaObservaciones : Window
     {
-        private long _id;
-        public frmListaObservaciones()
+        private readonly long _id;
+        public FrmListaObservaciones()
         {
             InitializeComponent();
         }
-        public frmListaObservaciones(long id) : this()
+        public FrmListaObservaciones(long id) : this()
         {
             _id = id;
             DesplegarInformacion();
@@ -102,7 +102,7 @@ namespace Q_Tech.Prop
         {
             Observacion observacion = new Observacion();
 
-            frmAddObservacion frmAddObservacion = new frmAddObservacion(_id, observacion);
+            FrmAddObservacion frmAddObservacion = new FrmAddObservacion(_id, observacion);
             if(frmAddObservacion.ShowDialog() == true)
             {
                 await Herramientas.CreateObservacion(observacion);
@@ -112,7 +112,7 @@ namespace Q_Tech.Prop
 
         private async void ActualizarObservacion(Observacion obs)
         {
-            frmAddObservacion frmAddObservacion = new frmAddObservacion(_id, obs);
+            FrmAddObservacion frmAddObservacion = new FrmAddObservacion(_id, obs);
             if (frmAddObservacion.ShowDialog() == true)
             {
                 await Herramientas.UpdateObservacion(obs.Id, obs);

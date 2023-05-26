@@ -9,18 +9,18 @@ namespace Q_Tech.Prop
     /// <summary>
     /// Lógica de interacción para frmEspecies.xaml
     /// </summary>
-    public partial class frmEspecies : Window
+    public partial class FrmEspecies : Window
     {
         private Especie _especie;
         private List<Especie> _especies;
 
         public Especie Especie { get => _especie; }
 
-        public frmEspecies()
+        public FrmEspecies()
         {
             InitializeComponent();
         }
-        public frmEspecies(List<Especie> especies) : this()
+        public FrmEspecies(List<Especie> especies) : this()
         {
             ObtenerEspecies(especies);
         }

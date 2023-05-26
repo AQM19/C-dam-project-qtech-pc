@@ -240,56 +240,56 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToImageConverter.cs" />
-    <Compile Include="Paginas\pgListaEspecies.xaml.cs">
-      <DependentUpon>pgListaEspecies.xaml</DependentUpon>
+    <Compile Include="Paginas\PgListaEspecies.xaml.cs">
+      <DependentUpon>PgListaEspecies.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\pgListaLogros.xaml.cs">
-      <DependentUpon>pgListaLogros.xaml</DependentUpon>
+    <Compile Include="Paginas\PgListaLogros.xaml.cs">
+      <DependentUpon>PgListaLogros.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\pgListaNotificaciones.xaml.cs">
-      <DependentUpon>pgListaNotificaciones.xaml</DependentUpon>
+    <Compile Include="Paginas\PgListaNotificaciones.xaml.cs">
+      <DependentUpon>PgListaNotificaciones.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\pgTerrario.xaml.cs">
-      <DependentUpon>pgTerrario.xaml</DependentUpon>
+    <Compile Include="Paginas\PgTerrario.xaml.cs">
+      <DependentUpon>PgTerrario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\pgUsuario.xaml.cs">
-      <DependentUpon>pgUsuario.xaml</DependentUpon>
+    <Compile Include="Paginas\PgUsuario.xaml.cs">
+      <DependentUpon>PgUsuario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\pgUsuarioProfile.xaml.cs">
-      <DependentUpon>pgUsuarioProfile.xaml</DependentUpon>
+    <Compile Include="Paginas\PgUsuarioProfile.xaml.cs">
+      <DependentUpon>PgUsuarioProfile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Prop\frmAddEspecie.xaml.cs">
-      <DependentUpon>frmAddEspecie.xaml</DependentUpon>
+    <Compile Include="Prop\FrmAddEspecie.xaml.cs">
+      <DependentUpon>FrmAddEspecie.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Prop\frmAddLogro.xaml.cs">
-      <DependentUpon>frmAddLogro.xaml</DependentUpon>
+    <Compile Include="Prop\FrmAddLogro.xaml.cs">
+      <DependentUpon>FrmAddLogro.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Prop\frmAddObservacion.xaml.cs">
-      <DependentUpon>frmAddObservacion.xaml</DependentUpon>
+    <Compile Include="Prop\FrmAddObservacion.xaml.cs">
+      <DependentUpon>FrmAddObservacion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Prop\frmAddTarea.xaml.cs">
-      <DependentUpon>frmAddTarea.xaml</DependentUpon>
+    <Compile Include="Prop\FrmAddTarea.xaml.cs">
+      <DependentUpon>FrmAddTarea.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Prop\frmCodeConfirmation.xaml.cs">
-      <DependentUpon>frmCodeConfirmation.xaml</DependentUpon>
+    <Compile Include="Prop\FrmCodeConfirmation.xaml.cs">
+      <DependentUpon>FrmCodeConfirmation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Prop\frmEspecies.xaml.cs">
-      <DependentUpon>frmEspecies.xaml</DependentUpon>
+    <Compile Include="Prop\FrmEspecies.xaml.cs">
+      <DependentUpon>FrmEspecies.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Prop\frmListaObservaciones.xaml.cs">
-      <DependentUpon>frmListaObservaciones.xaml</DependentUpon>
+    <Compile Include="Prop\FrmListaObservaciones.xaml.cs">
+      <DependentUpon>FrmListaObservaciones.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Prop\frmListaTareas.xaml.cs">
-      <DependentUpon>frmListaTareas.xaml</DependentUpon>
+    <Compile Include="Prop\FrmListaTareas.xaml.cs">
+      <DependentUpon>FrmListaTareas.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Prop\frmTerraMaker.xaml.cs">
-      <DependentUpon>frmTerraMaker.xaml</DependentUpon>
+    <Compile Include="Prop\FrmTerraMaker.xaml.cs">
+      <DependentUpon>FrmTerraMaker.xaml</DependentUpon>
     </Compile>
     <Page Include="Modales\Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\pgIndex.xaml">
+    <Page Include="Paginas\PgIndex.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -304,88 +304,88 @@
     <Compile Include="Modales\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\pgIndex.xaml.cs">
-      <DependentUpon>pgIndex.xaml</DependentUpon>
+    <Compile Include="Paginas\PgIndex.xaml.cs">
+      <DependentUpon>PgIndex.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modales\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Paginas\pgListaEspecies.xaml">
+    <Page Include="Paginas\PgListaEspecies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\pgListaLogros.xaml">
+    <Page Include="Paginas\PgListaLogros.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\pgListaNotificaciones.xaml">
+    <Page Include="Paginas\PgListaNotificaciones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\pgListaTerrarios.xaml">
+    <Page Include="Paginas\PgListaTerrarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\pgTerrario.xaml">
+    <Page Include="Paginas\PgTerrario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\pgUsuario.xaml">
+    <Page Include="Paginas\PgUsuario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\pgUsuarioProfile.xaml">
+    <Page Include="Paginas\PgUsuarioProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Paginas\pgListaUsuarios.xaml">
+    <Page Include="Paginas\PgListaUsuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Prop\frmAddEspecie.xaml">
+    <Page Include="Prop\FrmAddEspecie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Prop\frmAddLogro.xaml">
+    <Page Include="Prop\FrmAddLogro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Prop\frmAddObservacion.xaml">
+    <Page Include="Prop\FrmAddObservacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Prop\frmAddTarea.xaml">
+    <Page Include="Prop\FrmAddTarea.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Prop\frmCodeConfirmation.xaml">
+    <Page Include="Prop\FrmCodeConfirmation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Prop\frmEspecies.xaml">
+    <Page Include="Prop\FrmEspecies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Prop\frmListaObservaciones.xaml">
+    <Page Include="Prop\FrmListaObservaciones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Prop\frmListaTareas.xaml">
+    <Page Include="Prop\FrmListaTareas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Prop\frmTerraMaker.xaml">
+    <Page Include="Prop\FrmTerraMaker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Paginas\pgListaTerrarios.xaml.cs">
-      <DependentUpon>pgListaTerrarios.xaml</DependentUpon>
+    <Compile Include="Paginas\PgListaTerrarios.xaml.cs">
+      <DependentUpon>PgListaTerrarios.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\pgListaUsuarios.xaml.cs">
-      <DependentUpon>pgListaUsuarios.xaml</DependentUpon>
+    <Compile Include="Paginas\PgListaUsuarios.xaml.cs">
+      <DependentUpon>PgListaUsuarios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -430,10 +430,6 @@
     <Resource Include="Recursos\Iconos\show.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\Fondos\login_background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\Fondos\login_blue_background.jpeg" />
     <Resource Include="Recursos\Fondos\login_green_background.jpeg" />
   </ItemGroup>
   <ItemGroup>
@@ -441,15 +437,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Iconos\SelectedMenuItem.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\Iconos\settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\Iconos\help.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\Iconos\usuariob.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Iconos\usuarioa.png" />
@@ -461,28 +448,7 @@
     <Resource Include="Recursos\Iconos\lupa.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\Iconos\add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\Iconos\star.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\Iconos\exportar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\Iconos\subir.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\Iconos\add_16x16.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Recursos\Iconos\check.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\Iconos\cross.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\Iconos\del_16x16.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Fondos\loading.gif" />

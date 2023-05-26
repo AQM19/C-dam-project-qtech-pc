@@ -1,4 +1,4 @@
-﻿<Page x:Class="Q_Tech.Paginas.pgUsuarioProfile"
+﻿<Page x:Class="Q_Tech.Paginas.PgUsuarioProfile"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,13 +8,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="pgUsuario">
 
-    <Grid Background="#88FFFFFF">
+    <Grid Background="#88FFFFFF" Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="0.75*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
@@ -24,17 +23,32 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Image Source="/Recursos/Iconos/MainIcon.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="10" x:Name="imgProfilePic" MouseDown="imgProfilePic_MouseDown"/>
-
-            <TextBlock Text="USERNAME" Grid.Column="1" Grid.Row="0" FontSize="42" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="txtUsername"/>
-            <TextBox x:Name="txbTimeline" Text="Timeline" Grid.Column="1" Grid.Row="1" Height="25" MaxWidth="550" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <Image Source="/Recursos/Iconos/MainIcon.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Stretch="Fill" x:Name="imgProfilePic" MouseDown="imgProfilePic_MouseDown" Cursor="Hand"/>
+            <TextBlock Text="USERNAME" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" FontSize="42" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="txtUsername" Cursor="Hand"/>
+            <!--<TextBox x:Name="txbTimeline" Text="Timeline" Grid.Column="1" Grid.Row="1" Height="25" MaxWidth="550" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>-->
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0">
+                <TextBox x:Name="txbNombre" Width="150" Padding="3" Background="Transparent" BorderThickness="0"/>
+                <TextBox x:Name="txbApellidos" Width="150" Padding="3" Background="Transparent" BorderThickness="0"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Margin="20,0">
+                <StackPanel Orientation="Vertical" Margin="0,3">
+                    <TextBlock Text="Fecha de nacimiento" Margin="0,0,0,3"/>
+                    <DatePicker Text="Fecha de nacimiento" VerticalContentAlignment="Center" x:Name="dtpBirth"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="0,3">
+                    <TextBlock Text="Teléfono" Margin="0,0,0,3"/>
+                    <TextBox Text="Teléfono" Padding="3" VerticalContentAlignment="Center" x:Name="txbTelephone" PreviewTextInput="txbTelephone_PreviewTextInput"/>
+                </StackPanel>
+            </StackPanel>
         </Grid>
+
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -42,51 +56,12 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Vertical" Grid.Column="0" VerticalAlignment="Center" Margin="50,10">
                 <TextBlock Text="Correo" Margin="0,0,0,3"/>
-                <TextBox Text="Correo electrónico" Padding="5" VerticalContentAlignment="Center" x:Name="txbEmail"/>
+                <TextBox Text="Correo electrónico" Padding="3" VerticalContentAlignment="Center" x:Name="txbEmail"/>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center" Margin="50,10" Visibility="Hidden" x:Name="spPassword">
-                <TextBlock Text="Contraseña" Margin="0,0,0,3"/>
-                <PasswordBox Password="patito de goma" Padding="5" VerticalContentAlignment="Center" x:Name="pswPassword"/>
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <StackPanel Orientation="Vertical" Grid.Column="0" VerticalAlignment="Center" Margin="50,10">
-                <TextBlock Text="Nombre" Margin="0,0,0,3"/>
-                <TextBox Text="Nombre" Padding="5" VerticalContentAlignment="Center" x:Name="txbName"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center" Margin="50,10">
-                <TextBlock Text="Apellidos" Margin="0,0,0,3"/>
-                <TextBox Text="Apellidos" Padding="5" VerticalContentAlignment="Center" x:Name="txbSurname"/>
-            </StackPanel>
-            <Button Content="Cambiar contraseña" Grid.Column="2" Padding="5" Width="130" Height="35" VerticalAlignment="Center" x:Name="btnChangePassword" Click="btnChangePassword_Click"/>
-
-            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Margin="50,10">
-                <TextBlock Text="Teléfono" Margin="0,0,0,3"/>
-                <TextBox Text="Teléfono" Padding="5" VerticalContentAlignment="Center" x:Name="txbTelephone" PreviewTextInput="txbTelephone_PreviewTextInput"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="50,10">
-                <TextBlock Text="Fecha de nacimiento" Margin="0,0,0,3"/>
-                <DatePicker Text="Fecha de nacimiento" VerticalContentAlignment="Center" x:Name="dtpBirth"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Margin="50,10" x:Name="stpDoABarrerRoll" Visibility="Hidden">
-                <TextBlock Text="Rol" Margin="0,0,0,3"/>
-                <ComboBox Padding="5" VerticalAlignment="Center" x:Name="cboRol">
-                    <ComboBoxItem Content="Cliente" IsSelected="True"/>
-                    <ComboBoxItem Content="Admin"/>
-                </ComboBox>
-            </StackPanel>
+            <Button Content="Cambiar contraseña" Grid.Column="1" Width="130" Height="35" VerticalAlignment="Center" x:Name="BtnChangePassword" Click="BtnChangePassword_Click"/>
         </Grid>
 
-        <DockPanel LastChildFill="True" Grid.Row="3" Margin="50,0">
+        <DockPanel LastChildFill="True" Grid.Row="2" Margin="50,0">
             <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Margin="5,0">
                 <Button Grid.Column="1" Padding="5" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Background="#59D96B" x:Name="btnAddTerra" Click="btnAddTerra_Click">
                     <Image Source="/Recursos/Iconos/anadir.png"/>
@@ -95,7 +70,7 @@
                     <Image Source="/Recursos/Iconos/menos.png"/>
                 </Button>
             </StackPanel>
-            <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" x:Name="lvListaTerrarios" />
+            <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" x:Name="lvListaTerrarios" />
         </DockPanel>
 
         <!--
@@ -116,7 +91,7 @@
         ⠀⠀⠀⠀⠀⠈⠻⠿⠿⠓⠄⠤⠘⠉⠙⠤⢀⠾⠿⣿⠟⠋
         -->
 
-        <Grid Grid.Row="4" Margin="5">
+        <Grid Grid.Row="3" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="*"/>

@@ -10,59 +10,132 @@ using System.Windows.Media.Imaging;
 
 namespace Q_Tech.Paginas
 {
-    public partial class pgListaUsuarios : Page
+    public partial class PgListaUsuarios : Page
     {
-        private Usuario _usuario;
+        private readonly Usuario _usuario;
+        private readonly Frame _mainFrame;
 
-        public pgListaUsuarios()
+        public PgListaUsuarios()
         {
             InitializeComponent();
 
         }
-        public pgListaUsuarios(Usuario usuario) : this()
+        public PgListaUsuarios(Usuario usuario, Frame mainFrame) : this()
         {
             _usuario = usuario;
+            _mainFrame = mainFrame;
+            CargarUsuarios();
+        }
+
+        private async void FollowUser(Usuario u)
+        {
+            UsuarioUsuario follow = new UsuarioUsuario
+            {
+                Idusuario = _usuario.Id,
+                Idcontacto = u.Id,
+                FechaContacto = DateTime.Now
+            };
+
+            await Herramientas.FollowUser(follow);
             CargarUsuarios();
         }
 
         private async void CargarUsuarios()
         {
-            List<Usuario> usuarios = await Herramientas.GetSocial(_usuario.Id);
+            lvUsuarios.Items.Clear();
 
-            for (int i = 0; i < usuarios.Count; i++) // Se usa el bucle for por eficiencia
+            List<Usuario> usuarios = _usuario.Perfil == "ADMIN" ? await Herramientas.GetUsuarios() : await Herramientas.GetSocial(_usuario.Id);
+
+            if (usuarios.Count > 0)
             {
-
-                ListViewItem listViewItem = new ListViewItem();
-                StackPanel stackPanel = new StackPanel { Orientation = Orientation.Horizontal, Height = 50, Margin = new Thickness(10) };
-                ImageBrush imageBrush = new ImageBrush();
-                if (!string.IsNullOrEmpty(usuarios[i].FotoPerfil)) imageBrush.ImageSource = new BitmapImage(new Uri(usuarios[i].FotoPerfil));
-                Border border = new Border { CornerRadius = new CornerRadius(5), BorderThickness = new Thickness(0), Height = 50, Width = 50, Margin = new Thickness(0, 0, 10, 0), Background = imageBrush };
-                StackPanel textStackPanel = new StackPanel { Orientation = Orientation.Vertical, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(10, 0, 0, 0), Width = 150 };
-                TextBlock nameTextBlock = new TextBlock { Text = usuarios[i].NombreUsuario };
-                TextBlock fullNameTextBlock = new TextBlock { Text = $"{usuarios[i].Nombre} {usuarios[i].Apellido1} {usuarios[i].Apellido2}" };
-                Border followBorder = new Border { Margin = new Thickness(10), CornerRadius = new CornerRadius(5), VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Right, Background = new SolidColorBrush(Color.FromRgb(52, 168, 83)), BorderThickness = new Thickness(0), Cursor = Cursors.Hand };
-                TextBlock followTextBlock = new TextBlock { Text = "Seguir", Padding = new Thickness(10, 5, 10, 5), FontWeight = FontWeights.Bold, FontFamily = new FontFamily("Segoe UI"), Foreground = new SolidColorBrush(Colors.White) };
-
-                if (_usuario.Perfil == "ADMIN")
+                foreach (Usuario u in usuarios)
                 {
-                    ComboBox comboBox = new ComboBox { ItemsSource = new List<string> { "CLIENTE", "ADMIN" } };
-                    StackPanel roleStackPanel = new StackPanel { Orientation = Orientation.Vertical, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(10, 0, 0, 0), Width = 100 };
-                    roleStackPanel.Children.Add(comboBox);
-                    stackPanel.Children.Add(roleStackPanel);
+                    ListViewItem listViewItem = new ListViewItem();
+
+                    StackPanel stackPanel = new StackPanel
+                    {
+                        Orientation = Orientation.Horizontal,
+                        Height = 50,
+                        Margin = new Thickness(10)
+                    };
+
+                    ImageBrush imageBrush = new ImageBrush();
+
+                    if (!string.IsNullOrEmpty(u.FotoPerfil))
+                        imageBrush.ImageSource = new BitmapImage(new Uri(u.FotoPerfil));
+
+                    Border border = new Border
+                    {
+                        CornerRadius = new CornerRadius(5),
+                        BorderThickness = new Thickness(0),
+                        Height = 50,
+                        Width = 50,
+                        Margin = new Thickness(0, 0, 10, 0),
+                        Background = imageBrush
+                    };
+
+                    StackPanel textStackPanel = new StackPanel
+                    {
+                        Orientation = Orientation.Vertical,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Margin = new Thickness(10, 0, 0, 0),
+                        Width = 150
+                    };
+
+                    TextBlock nameTextBlock = new TextBlock
+                    {
+                        Text = u.NombreUsuario
+                    };
+
+                    TextBlock fullNameTextBlock = new TextBlock
+                    {
+                        Text = $"{u.Nombre} {u.Apellido1} {u.Apellido2}"
+                    };
+
+                    textStackPanel.Children.Add(nameTextBlock);
+                    textStackPanel.Children.Add(fullNameTextBlock);
+
+
+                    stackPanel.Children.Add(border);
+                    stackPanel.Children.Add(textStackPanel);
+
+                    if (_usuario.Perfil != "ADMIN")
+                    {
+                        Border followBorder = new Border
+                        {
+                            Margin = new Thickness(10),
+                            CornerRadius = new CornerRadius(5),
+                            VerticalAlignment = VerticalAlignment.Center,
+                            HorizontalAlignment = HorizontalAlignment.Right,
+                            Background = new SolidColorBrush(Color.FromRgb(52, 168, 83)),
+                            BorderThickness = new Thickness(0),
+                            Cursor = Cursors.Hand
+                        };
+
+                        followBorder.MouseDown += (sender, e) => FollowUser(u);
+
+                        TextBlock followTextBlock = new TextBlock
+                        {
+                            Text = "Seguir",
+                            Padding = new Thickness(10, 5, 10, 5),
+                            FontWeight = FontWeights.Bold,
+                            FontFamily = new FontFamily("Segoe UI"),
+                            Foreground = new SolidColorBrush(Colors.White)
+                        };
+
+                        followBorder.Child = followTextBlock;
+                        stackPanel.Children.Add(followBorder);
+                    }
+
+                    listViewItem.MouseDoubleClick += (sender, e) =>
+                    {
+                        PgUsuario pgUsuario = new PgUsuario(_usuario.Id, u, _mainFrame);
+                        _mainFrame.Content = pgUsuario;
+                    };
+
+                    listViewItem.Content = stackPanel;
+                    lvUsuarios.Items.Add(listViewItem);
                 }
-
-                textStackPanel.Children.Add(nameTextBlock);
-                textStackPanel.Children.Add(fullNameTextBlock);
-
-                followBorder.Child = followTextBlock;
-
-                stackPanel.Children.Add(border);
-                stackPanel.Children.Add(textStackPanel);
-                stackPanel.Children.Add(followBorder);
-
-                listViewItem.Content = stackPanel;
-                lvUsuarios.Items.Add(listViewItem);
-
             }
         }
     }

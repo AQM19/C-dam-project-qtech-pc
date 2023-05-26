@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>V/5N/h9/+Zb+gnVwUTkMHB4EaPEHgYEWL6StJTaKnRk=</dsig:DigestValue>
+        <dsig:DigestValue>NQ3lhDgRgcD++rQ7vBd+Z/I3ZrEbmyK+K/hWWqCiuoI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BusinessLogic.dll" size="45056">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BusinessLogic.dll" size="46592">
       <assemblyIdentity name="BusinessLogic" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xlGABNXsSjh5bx73hh6lnl4arpwbmcYfHmPKFqRU2as=</dsig:DigestValue>
+        <dsig:DigestValue>CNyWr4lvIimLrMHXkOATxVcUIHp1ZBiTEkAoAInQufg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -121,7 +121,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Qvi/Af1iu0pbkQ6Ct//BKGOCPrqw1veE0D2oG1tDLYI=</dsig:DigestValue>
+        <dsig:DigestValue>UmY3luvDW9nzqXxJUylUsPyG5wXw2q+P70M74kUg6zo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -234,14 +234,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Q-Tech.exe" size="2860504">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Q-Tech.exe" size="1404888">
       <assemblyIdentity name="Q-Tech" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>aaBL/xGRSx8EeW8KRrKgAlpslraz+rxys3MMpLDsYSY=</dsig:DigestValue>
+        <dsig:DigestValue>W5Qpd9zbW5MH5+55m+3NDXDCAY235sCJZjHw2lLmNSs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

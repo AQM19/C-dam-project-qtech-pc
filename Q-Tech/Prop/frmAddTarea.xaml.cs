@@ -18,15 +18,15 @@ namespace Q_Tech.Prop
     /// <summary>
     /// Lógica de interacción para frmAddTarea.xaml
     /// </summary>
-    public partial class frmAddTarea : Window
+    public partial class FrmAddTarea : Window
     {
-        private long _id;
-        private Tarea _tarea;
-        public frmAddTarea()
+        private readonly long _id;
+        private readonly Tarea _tarea;
+        public FrmAddTarea()
         {
             InitializeComponent();
         }
-        public frmAddTarea(long id, Tarea tarea) : this()
+        public FrmAddTarea(long id, Tarea tarea) : this()
         {
             _id = id;
             _tarea = tarea;

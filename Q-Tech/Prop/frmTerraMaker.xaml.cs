@@ -21,7 +21,7 @@ namespace Q_Tech.Prop
     /// <summary>
     /// Lógica de interacción para frmTerraMaker.xaml
     /// </summary>
-    public partial class frmTerraMaker : Window
+    public partial class FrmTerraMaker : Window
     {
         private readonly Usuario _usuario;
         private List<Especie> _especies;
@@ -32,13 +32,13 @@ namespace Q_Tech.Prop
         public Terrario Terrario { get => _terrario; }
         public List<EspecieTerrario> EspeciesTerrario { get => _especiesTerrario; }
 
-        public frmTerraMaker()
+        public FrmTerraMaker()
         {
             InitializeComponent();
             _especies = new List<Especie>();
             _especiesTerrario = new List<EspecieTerrario>();
         }
-        public frmTerraMaker(Usuario usuario, Terrario terrario) : this()
+        public FrmTerraMaker(Usuario usuario, Terrario terrario) : this()
         {
             _terrario = terrario;
             _usuario = usuario;
@@ -69,22 +69,21 @@ namespace Q_Tech.Prop
         private void tbDescription_KeyUp(object sender, KeyEventArgs e)
         {
             int length = txbDescripcion.Text.Length;
-            string text = tbDescription.Text;
-            Brush foreground = tbDescription.Foreground;
 
-            text = $"{length} caracteres";
+            tbDescription.Text = $"{length} caracteres";
 
             if (length > 0 && length < 200)
-                foreground = Brushes.LimeGreen;
+                tbDescription.Foreground = Brushes.LimeGreen;
+
             if (length > 200 && length < 250)
             {
-                foreground = Brushes.Orange;
+                tbDescription.Foreground = Brushes.Orange;
                 tbDescription.Visibility = Visibility.Hidden;
             }
 
             if (length > 250)
             {
-                foreground = Brushes.Red;
+                tbDescription.Foreground = Brushes.Red;
                 tbDescription.Visibility = Visibility.Visible;
             }
         }
@@ -219,7 +218,7 @@ namespace Q_Tech.Prop
         }
         private void bdrAddSp_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            frmEspecies frmEspecies = new frmEspecies(_especies);
+            FrmEspecies frmEspecies = new FrmEspecies(_especies);
             if(frmEspecies.ShowDialog() == true)
             {
                 Especie especie = frmEspecies.Especie;
@@ -282,13 +281,13 @@ namespace Q_Tech.Prop
 
         private void btnObservaciones_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            frmListaObservaciones lista = new frmListaObservaciones(_terrario.Id);
+            FrmListaObservaciones lista = new FrmListaObservaciones(_terrario.Id);
             lista.ShowDialog();
         }
 
         private void btnTareas_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            frmListaTareas lista = new frmListaTareas(_terrario.Id);
+            FrmListaTareas lista = new FrmListaTareas(_terrario.Id);
             lista.ShowDialog();
         }
     }

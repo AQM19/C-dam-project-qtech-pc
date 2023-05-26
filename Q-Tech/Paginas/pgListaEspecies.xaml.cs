@@ -25,9 +25,9 @@ namespace Q_Tech.Paginas
     /// <summary>
     /// Lógica de interacción para pgListaEspecies.xaml
     /// </summary>
-    public partial class pgListaEspecies : Page
+    public partial class PgListaEspecies : Page
     {
-        public pgListaEspecies()
+        public PgListaEspecies()
         {
             InitializeComponent();
             CargarEspecies();
@@ -36,7 +36,7 @@ namespace Q_Tech.Paginas
         private async void brdAniadirEspecie_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Especie sp = new Especie();
-            frmAddEspecie addEspecie = new frmAddEspecie(sp);
+            FrmAddEspecie addEspecie = new FrmAddEspecie(sp);
             if(addEspecie.ShowDialog() == true)
             {
                 await Herramientas.AddEspecie(sp);
@@ -142,7 +142,7 @@ namespace Q_Tech.Paginas
                 border2.Child = image;
                 border2.MouseDown += async (sender, ev) =>
                 {
-                    frmAddEspecie frmAdd = new frmAddEspecie(e);
+                    FrmAddEspecie frmAdd = new FrmAddEspecie(e);
                     if(frmAdd.ShowDialog() == true)
                     {
                         await Herramientas.UpdateEspecie(e.Id, e);

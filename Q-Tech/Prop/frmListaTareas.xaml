@@ -1,11 +1,11 @@
-﻿<Window x:Class="Q_Tech.Prop.frmListaTareas"
+﻿<Window x:Class="Q_Tech.Prop.FrmListaTareas"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Q_Tech.Prop"
         mc:Ignorable="d"
-        Title="frmListaTareas" Height="450" Width="800">
+        Title="Lista de tareas" Height="450" Width="800">
     <Grid Margin="15">
         <ListView x:Name="lvListaTareas" Padding="15">
             <!--<ListViewItem HorizontalContentAlignment="Stretch">
