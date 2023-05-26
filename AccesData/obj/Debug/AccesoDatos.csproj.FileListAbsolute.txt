@@ -48,3 +48,4 @@ C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\o
 C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\obj\Debug\AccesoDatos.csproj.CopyComplete
 C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\obj\Debug\AccesData.dll
 C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\AccesData\obj\Debug\AccesData.pdb
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\AccesData\bin\Debug\AccesData.dll.config
