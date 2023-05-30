@@ -222,14 +222,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="652288">
-      <assemblyIdentity name="Newtonsoft.Json" version="10.0.0.0" publicKeyToken="30AD4FE6B2A6AEED" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="711952">
+      <assemblyIdentity name="Newtonsoft.Json" version="13.0.0.0" publicKeyToken="30AD4FE6B2A6AEED" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>bMDLzVxHCcahyX9VgcNH2T5YbnzA1kv/tNMsbnU0dqQ=</dsig:DigestValue>
+        <dsig:DigestValue>4eJ697B+7t9c5xqSVfBCKBam/FhJpIPGcU4bRyBE+p0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -539,7 +539,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>jSDitQEYZGB1k5GwBbxs6Xg+T6fIBbAio9m7qQiyyvk=</dsig:DigestValue>
+      <dsig:DigestValue>sKhS8L0zGLj0ydsRU6rWyCLUFU8Fz8ns9QQLli8VGyA=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
