@@ -198,7 +198,13 @@ namespace Q_Tech
                 try
                 {
                     Herramientas.CreateUsuario(newRegisterUser);
-                    IngresarAplicacion(newRegisterUser);
+                    txbUsername.Text = string.Empty;
+                    txbEmail.Text = string.Empty;
+                    pwbRegisterPass.Password = string.Empty;
+                    imgBrush.ImageSource = new BitmapImage(new Uri("/Recursos/Iconos/MainIcon.png", UriKind.RelativeOrAbsolute));
+
+                    Animacion(brdInicio, true, 0.5f);
+                    Animacion(brdRegistro, false, 0.5f);
                 }
                 catch (Exception)
                 {

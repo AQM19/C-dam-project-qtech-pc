@@ -42,6 +42,19 @@ namespace Q_Tech.Prop
         {
             _terrario = terrario;
             _usuario = usuario;
+
+            if(_terrario.Id == 0)
+            {
+                btnObservaciones.IsEnabled = false;
+                btnObservaciones.Background = Brushes.LightGray;
+                btnTareas.IsEnabled = false;
+                btnTareas.Background = Brushes.LightGray;
+                btnDel.IsEnabled = false;
+                btnDel.Background = Brushes.LightGray;
+                btnAdd.IsEnabled = false;
+                btnAdd.Background = Brushes.LightGray;
+            }
+
             DesplegarInformacion();
 
             this.Title = $"Terrario de {_usuario.NombreUsuario}";
@@ -149,6 +162,7 @@ namespace Q_Tech.Prop
                         FechaInsercion = DateTime.Today
                     });
                 }
+                
 
                 this.DialogResult = true;
                 this.Close();

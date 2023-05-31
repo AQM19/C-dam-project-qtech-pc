@@ -14,6 +14,7 @@ namespace BusinessLogic
 
         static private readonly TimeSpan intervaloConsulta = TimeSpan.FromSeconds(10);
         static private bool _pendingNotifications;
+        static private bool _poillingActive = true;
         readonly static string baseEndPoint = ConfigurationManager.AppSettings["urlApiLocal"].ToString();
 
         public static event EventHandler<PropertyChangedEventArgs> PropertyChanged;
@@ -38,7 +39,7 @@ namespace BusinessLogic
 
         static public async Task StartPeriodicQuery(long userId)
         {
-            while (true)
+            while (_poillingActive)
             {
                 await Task.Delay(intervaloConsulta);
 
@@ -52,6 +53,11 @@ namespace BusinessLogic
                     throw;
                 }
             }
+        }
+
+        public static void StopPeriodicQuery()
+        {
+            _poillingActive = false;
         }
     }
 }

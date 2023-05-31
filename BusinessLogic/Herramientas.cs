@@ -9,7 +9,8 @@ namespace BusinessLogic
 {
     public class Herramientas
     {
-        readonly static string baseEndPoint = ConfigurationManager.AppSettings["urlApiLocal"].ToString();
+        //readonly static string baseEndPoint = ConfigurationManager.AppSettings["urlApiLocal"].ToString();
+        readonly static string baseEndPoint = ConfigurationManager.AppSettings["urlApi"].ToString();
 
 
         #region Usuario

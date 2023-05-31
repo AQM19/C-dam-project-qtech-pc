@@ -81,14 +81,14 @@ namespace Q_Tech.Modales
             if (_selectedTerra != null)
             {
                 Lectura lectura = await Herramientas.GetLecturaActual(_selectedTerra.Id);
-                
+
                 if (lectura != null)
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         chartTemperature.Value = lectura.Temperatura;
                         chartHumid.Value = lectura.Humedad;
-                        chartLight.Value = lectura.Luz*10;
+                        chartLight.Value = lectura.Luz * 10;
                     });
                 }
             };
@@ -111,6 +111,7 @@ namespace Q_Tech.Modales
             {
                 await Herramientas.UpdateTerrario(_selectedTerra.Id, _selectedTerra);
                 await Herramientas.UpdateEspeciesOfTerrario(_selectedTerra.Id, terraMaker.EspeciesTerrario);
+
                 ObtenerTerrarios();
             }
         }
@@ -122,6 +123,7 @@ namespace Q_Tech.Modales
             if (terraMaker.ShowDialog() == true)
             {
                 await Herramientas.CreateTerrario(terra);
+                await Herramientas.UpdateEspeciesOfTerrario(_selectedTerra.Id, terraMaker.EspeciesTerrario);
                 ObtenerTerrarios();
             }
 

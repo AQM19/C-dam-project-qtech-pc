@@ -58,45 +58,9 @@ namespace Q_Tech.Paginas
             txbApellidos.Text = $"{_usuario.Apellido1} {_usuario.Apellido2}";
             txbTelephone.Text = _usuario.Telefono;
             dtpBirth.Text = _usuario.FechaNacimiento.ToString();
-            //cboRol.Text = _usuario.Perfil == "CLIENTE" ? "Cliente" : "Admin";
+
             CargarTerrarios();
-
-            //if (_usuario.Perfil.Equals("ADMIN")) stpDoABarrerRoll.Visibility = Visibility.Visible;
         }
-
-        //private async void CargarTerrarios()
-        //{
-        //    lvListaTerrarios.Items.Clear();
-        //    List<Terrario> terrarios = await Herramientas.GetTerrarios();
-
-        //    foreach (Terrario t in terrarios)
-        //    {
-
-        //        TextBlock text = new TextBlock
-        //        {
-        //            Text = t.Nombre
-        //        };
-
-        //        ListViewItem item = new ListViewItem
-        //        {
-        //            Content = text,
-        //            Tag = t.Id
-        //        };
-
-        //        item.MouseDoubleClick += async (sender, e) =>
-        //        {
-        //            FrmTerraMaker terraMaker = new FrmTerraMaker(_usuario, t);
-
-        //            if (terraMaker.ShowDialog() == true)
-        //            {
-        //                await Herramientas.UpdateTerrario(t.Id, t);
-        //                CargarTerrarios();
-        //            }
-        //        };
-
-        //        lvListaTerrarios.Items.Add(item);
-        //    }
-        //}
 
         private async void CargarTerrarios()
         {
@@ -171,6 +135,7 @@ namespace Q_Tech.Paginas
                     grid.Children.Add(stackPanel);
 
                     listViewItem.Content = grid;
+                    listViewItem.Tag = t.Id;
 
                     listViewItem.MouseDoubleClick += async (sender, e) =>
                     {
@@ -179,6 +144,8 @@ namespace Q_Tech.Paginas
                         if (terraMaker.ShowDialog() == true)
                         {
                             await Herramientas.UpdateTerrario(t.Id, t);
+                            await Herramientas.UpdateEspeciesOfTerrario(t.Id, terraMaker.EspeciesTerrario);
+
                             CargarTerrarios();
                         }
                     };
@@ -190,7 +157,11 @@ namespace Q_Tech.Paginas
 
         private void BtnChangePassword_Click(object sender, RoutedEventArgs e)
         {
-            //spPassword.Visibility = Visibility.Visible;
+            FrmChangePassword frmChangePassword = new FrmChangePassword(_usuario);
+            if (frmChangePassword.ShowDialog() == true)
+            {
+                Herramientas.UpdateUsuario(_usuario.Id, _usuario);
+            };
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -199,7 +170,6 @@ namespace Q_Tech.Paginas
             {
                 _usuario.NombreUsuario = txtUsername.Text;
                 _usuario.Email = txbEmail.Text;
-                //_usuario.Contrasena = pswPassword.Password;
                 _usuario.Nombre = txbNombre.Text;
                 string[] apellidos = txbApellidos.Text.Split(' ');
                 _usuario.Apellido1 = apellidos[0];
@@ -209,7 +179,6 @@ namespace Q_Tech.Paginas
                 {
                     _usuario.FechaNacimiento = fecha;
                 }
-                //_usuario.Perfil = cboRol.Text == "Cliente" ? "CLIENTE" : "ADMIN";
                 _usuario.FotoPerfil = CambiarImagenUsuario();
 
                 Herramientas.UpdateUsuario(_usuario.Id, _usuario);
@@ -225,7 +194,6 @@ namespace Q_Tech.Paginas
                 BlobClient blobClient = new BlobClient(blobUri, storageCredentials);
 
                 FileStream fileStream = File.OpenRead(Path.GetFullPath(_filename));
-                //await blobClient.UploadAsync(fileStream, true);
                 blobClient.Upload(fileStream, true);
                 fileStream.Close();
 
@@ -241,17 +209,10 @@ namespace Q_Tech.Paginas
         {
             if (string.IsNullOrEmpty(txbEmail.Text))
             {
-                MessageBox.Show("El campo nombre de correo no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("El campo correo no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
                 txbEmail.Focus();
                 return false;
             }
-            //if (string.IsNullOrEmpty(pswPassword.Password))
-            //{
-            //    MessageBox.Show("El campo de contraseña no puede estar vacío.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    spPassword.Visibility = Visibility.Visible;
-            //    pswPassword.Focus();
-            //    return false;
-            //}
             return true;
         }
 
@@ -295,19 +256,25 @@ namespace Q_Tech.Paginas
             if (terraMaker.ShowDialog() == true)
             {
                 await Herramientas.CreateTerrario(terra);
+                await Herramientas.UpdateEspeciesOfTerrario(terra.Id, terraMaker.EspeciesTerrario);
+
                 CargarTerrarios();
             }
         }
 
         private async void btnDelTerra_Click(object sender, RoutedEventArgs e)
         {
-            long id = (long)((ListViewItem)sender).Tag;
-
-            MessageBoxResult result = MessageBox.Show("¿Estás seguro de querer borrar este terrario?", "Aviso", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-
-            if (result == MessageBoxResult.Yes)
+            if (lvListaTerrarios.SelectedItem != null)
             {
-                await Herramientas.DeleteTerrario(id);
+                long id = (long)((ListViewItem)lvListaTerrarios.SelectedItem).Tag;
+
+                MessageBoxResult result = MessageBox.Show("¿Estás seguro de querer borrar este terrario?", "Aviso", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    await Herramientas.DeleteTerrario(id);
+                    CargarTerrarios();
+                }
             }
         }
     }

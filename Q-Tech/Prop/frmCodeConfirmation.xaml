@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Q_Tech.Prop"
         mc:Ignorable="d"
-        Title="Verificacion de cuenta" Height="115" Width="210" ResizeMode="NoResize">
+        Title="Verificacion de cuenta" Height="150" Width="250" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="8" Width="200" Grid.Row="0">
-            Inserta el código de verificación que hemos mandado 
+        <TextBlock Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Width="200" Grid.Row="0">
+            Inserta el código de verificación que 
             <LineBreak />
-            a tu email:
+            hemos mandado a tu email:
         </TextBlock>
         <TextBox Padding="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Grid.Row="1" UseLayoutRounding="True" x:Name="TxtConfirmCode"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Margin="12,0">
             <Button Content="Aceptar" Padding="5" Margin="5" x:Name="BtnAccept" Click="BtnAccept_Click"/>
             <Button Content="Cancelar" Padding="5" Margin="5" x:Name="BtnCancel" Click="BtnCancel_Click"/>
         </StackPanel>

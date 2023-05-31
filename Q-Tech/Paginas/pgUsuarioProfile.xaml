@@ -6,17 +6,18 @@
       xmlns:local="clr-namespace:Q_Tech.Paginas"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="pgUsuario">
+      Title="pgUsuario"
+      Background="#88FFFFFF">
 
-    <Grid Background="#88FFFFFF" Margin="15">
+    <Grid Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.75*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -32,34 +33,37 @@
 
             <Image Source="/Recursos/Iconos/MainIcon.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Stretch="Fill" x:Name="imgProfilePic" MouseDown="imgProfilePic_MouseDown" Cursor="Hand"/>
             <TextBlock Text="USERNAME" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" FontSize="42" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="txtUsername" Cursor="Hand"/>
-            <!--<TextBox x:Name="txbTimeline" Text="Timeline" Grid.Column="1" Grid.Row="1" Height="25" MaxWidth="550" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>-->
-            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0">
-                <TextBox x:Name="txbNombre" Width="150" Padding="3" Background="Transparent" BorderThickness="0"/>
-                <TextBox x:Name="txbApellidos" Width="150" Padding="3" Background="Transparent" BorderThickness="0"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Margin="20,0">
-                <StackPanel Orientation="Vertical" Margin="0,3">
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0">
+                </StackPanel>
+            <DockPanel LastChildFill="False" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Margin="20,0">
+                <StackPanel Orientation="Vertical" Margin="0,3" DockPanel.Dock="Top">
                     <TextBlock Text="Fecha de nacimiento" Margin="0,0,0,3"/>
                     <DatePicker Text="Fecha de nacimiento" VerticalContentAlignment="Center" x:Name="dtpBirth"/>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="0,3">
+                <StackPanel Orientation="Vertical" Margin="0,3" DockPanel.Dock="Bottom">
                     <TextBlock Text="Teléfono" Margin="0,0,0,3"/>
                     <TextBox Text="Teléfono" Padding="3" VerticalContentAlignment="Center" x:Name="txbTelephone" PreviewTextInput="txbTelephone_PreviewTextInput"/>
                 </StackPanel>
-            </StackPanel>
+            </DockPanel>
         </Grid>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical" Grid.Column="0" VerticalAlignment="Center" Margin="50,10">
-                <TextBlock Text="Correo" Margin="0,0,0,3"/>
-                <TextBox Text="Correo electrónico" Padding="3" VerticalContentAlignment="Center" x:Name="txbEmail"/>
+        
+        <!--ROW1-->
+        <DockPanel Grid.Row="1" LastChildFill="False" Margin="15">
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                <TextBlock Text="Nombre" Margin="5,0" Padding="3"/>
+                <TextBox x:Name="txbNombre" Width="150" Margin="5,0" Padding="5" BorderThickness="1"/>
             </StackPanel>
-            <Button Content="Cambiar contraseña" Grid.Column="1" Width="130" Height="35" VerticalAlignment="Center" x:Name="BtnChangePassword" Click="BtnChangePassword_Click"/>
-        </Grid>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                <TextBlock Text="Apellidos" Padding="3" Margin="5,0"/>
+                <TextBox x:Name="txbApellidos" Width="150" Margin="5,0" Padding="5" BorderThickness="1"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                <TextBlock Text="Correo" Padding="3" Margin="5,0"/>
+                <TextBox x:Name="txbEmail" Width="150" Margin="5,0" Padding="5" BorderThickness="1"/>
+            </StackPanel>
+            <Button Content="Cambiar contraseña" x:Name="BtnChangePassword" Click="BtnChangePassword_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" DockPanel.Dock="Right"/>
+        </DockPanel>
+        
 
         <DockPanel LastChildFill="True" Grid.Row="2" Margin="50,0">
             <StackPanel DockPanel.Dock="Right" Orientation="Vertical" Margin="5,0">
@@ -93,7 +97,7 @@
 
         <Grid Grid.Row="3" Margin="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="10*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>

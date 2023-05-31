@@ -60,8 +60,8 @@ namespace Q_Tech.Paginas
                 // Crear Grid
                 Grid grid = new Grid();
                 grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.35, GridUnitType.Star) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(2, GridUnitType.Star) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(150, GridUnitType.Pixel) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(300, GridUnitType.Pixel) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
 
                 // Crear Border
@@ -90,7 +90,9 @@ namespace Q_Tech.Paginas
                 {
                     Text = $"{e.Genero} {e.Sp}",
                     FontSize = 18,
-                    FontWeight = FontWeights.Bold
+                    FontWeight = FontWeights.Bold,
+                    TextTrimming = TextTrimming.WordEllipsis,
+                    TextWrapping = TextWrapping.Wrap
                 };
                 stackPanel.Children.Add(textBlock1);
 
@@ -106,9 +108,7 @@ namespace Q_Tech.Paginas
                     Text = e.Descripcion,
                     Padding = new Thickness(5),
                     TextWrapping = TextWrapping.Wrap,
-                    MaxWidth = 290,
-                    MaxHeight = 50,
-                    TextTrimming = TextTrimming.CharacterEllipsis
+                    TextTrimming = TextTrimming.WordEllipsis
                 };
                 Grid.SetColumn(textBlock3, 2);
                 grid.Children.Add(textBlock3);

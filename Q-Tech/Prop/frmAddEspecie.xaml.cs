@@ -68,6 +68,10 @@ namespace Q_Tech.Prop
                 txbMaxTempHib.Text = _especie.TemperaturaHibMaxima.ToString();
                 txbMinTempHib.Text = _especie.TemperaturaHibMinima.ToString();
                 txbMaxLuzHib.Text = _especie.HorasLuzHib.ToString();
+
+                Grid.SetColumnSpan(spTempMAX, 1);
+                Grid.SetColumnSpan(spTempmin, 1);
+                Grid.SetColumnSpan(spLuzMAX, 1);
             }
         }
         private async void btnSave_MouseDown(object sender, MouseButtonEventArgs e)

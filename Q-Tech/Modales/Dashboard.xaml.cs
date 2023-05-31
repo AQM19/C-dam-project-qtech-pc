@@ -19,6 +19,9 @@ namespace Q_Tech.Modales
         private readonly Usuario _usuario;
         private string _textValue;
         private readonly DispatcherTimer debounceTimer = new DispatcherTimer();
+        private bool _logoutRequested = false;
+        private DispatcherTimer _logoutTimer;
+        private bool _notificationPollingActive = false;
 
         public FrmDashboard()
         {
@@ -230,8 +233,34 @@ namespace Q_Tech.Modales
 
         private void BtnLogout_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.DialogResult = true;
-            this.Close();
+            _logoutRequested = true;
+
+            if (_notificationPollingActive)
+            {
+                NotificationPollingComponent.StopPeriodicQuery();
+            }
+
+            if (_logoutTimer == null)
+            {
+                _logoutTimer = new DispatcherTimer();
+                _logoutTimer.Interval = TimeSpan.FromMilliseconds(500);
+                _logoutTimer.Tick += LogoutTimer_Tick;
+            }
+
+            _logoutTimer.Start();
+        }
+
+        private void LogoutTimer_Tick(object sender, EventArgs e)
+        {
+            _logoutTimer.Stop();
+
+            if (_logoutRequested)
+            {
+                this.DialogResult = true;
+                this.Close();
+            }
+
+            _logoutRequested = false;
         }
     }
 }

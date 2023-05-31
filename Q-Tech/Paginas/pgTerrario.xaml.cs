@@ -193,7 +193,7 @@ namespace Q_Tech.Paginas
 
                 Image image = new Image
                 {
-                    Source = new BitmapImage(new Uri(e.Imagen, UriKind.RelativeOrAbsolute)),
+                    Source = new BitmapImage(new Uri(e.Imagen ?? "/Recursos/Iconos/MainIcon.png", UriKind.RelativeOrAbsolute)),
                 };
                 Grid.SetColumn(image, 0);
 

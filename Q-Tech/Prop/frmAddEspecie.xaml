@@ -63,23 +63,23 @@
                 </Grid.RowDefinitions>
 
                 <!--ROW0-->
-                <StackPanel Grid.Column="0" Grid.Row="0" x:Name="spTempMAX">
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" x:Name="spTempMAX">
                     <TextBlock Text="Temperatura MAX" Padding="0,5" Margin="5,0"/>
                     <TextBox Padding="5" Margin="5,0" x:Name="txbMaxTemp" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Grid.Row="0" x:Name="spTempHibMAX">
+                <StackPanel Grid.Column="1" Grid.Row="0" x:Name="spTempHibMAX" Visibility="Collapsed">
                     <TextBlock Text="Temp. MAX Hib" Padding="0,5" Margin="5,0"/>
                     <TextBox Padding="5" Margin="5,0" x:Name="txbMaxTempHib" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
                 </StackPanel>
 
                 <!--ROW1-->
-                <StackPanel Grid.Column="0" Grid.Row="1" x:Name="spTempmin">
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" x:Name="spTempmin">
                     <TextBlock Text="Temperatura min" Padding="0,5" Margin="5,0"/>
                     <TextBox Padding="5" Margin="5,0" x:Name="txbMinTemp" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Grid.Row="1" x:Name="spTempHibmin">
+                <StackPanel Grid.Column="1" Grid.Row="1" x:Name="spTempHibmin" Visibility="Collapsed">
                     <TextBlock Text="Temp min Hib" Padding="0,5" Margin="5,0"/>
                     <TextBox Padding="5" Margin="5,0" x:Name="txbMinTempHib" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
                 </StackPanel>
@@ -96,12 +96,12 @@
                 </StackPanel>
 
                 <!--ROW3-->
-                <StackPanel Grid.Column="0" Grid.Row="3" x:Name="spLuzMAX">
+                <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" x:Name="spLuzMAX">
                     <TextBlock Text="Horas de luz" Padding="0,5" Margin="5,0"/>
                     <TextBox Padding="5" Margin="5,0" x:Name="txbMaxLuz" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Grid.Row="3" x:Name="spLuzHibMAX">
+                <StackPanel Grid.Column="1" Grid.Row="3" x:Name="spLuzHibMAX" Visibility="Collapsed">
                     <TextBlock Text="Horas de luz hib" Padding="0,5" Margin="5,0"/>
                     <TextBox Padding="5" Margin="5,0" x:Name="txbMaxLuzHib" PreviewTextInput="txbMaxTemp_PreviewTextInput"/>
                 </StackPanel>
