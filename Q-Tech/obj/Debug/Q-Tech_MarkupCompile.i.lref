@@ -1,5 +1,6 @@
-﻿C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\obj\Debug\GeneratedInternalTypeHelper.g.i.cs
+﻿C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\GeneratedInternalTypeHelper.g.i.cs
 
+<<<<<<< HEAD
 FC:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\Modales\Dashboard.xaml;;
 FC:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\Paginas\PgIndex.xaml;;
 FC:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\Modales\Login.xaml;;
@@ -20,4 +21,25 @@ FC:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\Pro
 FC:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\Prop\FrmListaObservaciones.xaml;;
 FC:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\Prop\FrmListaTareas.xaml;;
 FC:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\Prop\FrmTerraMaker.xaml;;
+=======
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Modales\Dashboard.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Paginas\PgIndex.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Modales\Login.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Paginas\PgListaEspecies.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Paginas\PgListaLogros.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Paginas\PgListaNotificaciones.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Paginas\PgTerrario.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Paginas\PgUsuario.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Paginas\PgUsuarioProfile.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Paginas\PgListaUsuarios.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Prop\FrmAddEspecie.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Prop\FrmAddLogro.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Prop\FrmAddObservacion.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Prop\FrmAddTarea.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Prop\FrmCodeConfirmation.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Prop\FrmEspecies.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Prop\FrmListaObservaciones.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Prop\FrmListaTareas.xaml;;
+FC:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\Prop\FrmTerraMaker.xaml;;
+>>>>>>> 4ac909ef482f9226a671ac8ab22fc10acdbb80e1
 
