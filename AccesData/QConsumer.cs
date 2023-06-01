@@ -19,86 +19,130 @@ namespace AccesData
 
         public async Task<T> GetAsync<T>(string url)
         {
-            HttpResponseMessage response = await _httpClient.GetAsync(url);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string content = await response.Content.ReadAsStringAsync();
-                T result = JsonConvert.DeserializeObject<T>(content);
-                return result;
+
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    T result = JsonConvert.DeserializeObject<T>(content);
+                    return result;
+                }
+                else
+                {
+                    throw new ApplicationException($"Error al obtener el recurso: {response.StatusCode}");
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new ApplicationException($"Error al obtener el recurso: {response.StatusCode}");
+                throw new ApplicationException("Error inesperado.");
             }
         }
 
         public async Task<T> LoginAsync<T>(string url, string user, string contra)
         {
 
-            Dictionary<string, string> data = new Dictionary<string, string>
+            try
+            {
+                Dictionary<string, string> data = new Dictionary<string, string>
             {
                 { "param", user },
                 { "password", contra }
             };
 
-            string json = JsonConvert.SerializeObject(data);
-            HttpClient client = new HttpClient();
-            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync(url, content);
-            if (response.IsSuccessStatusCode)
-            {
-                string responseJson = await response.Content.ReadAsStringAsync();
-                T responseObject = JsonConvert.DeserializeObject<T>(responseJson);
-                return responseObject;
+                string json = JsonConvert.SerializeObject(data);
+                HttpClient client = new HttpClient();
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseJson = await response.Content.ReadAsStringAsync();
+                    T responseObject = JsonConvert.DeserializeObject<T>(responseJson);
+                    return responseObject;
+                }
+                else
+                {
+                    return default;
+                }
             }
-            else
+            catch (Exception)
             {
-                return default;
+                throw new ApplicationException("Error inesperado.");
             }
         }
 
         public async Task<T> PostAsync<T>(string url, T data)
         {
-            string json = JsonConvert.SerializeObject(data);
-            HttpClient client = new HttpClient();
-            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync(url, content);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string responseJson = await response.Content.ReadAsStringAsync();
-                T responseObject = JsonConvert.DeserializeObject<T>(responseJson);
-                return responseObject;
+                string json = JsonConvert.SerializeObject(data);
+                HttpClient client = new HttpClient();
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseJson = await response.Content.ReadAsStringAsync();
+                    T responseObject = JsonConvert.DeserializeObject<T>(responseJson);
+                    return responseObject;
+                }
+                else
+                {
+                    return default;
+                }
             }
-            else
+            catch (Exception)
             {
-                return default;
+                throw new ApplicationException("Error inesperado.");
             }
         }
 
         public async Task<T> CreateAsync<T>(string url, T data)
         {
-            HttpClient client = new HttpClient();
+            try
+            {
+                HttpClient client = new HttpClient();
 
-            HttpResponseMessage response = await client.PostAsJsonAsync(url, data);
-            response.EnsureSuccessStatusCode();
+                HttpResponseMessage response = await client.PostAsJsonAsync(url, data);
+                response.EnsureSuccessStatusCode();
 
-            return default;
+                return default;
+
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Error inesperado.");
+            }
         }
 
         public async Task<T> UpdateAsync<T>(string url, T data)
         {
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.PutAsJsonAsync(url, data);
-            response.EnsureSuccessStatusCode();
-            T genericObject = await response.Content.ReadAsAsync<T>();
-            return genericObject;
+            try
+            {
+                HttpClient client = new HttpClient();
+                HttpResponseMessage response = await client.PutAsJsonAsync(url, data);
+                response.EnsureSuccessStatusCode();
+                T genericObject = await response.Content.ReadAsAsync<T>();
+                return genericObject;
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Error inesperado.");
+            }
         }
 
         public async Task<T> DeleteAsync<T>(string url)
         {
-            HttpClient client = new HttpClient();
-            await client.DeleteAsync(url);
-            return default;
+            try
+            {
+                HttpClient client = new HttpClient();
+                await client.DeleteAsync(url);
+                return default;
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Error inesperado.");
+            }
         }
     }
 }
