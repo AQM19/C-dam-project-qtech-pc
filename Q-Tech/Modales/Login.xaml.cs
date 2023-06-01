@@ -35,6 +35,25 @@ namespace Q_Tech
             InitializeComponent();
             _showPassword = false;
             _showRegisterPassword = false;
+
+            string username = ConfigurationManager.AppSettings["Username"];
+            string encryptedPassword = ConfigurationManager.AppSettings["Password"];
+
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(encryptedPassword))
+            {
+                string password = encryptedPassword;
+                Autologin(username, encryptedPassword);
+            }
+        }
+
+        private async void Autologin(string username, string password)
+        {
+            Usuario usuario = await Herramientas.Login(username, password);
+
+            if(usuario != null)
+            {
+                IngresarAplicacion(usuario);
+            }
         }
 
         private void PasswordViewer_Click(object sender, RoutedEventArgs e)
@@ -110,11 +129,6 @@ namespace Q_Tech
             border.BeginAnimation(Border.OpacityProperty, anim);
         }
 
-        private void txtRecordar_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            EmailSender.SendVerificationEmail("korbatos@gmail.com", "hola");
-        }
-
         private void pthImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -167,8 +181,35 @@ namespace Q_Tech
                     return;
                 }
 
+                if (chkRememberCredentials.IsChecked == true)
+                {
+                    GuardarCredenciales(txtUser.Text, PasswordBind.Password);
+                }
+                else
+                {
+                    LimpiarCredenciales();
+                }
+
                 IngresarAplicacion(usuario);
             }
+        }
+
+        private void GuardarCredenciales(string username, string password)
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["Username"].Value = username;
+            config.AppSettings.Settings["Password"].Value = password;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+
+        private void LimpiarCredenciales()
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["Username"].Value = string.Empty;
+            config.AppSettings.Settings["Password"].Value = string.Empty;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
         }
 
         private async void brdRegister_MouseDown(object sender, MouseButtonEventArgs e)
