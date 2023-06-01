@@ -106,6 +106,7 @@ namespace Q_Tech.Modales
 
         private async void bdrMainTerra_MouseDown(object sender, MouseButtonEventArgs e)
         {
+
             FrmTerraMaker terraMaker = new FrmTerraMaker(_user, _selectedTerra);
             if (terraMaker.ShowDialog() == true)
             {
@@ -120,6 +121,7 @@ namespace Q_Tech.Modales
         {
             Terrario terra = new Terrario();
             FrmTerraMaker terraMaker = new FrmTerraMaker(_user, terra);
+
             if (terraMaker.ShowDialog() == true)
             {
                 await Herramientas.CreateTerrario(terra);
