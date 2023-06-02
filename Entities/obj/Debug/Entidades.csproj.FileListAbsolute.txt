@@ -22,3 +22,9 @@ C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Entities\obj\Debug\Entidade
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Entities\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Entities\obj\Debug\Entities.dll
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Entities\obj\Debug\Entities.pdb
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Entities\bin\Debug\Entities.dll
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Entities\bin\Debug\Entities.pdb
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Entities\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Entities\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Entities\obj\Debug\Entities.dll
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Entities\obj\Debug\Entities.pdb
