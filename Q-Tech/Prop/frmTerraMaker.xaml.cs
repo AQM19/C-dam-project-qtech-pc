@@ -132,27 +132,6 @@ namespace Q_Tech.Prop
                 _terrario.FechaCreacion = DateTime.Today;
                 _terrario.FechaUltimaModificacion = DateTime.Today;
 
-                if (_especies.Count > 0)
-                {
-                    _terrario.TemperaturaMinima = _especies.Max(x => x.TemperaturaMinima);
-                    _terrario.TemperaturaMaxima = _especies.Min(x => x.TemperaturaMaxima);
-
-                    _terrario.HumedadMinima = _especies.Max(x => x.HumedadMinima);
-                    _terrario.HumedadMaxima = _especies.Min(x => x.HumedadMaxima);
-
-                    _terrario.HorasLuz = _especies.Min(x => x.HorasLuz);
-
-                    _terrario.Hibernacion = (sbyte)(_especies.All(x => x.Hiberna == 1) ? 1 : 0);
-
-                    if (_terrario.Hibernacion == 1)
-                    {
-                        _terrario.TemperaturaMinimaHiber = _especies.Max(x => x.TemperaturaHibMinima);
-                        _terrario.TemperaturaMaximaHiber = _especies.Min(x => x.TemperaturaHibMaxima);
-
-                        _terrario.HorasLuzHiber = _especies.Min(x => x.HorasLuzHib);
-                    }
-                }
-
                 for (int i = 0; i < _especies.Count; i++)
                 {
                     _especiesTerrario.Add(new EspecieTerrario

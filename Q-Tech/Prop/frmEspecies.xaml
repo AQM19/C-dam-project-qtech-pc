@@ -10,33 +10,41 @@
         <local1:BoolToImageConverter x:Key="BoolToImageConverter"/>
     </Window.Resources>
     <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
-            <ListView x:Name="lvEspecies" SelectionMode="Single">
-                <ListView.View>
-                    <GridView>
-                        <!-- Genero sp -->
-                        <GridViewColumn Header="Género" DisplayMemberBinding="{Binding Genero}" Width="100" />
-                        <GridViewColumn Header="Especie" DisplayMemberBinding="{Binding Sp}" Width="100"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Margin="5" CornerRadius="15" BorderThickness="1" BorderBrush="LightGray">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Recursos/Iconos/lupa.png" Width="24" Margin="15,0"/>
+                <TextBox Grid.Row="0" Padding="5" Margin="5" BorderThickness="0" Width="700" TextChanged="TextBox_TextChanged"/>
+            </StackPanel>
+        </Border>
+        <ListView x:Name="lvEspecies" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <!-- Genero sp -->
+                    <GridViewColumn Header="Género" DisplayMemberBinding="{Binding Genero}" Width="110"/>
+                    <GridViewColumn Header="Especie" DisplayMemberBinding="{Binding Sp}" Width="110"/>
 
-                        <!-- Params -->
-                        <GridViewColumn Header="Temp MAX" DisplayMemberBinding="{Binding TemperaturaMaxima}" Width="100"/>
-                        <GridViewColumn Header="Temp min" DisplayMemberBinding="{Binding TemperaturaMinima}" Width="100"/>
-                        <GridViewColumn Header="Hum MAX" DisplayMemberBinding="{Binding HumedadMaxima}" Width="100"/>
-                        <GridViewColumn Header="Hum min" DisplayMemberBinding="{Binding HumedadMinima}" Width="100"/>
-                        <GridViewColumn Header="Luz" DisplayMemberBinding="{Binding HorasLuz}" Width="100"/>
+                    <!-- Params -->
+                    <GridViewColumn Header="Temp MAX" DisplayMemberBinding="{Binding TemperaturaMaxima}" Width="90"/>
+                    <GridViewColumn Header="Temp min" DisplayMemberBinding="{Binding TemperaturaMinima}" Width="90"/>
+                    <GridViewColumn Header="Hum MAX" DisplayMemberBinding="{Binding HumedadMaxima}" Width="90"/>
+                    <GridViewColumn Header="Hum min" DisplayMemberBinding="{Binding HumedadMinima}" Width="90"/>
+                    <GridViewColumn Header="Luz" DisplayMemberBinding="{Binding HorasLuz}" Width="100"/>
 
-                        <!-- Hibernation -->
-                        <GridViewColumn Header="Hiberna" Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding Hiberna, Converter={StaticResource BoolToImageConverter}}" Width="16" Height="16" HorizontalAlignment="Center" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </ScrollViewer>
+                    <!-- Hibernation -->
+                    <GridViewColumn Header="Hiberna" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Hiberna, Converter={StaticResource BoolToImageConverter}}" Width="16" Height="16"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
