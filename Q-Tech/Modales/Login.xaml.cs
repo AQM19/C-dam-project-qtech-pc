@@ -242,10 +242,11 @@ namespace Q_Tech
                     txbUsername.Text = string.Empty;
                     txbEmail.Text = string.Empty;
                     pwbRegisterPass.Password = string.Empty;
-                    imgBrush.ImageSource = new BitmapImage(new Uri("/Recursos/Iconos/MainIcon.png", UriKind.RelativeOrAbsolute));
 
                     Animacion(brdInicio, true, 0.5f);
                     Animacion(brdRegistro, false, 0.5f);
+
+                    dpLoader.Visibility = Visibility.Collapsed;
                 }
                 catch (Exception)
                 {
@@ -312,7 +313,7 @@ namespace Q_Tech
                 string connectionString = ConfigurationManager.AppSettings["azureacc"].ToString();
                 BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
 
-                string containerName = username;
+                string containerName = username.ToLower(); ;
 
                 BlobContainerClient container = await blobServiceClient.CreateBlobContainerAsync(containerName);
                 container.SetAccessPolicy(Azure.Storage.Blobs.Models.PublicAccessType.BlobContainer);

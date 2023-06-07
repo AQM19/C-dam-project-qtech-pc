@@ -9,8 +9,8 @@ namespace BusinessLogic
 {
     public class Herramientas
     {
-        //readonly static string baseEndPoint = ConfigurationManager.AppSettings["urlApiLocal"].ToString();
-        readonly static string baseEndPoint = ConfigurationManager.AppSettings["urlApi"].ToString();
+        readonly static string baseEndPoint = ConfigurationManager.AppSettings["urlApiLocal"].ToString();
+        //readonly static string baseEndPoint = ConfigurationManager.AppSettings["urlApi"].ToString();
 
 
         #region Usuario
@@ -253,7 +253,7 @@ namespace BusinessLogic
         public static async Task UpdateObservacion(long id, Observacion observacion)
         {
             QConsumer qc = new QConsumer();
-            await qc.UpdateAsync<Observacion>($"{baseEndPoint}/observacions/{id}", observacion);
+            await qc.UpdateAsync<Observacion>($"{baseEndPoint}/observaciones/{id}", observacion);
         }
         public static async Task CreateObservacion(Observacion observacion)
         {

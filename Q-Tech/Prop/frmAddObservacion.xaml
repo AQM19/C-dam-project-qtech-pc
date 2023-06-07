@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Q_Tech.Prop"
         mc:Ignorable="d"
-        Title="Añadir observacion" Height="300" Width="400">
+        Title="Añadir observacion" Height="300" Width="400" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <TextBox Margin="10" Padding="5" AcceptsReturn="True" MaxLength="150" x:Name="txbTexto"/>
+        <TextBox Margin="10" Padding="5" AcceptsReturn="True" MaxLength="150" x:Name="txbTexto" TextWrapping="Wrap"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5" HorizontalAlignment="Right">
             <Border Width="32" Height="32" x:Name="btnSave" MouseDown="btnSave_MouseDown" Background="#BDECB6" Padding="3" Margin="5" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand">

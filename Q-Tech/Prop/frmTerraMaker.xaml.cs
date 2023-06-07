@@ -1,4 +1,6 @@
-﻿using BusinessLogic;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage;
+using BusinessLogic;
 using Entities;
 using Microsoft.Win32;
 using Microsoft.WindowsAzure.Storage;
@@ -38,12 +40,13 @@ namespace Q_Tech.Prop
             _especies = new List<Especie>();
             _especiesTerrario = new List<EspecieTerrario>();
         }
+
         public FrmTerraMaker(Usuario usuario, Terrario terrario) : this()
         {
             _terrario = terrario;
             _usuario = usuario;
 
-            if(_terrario.Id == 0)
+            if (_terrario.Id == 0)
             {
                 btnObservaciones.IsEnabled = false;
                 btnObservaciones.Background = Brushes.LightGray;
@@ -59,6 +62,7 @@ namespace Q_Tech.Prop
 
             this.Title = $"Terrario de {_usuario.NombreUsuario}";
         }
+
         private async void DesplegarInformacion()
         {
             if (_terrario != null)
@@ -69,10 +73,18 @@ namespace Q_Tech.Prop
                 txbEcosistema.Text = _terrario.Ecosistema;
                 numberPicker.Text = _terrario.Tamano.ToString();
                 imgTerraPic.Source = new BitmapImage(new Uri(_terrario.Foto ?? "\\Recursos\\Iconos\\MainIcon.png", UriKind.RelativeOrAbsolute));
+                _filename = imgTerraPic.Source.ToString();
                 txbDescripcion.Text = _terrario.Descripcion;
+
                 if (_terrario.Id != 0)
                 {
                     _especies = await Herramientas.GetEspeciesTerrario(_terrario.Id);
+                }
+
+                if (_terrario.Privado == 0)
+                {
+                    spPassOne.Visibility = Visibility.Hidden;
+                    spPassTwo.Visibility = Visibility.Hidden;
                 }
 
                 MostrarEspecies();
@@ -100,11 +112,13 @@ namespace Q_Tech.Prop
                 tbDescription.Visibility = Visibility.Visible;
             }
         }
+
         private void chkPrivate_Click(object sender, RoutedEventArgs e)
         {
             spPassOne.Visibility = (chkPrivate.IsChecked == true) ? Visibility.Visible : Visibility.Hidden;
             spPassTwo.Visibility = (chkPrivate.IsChecked == true) ? Visibility.Visible : Visibility.Hidden;
         }
+
         private void btnSave_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (ValidData())
@@ -120,15 +134,18 @@ namespace Q_Tech.Prop
 
                 _terrario.Sustrato = txbSustrato.Text;
                 _terrario.Ecosistema = txbEcosistema.Text;
+
                 if (!string.IsNullOrEmpty(numberPicker.Text))
                 {
                     _terrario.Tamano = Int32.Parse(numberPicker.Text);
                 }
+
                 if (_filename != null)
                 {
                     _terrario.Foto = CargarImagenAzure();
                 }
-                _terrario.Descripcion = tbDescription.Text;
+
+                _terrario.Descripcion = txbDescripcion.Text;
                 _terrario.FechaCreacion = DateTime.Today;
                 _terrario.FechaUltimaModificacion = DateTime.Today;
 
@@ -141,34 +158,36 @@ namespace Q_Tech.Prop
                         FechaInsercion = DateTime.Today
                     });
                 }
-                
+
 
                 this.DialogResult = true;
                 this.Close();
             }
         }
+
         private string CargarImagenAzure()
         {
-            string connectionString = ConfigurationManager.AppSettings["azureacc"].ToString();
-            string containerName = _usuario.NombreUsuario;
-            string userName = _usuario.NombreUsuario;
-            string imageName = _terrario.Nombre;
-
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString);
-            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-
-            CloudBlobContainer container = blobClient.GetContainerReference(containerName);
-            string prefix = userName + "/";
-
-            CloudBlockBlob blob = container.GetBlockBlobReference(prefix + imageName);
-
-            using (FileStream fileStream = File.OpenRead(_filename))
+            if (!string.IsNullOrEmpty(_filename) && !_filename.Equals(imgTerraPic.Source.ToString()))
             {
-                blob.UploadFromStream(fileStream);
+                string containerName = _usuario.NombreUsuario.ToLower();
+                string imageName = _terrario.Nombre;
+                long miliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+                string uri = $"https://qtechstorage.blob.core.windows.net/{containerName}/{imageName}{miliseconds}{Path.GetExtension(_filename)}".Replace(" ", "").Trim();
+
+                Uri blobUri = new Uri(uri);
+                StorageSharedKeyCredential storageCredentials = new StorageSharedKeyCredential("qtechstorage", ConfigurationManager.AppSettings["qtechstorage"].ToString());
+                BlobClient blobClient = new BlobClient(blobUri, storageCredentials);
+
+                FileStream fileStream = File.OpenRead(Path.GetFullPath(_filename));
+                blobClient.Upload(fileStream, true);
+                fileStream.Close();
+
+                return blobUri.ToString();
             }
 
-            return $"https://qtechstorage.blob.core.windows.net/{prefix}{imageName}";
+            return imgTerraPic.Source.ToString();
         }
+
         private string EncriptacionSHA256(string psw)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(psw);
@@ -182,10 +201,12 @@ namespace Q_Tech.Prop
 
             return hashString;
         }
+
         private void btnCancel_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
         }
+
         private bool ValidData()
         {
             if (string.IsNullOrEmpty(tbName.Text))
@@ -209,10 +230,11 @@ namespace Q_Tech.Prop
 
             return true;
         }
+
         private void bdrAddSp_MouseDown(object sender, MouseButtonEventArgs e)
         {
             FrmEspecies frmEspecies = new FrmEspecies(_especies);
-            if(frmEspecies.ShowDialog() == true)
+            if (frmEspecies.ShowDialog() == true)
             {
                 Especie especie = frmEspecies.Especie;
 
@@ -223,6 +245,7 @@ namespace Q_Tech.Prop
                 }
             }
         }
+
         private void bdrDelSp_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (lvEspecies.SelectedItems.Count > 0)
@@ -234,6 +257,7 @@ namespace Q_Tech.Prop
                 MostrarEspecies();
             }
         }
+
         private void MostrarEspecies()
         {
             lvEspecies.Items.Clear();
@@ -249,6 +273,7 @@ namespace Q_Tech.Prop
                 lvEspecies.Items.Add(item);
             }
         }
+
         private void imgTerraPic_MouseDown(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -262,8 +287,10 @@ namespace Q_Tech.Prop
             if (result == true)
             {
                 _filename = openFileDialog.FileName;
+                imgTerraPic.Source = new BitmapImage(new Uri(_filename));
             }
         }
+
         private void numberPicker_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!char.IsDigit(e.Text, 0) && e.Text != "\t" && e.Text != "\b")

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Q_Tech.Prop"
         mc:Ignorable="d"
-        Title="Lista de tareas" Height="450" Width="800">
+        Title="Lista de tareas" MinHeight="450" MinWidth="800">
     <Grid Margin="15">
         <ListView x:Name="lvListaTareas" Padding="15">
             <!--<ListViewItem HorizontalContentAlignment="Stretch">

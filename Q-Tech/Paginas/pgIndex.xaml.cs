@@ -86,13 +86,15 @@ namespace Q_Tech.Modales
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        chartTemperature.Value = lectura.Temperatura;
-                        chartHumid.Value = lectura.Humedad;
+                        chartTemperature.Value = float.Parse(Math.Round(lectura.Temperatura, 1).ToString("F1"));
+                        chartHumid.Value = float.Parse(Math.Round(lectura.Humedad, 1).ToString("F1"));
                         chartLight.Value = lectura.Luz * 10;
                     });
                 }
             };
         }
+
+
 
         private async void SeleccionarTerrario(Terrario terra)
         {
@@ -125,10 +127,17 @@ namespace Q_Tech.Modales
             if (terraMaker.ShowDialog() == true)
             {
                 await Herramientas.CreateTerrario(terra);
-                await Herramientas.UpdateEspeciesOfTerrario(_selectedTerra.Id, terraMaker.EspeciesTerrario);
+                if (terra.Id > 0)
+                {
+                    await Herramientas.UpdateEspeciesOfTerrario(_selectedTerra.Id, terraMaker.EspeciesTerrario);
+                }
                 ObtenerTerrarios();
             }
+        }
 
+        private void PgIndex_Unloaded(object sender, RoutedEventArgs e)
+        {
+            _timer?.Dispose();
         }
     }
 }

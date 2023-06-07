@@ -189,7 +189,7 @@ namespace Q_Tech.Paginas
         {
             if (!string.IsNullOrEmpty(_filename))
             {
-                Uri blobUri = new Uri($"https://qtechstorage.blob.core.windows.net/{_usuario.NombreUsuario}/profile_pic{Path.GetExtension(_filename)}");
+                Uri blobUri = new Uri($"https://qtechstorage.blob.core.windows.net/{_usuario.NombreUsuario.ToLower()}/profile_pic{Path.GetExtension(_filename)}");
                 StorageSharedKeyCredential storageCredentials = new StorageSharedKeyCredential("qtechstorage", ConfigurationManager.AppSettings["qtechstorage"].ToString());
                 BlobClient blobClient = new BlobClient(blobUri, storageCredentials);
 
