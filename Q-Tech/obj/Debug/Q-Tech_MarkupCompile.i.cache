@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\obj\Debug\
 Q_Tech
 none
 false
 DEBUG;TRACE
-C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\App.xaml
-21-9838832
+C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\App.xaml
+22-2025939681
 
-27-1756811153
-165644947402
-Modales\Dashboard.xaml;Paginas\PgIndex.xaml;Modales\Login.xaml;Paginas\PgListaEspecies.xaml;Paginas\PgListaLogros.xaml;Paginas\PgListaNotificaciones.xaml;Paginas\PgListaTerrarios.xaml;Paginas\PgTerrario.xaml;Paginas\PgUsuario.xaml;Paginas\PgUsuarioProfile.xaml;Paginas\PgListaUsuarios.xaml;Prop\FrmAddEspecie.xaml;Prop\FrmAddLogro.xaml;Prop\FrmAddObservacion.xaml;Prop\FrmAddTarea.xaml;Prop\FrmChangePassword.xaml;Prop\FrmCodeConfirmation.xaml;Prop\FrmEspecies.xaml;Prop\FrmListaObservaciones.xaml;Prop\FrmListaTareas.xaml;Prop\FrmTerraMaker.xaml;
+28-1069116980
+1651599143380
+Modales\Dashboard.xaml;Paginas\PgIndex.xaml;Modales\Login.xaml;Paginas\PgListaEspecies.xaml;Paginas\PgListaLogros.xaml;Paginas\PgListaNotificaciones.xaml;Paginas\PgListaTerrarios.xaml;Paginas\PgTerrario.xaml;Paginas\PgUsuario.xaml;Paginas\PgUsuarioProfile.xaml;Paginas\PgListaUsuarios.xaml;Prop\FrmAddEspecie.xaml;Prop\FrmAddLogro.xaml;Prop\FrmAddObservacion.xaml;Prop\FrmAddTarea.xaml;Prop\FrmChangePassword.xaml;Prop\FrmChangePasswordTerra.xaml;Prop\FrmCodeConfirmation.xaml;Prop\FrmEspecies.xaml;Prop\FrmListaObservaciones.xaml;Prop\FrmListaTareas.xaml;Prop\FrmTerraMaker.xaml;
 
 True
 

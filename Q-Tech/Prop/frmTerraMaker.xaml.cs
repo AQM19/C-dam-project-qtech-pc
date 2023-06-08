@@ -17,6 +17,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Threading.Tasks;
 
 namespace Q_Tech.Prop
 {
@@ -83,8 +84,7 @@ namespace Q_Tech.Prop
 
                 if (_terrario.Privado == 0)
                 {
-                    spPassOne.Visibility = Visibility.Hidden;
-                    spPassTwo.Visibility = Visibility.Hidden;
+                    BrdChangePass.Visibility = Visibility.Collapsed;
                 }
 
                 MostrarEspecies();
@@ -115,8 +115,7 @@ namespace Q_Tech.Prop
 
         private void chkPrivate_Click(object sender, RoutedEventArgs e)
         {
-            spPassOne.Visibility = (chkPrivate.IsChecked == true) ? Visibility.Visible : Visibility.Hidden;
-            spPassTwo.Visibility = (chkPrivate.IsChecked == true) ? Visibility.Visible : Visibility.Hidden;
+            BrdChangePass.Visibility = (chkPrivate.IsChecked == true) ? Visibility.Visible : Visibility.Hidden;
         }
 
         private void btnSave_MouseDown(object sender, MouseButtonEventArgs e)
@@ -125,15 +124,9 @@ namespace Q_Tech.Prop
             {
                 _terrario.Idusuario = _usuario.Id;
                 _terrario.Nombre = tbName.Text;
-
-                if (chkPrivate.IsChecked == true)
-                {
-                    _terrario.Privado = 1;
-                    _terrario.Contrasena = EncriptacionSHA256(pswPassOne.Password);
-                }
-
                 _terrario.Sustrato = txbSustrato.Text;
                 _terrario.Ecosistema = txbEcosistema.Text;
+                _terrario.Privado = (sbyte)(chkPrivate.IsChecked == true ? 1 : 0);
 
                 if (!string.IsNullOrEmpty(numberPicker.Text))
                 {
@@ -188,20 +181,6 @@ namespace Q_Tech.Prop
             return imgTerraPic.Source.ToString();
         }
 
-        private string EncriptacionSHA256(string psw)
-        {
-            byte[] bytes = Encoding.UTF8.GetBytes(psw);
-            string hashString = string.Empty;
-
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] hash = sha256.ComputeHash(bytes);
-                hashString = BitConverter.ToString(hash).Replace("-", "");
-            }
-
-            return hashString;
-        }
-
         private void btnCancel_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
@@ -215,16 +194,15 @@ namespace Q_Tech.Prop
                 tbName.Focus();
                 return false;
             }
-            if (chkPrivate.IsChecked == true && string.IsNullOrEmpty(pswPassOne.Password))
-            {
-                MessageBox.Show("Si el terrario es privado debería tener una contraseña", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                pswPassOne.Focus();
-                return false;
-            }
             if (!string.IsNullOrEmpty(numberPicker.Text) && int.Parse(numberPicker.Text) <= 0)
             {
                 MessageBox.Show("El terrario no puede tener un tamaño negativo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 numberPicker.Focus();
+                return false;
+            }
+            if (chkPrivate.IsChecked == true && string.IsNullOrEmpty(_terrario.Contrasena))
+            {
+                MessageBox.Show("El terrario debe tener una contraseña si es privado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -309,6 +287,15 @@ namespace Q_Tech.Prop
         {
             FrmListaTareas lista = new FrmListaTareas(_terrario.Id);
             lista.ShowDialog();
+        }
+
+        private void BrdChangePass_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            FrmChangePasswordTerra frmChangePasswordTerra = new FrmChangePasswordTerra(_terrario);
+            if (frmChangePasswordTerra.ShowDialog() == true)
+            {
+                Herramientas.UpdateTerrario(_terrario.Id, _terrario);
+            }
         }
     }
 }

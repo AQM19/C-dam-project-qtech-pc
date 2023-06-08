@@ -94,7 +94,9 @@ namespace Q_Tech.Paginas
                     Image image = new Image
                     {
                         Source = new BitmapImage(new Uri(t.Foto ?? "/Recursos/Iconos/MainIcon.png", UriKind.RelativeOrAbsolute)),
-                        Width = 75
+                        Width = 75,
+                        Height = 75,
+                        Stretch = Stretch.Uniform
                     };
                     Grid.SetColumn(image, 0);
 

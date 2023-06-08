@@ -31,7 +31,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Image Source="/Recursos/Iconos/MainIcon.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Stretch="Fill" x:Name="imgProfilePic" MouseDown="imgProfilePic_MouseDown" Cursor="Hand"/>
+            <Image Source="/Recursos/Iconos/MainIcon.png" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Stretch="Uniform" Height="100" x:Name="imgProfilePic" MouseDown="imgProfilePic_MouseDown" Cursor="Hand"/>
             <TextBlock Text="USERNAME" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" FontSize="42" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="txtUsername" Cursor="Hand"/>
             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0">
                 </StackPanel>

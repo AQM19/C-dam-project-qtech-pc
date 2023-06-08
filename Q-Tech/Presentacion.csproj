@@ -273,6 +273,9 @@
     <Compile Include="Prop\FrmChangePassword.xaml.cs">
       <DependentUpon>FrmChangePassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Prop\FrmChangePasswordTerra.xaml.cs">
+      <DependentUpon>FrmChangePasswordTerra.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Prop\FrmCodeConfirmation.xaml.cs">
       <DependentUpon>FrmCodeConfirmation.xaml</DependentUpon>
     </Compile>
@@ -363,6 +366,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Prop\FrmChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Prop\FrmChangePasswordTerra.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

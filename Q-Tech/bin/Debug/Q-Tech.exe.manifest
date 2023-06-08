@@ -97,7 +97,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>z0Sg6tDdfBTjvPTO84aK+Tb0dZ1H0aI/B6QNC+pgHL8=</dsig:DigestValue>
+        <dsig:DigestValue>QU9Sf+6KLRpD7gPZLG9ReDhXBWemrOxNuUYVTknGfzs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -234,14 +234,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Q-Tech.exe" size="1413592">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Q-Tech.exe" size="1417688">
       <assemblyIdentity name="Q-Tech" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6QS3FsMhRyWmbQh+Q3iGUJPGW64uxzC46cAfMyRxrr8=</dsig:DigestValue>
+        <dsig:DigestValue>649JPUcRT4TPIW0DKi/Hle92OUT5HM4fCEvndp2nnww=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
