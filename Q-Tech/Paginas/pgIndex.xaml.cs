@@ -82,19 +82,15 @@ namespace Q_Tech.Modales
             {
                 Lectura lectura = await Herramientas.GetLecturaActual(_selectedTerra.Id);
 
-                if (lectura != null)
+                Application.Current.Dispatcher.Invoke(() =>
                 {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        chartTemperature.Value = float.Parse(Math.Round(lectura.Temperatura, 1).ToString("F1"));
-                        chartHumid.Value = float.Parse(Math.Round(lectura.Humedad, 1).ToString("F1"));
-                        chartLight.Value = lectura.Luz * 10;
-                    });
-                }
+                    chartTemperature.Value = lectura?.Temperatura ?? 0;
+                    chartHumid.Value = lectura?.Humedad ?? 0;
+                    chartLight.Value = (lectura?.Luz ?? 0) * 10;
+                });
+
             };
         }
-
-
 
         private async void SeleccionarTerrario(Terrario terra)
         {
