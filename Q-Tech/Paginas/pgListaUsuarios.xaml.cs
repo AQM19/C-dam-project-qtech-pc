@@ -52,91 +52,176 @@ namespace Q_Tech.Paginas
                 {
                     ListViewItem listViewItem = new ListViewItem();
 
-                    StackPanel stackPanel = new StackPanel
-                    {
-                        Orientation = Orientation.Horizontal,
-                        Height = 50,
-                        Margin = new Thickness(10)
-                    };
-
-                    ImageBrush imageBrush = new ImageBrush();
-
-                    if (!string.IsNullOrEmpty(u.FotoPerfil))
-                        imageBrush.ImageSource = new BitmapImage(new Uri(u.FotoPerfil));
+                    Grid grid = new Grid();
+                    grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+                    grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(200) });
+                    grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(200) });
+                    grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
 
                     Border border = new Border
                     {
                         CornerRadius = new CornerRadius(5),
                         BorderThickness = new Thickness(0),
-                        Height = 50,
-                        Width = 50,
-                        Margin = new Thickness(0, 0, 10, 0),
-                        Background = imageBrush
+                        Height = 100,
+                        Width = 100
                     };
 
-                    StackPanel textStackPanel = new StackPanel
+                    ImageBrush imageBrush = new ImageBrush();
+                    imageBrush.ImageSource = new BitmapImage(new Uri(u.FotoPerfil));
+
+                    border.Background = imageBrush;
+                    Grid.SetColumn(border, 0);
+                    grid.Children.Add(border);
+
+                    StackPanel stackPanel = new StackPanel
                     {
                         Orientation = Orientation.Vertical,
-                        VerticalAlignment = VerticalAlignment.Center,
-                        Margin = new Thickness(10, 0, 0, 0),
-                        Width = 150
+                        Margin = new Thickness(5)
                     };
 
-                    TextBlock nameTextBlock = new TextBlock
+                    Grid.SetColumn(stackPanel, 1);
+                    grid.Children.Add(stackPanel);
+
+                    TextBlock usernameTextBlock = new TextBlock
                     {
-                        Text = u.NombreUsuario
+                        Text = u.NombreUsuario,
+                        FontSize = 18,
+                        FontWeight = FontWeights.Bold,
+                        TextTrimming = TextTrimming.WordEllipsis,
+                        TextWrapping = TextWrapping.Wrap
                     };
+
+                    stackPanel.Children.Add(usernameTextBlock);
 
                     TextBlock fullNameTextBlock = new TextBlock
                     {
-                        Text = $"{u.Nombre} {u.Apellido1} {u.Apellido2}"
+                        Text = $"{u.Nombre} {u.Apellido1} {u.Apellido2}",
+                        TextWrapping = TextWrapping.Wrap
                     };
 
-                    textStackPanel.Children.Add(nameTextBlock);
-                    textStackPanel.Children.Add(fullNameTextBlock);
+                    stackPanel.Children.Add(fullNameTextBlock);
 
 
-                    stackPanel.Children.Add(border);
-                    stackPanel.Children.Add(textStackPanel);
-
-                    if (_usuario.Perfil != "ADMIN")
+                    ComboBox comboBox = new ComboBox
                     {
-                        Border followBorder = new Border
+                        Width = 120,
+                        Padding = new Thickness(5),
+                        HorizontalAlignment = HorizontalAlignment.Right,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
+
+                    ComboBoxItem adminItem = new ComboBoxItem
+                    {
+                        Content = "Administrador",
+                        Tag = "ADMIN",
+                        IsSelected = u.Perfil.Equals("ADMIN")
+                    };
+
+                    ComboBoxItem clienteItem = new ComboBoxItem
+                    {
+                        Content = "Cliente",
+                        Tag = "CLIENTE",
+                        IsSelected = u.Perfil.Equals("CLIENTE")
+                    };
+
+                    comboBox.Items.Add(adminItem);
+                    comboBox.Items.Add(clienteItem);
+                    comboBox.Visibility = _usuario.Perfil.Equals("ADMIN") ? Visibility.Visible : Visibility.Hidden;
+
+                    comboBox.SelectionChanged += (sender, ev) => CambiarRol(u, sender);
+
+                    Grid.SetColumn(comboBox, 2);
+                    grid.Children.Add(comboBox);
+
+                    if (u.Id != _usuario.Id)
+                    {
+                        bool follow = await Herramientas.ComprobarSeguimiento(_usuario.Id, u.Id);
+
+                        if (follow == false)
                         {
-                            Margin = new Thickness(10),
-                            CornerRadius = new CornerRadius(5),
-                            VerticalAlignment = VerticalAlignment.Center,
-                            HorizontalAlignment = HorizontalAlignment.Right,
-                            Background = new SolidColorBrush(Color.FromRgb(52, 168, 83)),
-                            BorderThickness = new Thickness(0),
-                            Cursor = Cursors.Hand
-                        };
+                            Border followBorder = new Border
+                            {
+                                Margin = new Thickness(10),
+                                CornerRadius = new CornerRadius(5),
+                                VerticalAlignment = VerticalAlignment.Center,
+                                HorizontalAlignment = HorizontalAlignment.Right,
+                                Background = new SolidColorBrush(Color.FromRgb(52, 168, 83)),
+                                BorderThickness = new Thickness(0),
+                                Cursor = Cursors.Hand,
+                            };
 
-                        followBorder.MouseDown += (sender, e) => FollowUser(u);
+                            TextBlock followTextBlock = new TextBlock
+                            {
+                                Text = "Seguir",
+                                Padding = new Thickness(10),
+                                FontWeight = FontWeights.Bold,
+                                FontFamily = new FontFamily("Segoe UI"),
+                                Foreground = new SolidColorBrush(Colors.White)
+                            };
 
-                        TextBlock followTextBlock = new TextBlock
+                            followBorder.MouseDown += (sender, e) => FollowUser(u);
+
+                            followBorder.Child = followTextBlock;
+                            Grid.SetColumn(followBorder, 3);
+                            grid.Children.Add(followBorder);
+                        }
+                        else
                         {
-                            Text = "Seguir",
-                            Padding = new Thickness(10, 5, 10, 5),
-                            FontWeight = FontWeights.Bold,
-                            FontFamily = new FontFamily("Segoe UI"),
-                            Foreground = new SolidColorBrush(Colors.White)
-                        };
+                            Border unfollowBorder = new Border
+                            {
+                                Margin = new Thickness(10),
+                                CornerRadius = new CornerRadius(5),
+                                VerticalAlignment = VerticalAlignment.Center,
+                                HorizontalAlignment = HorizontalAlignment.Right,
+                                Background = new SolidColorBrush(Color.FromRgb(255, 105, 97)),
+                                BorderThickness = new Thickness(0),
+                                Cursor = Cursors.Hand,
+                            };
 
-                        followBorder.Child = followTextBlock;
-                        stackPanel.Children.Add(followBorder);
+                            TextBlock unfollowTextBlock = new TextBlock
+                            {
+                                Text = "No seguir",
+                                Padding = new Thickness(10),
+                                FontWeight = FontWeights.Bold,
+                                FontFamily = new FontFamily("Segoe UI"),
+                                Foreground = new SolidColorBrush(Colors.White)
+                            };
+
+
+                            unfollowBorder.MouseDown += (sender, e) => UnfollowUser(u);
+
+                            unfollowBorder.Child = unfollowTextBlock;
+                            Grid.SetColumn(unfollowBorder, 3);
+                            grid.Children.Add(unfollowBorder);
+                        }
                     }
 
-                    listViewItem.MouseDoubleClick += (sender, e) =>
-                    {
-                        PgUsuario pgUsuario = new PgUsuario(_usuario.Id, u, _mainFrame);
-                        _mainFrame.Content = pgUsuario;
-                    };
-
-                    listViewItem.Content = stackPanel;
+                    listViewItem.Cursor = Cursors.Arrow;
+                    listViewItem.Content = grid;
                     lvUsuarios.Items.Add(listViewItem);
                 }
             }
+        }
+
+        private async void CambiarRol(Usuario userSwappingRole, object sender)
+        {
+            ComboBox combobox = (ComboBox)sender;
+            ComboBoxItem selectedItem = (ComboBoxItem)combobox.SelectedItem;
+
+            if (selectedItem != null)
+            {
+                string selectedRole = selectedItem.Tag.ToString();
+                userSwappingRole.Perfil = selectedRole;
+
+                await Herramientas.UpdateUsuario(userSwappingRole.Id, userSwappingRole);
+                CargarUsuarios();
+            }
+        }
+
+        private async void UnfollowUser(Usuario unfollowedUser)
+        {
+            await Herramientas.UnfollowUser(_usuario.Id, unfollowedUser.Id);
+            CargarUsuarios();
         }
     }
 }

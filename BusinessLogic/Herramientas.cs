@@ -54,7 +54,7 @@ namespace BusinessLogic
             List<Usuario> usuarios = await qc.GetAsync<List<Usuario>>($"{baseEndPoint}/usuarios/q={query}");
             return usuarios;
         }
-        public static async void UpdateUsuario(long id, Usuario usuario)
+        public static async Task UpdateUsuario(long id, Usuario usuario)
         {
             QConsumer qc = new QConsumer();
             _ = await qc.UpdateAsync($"{baseEndPoint}/usuarios/{id}", usuario);

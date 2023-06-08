@@ -88,6 +88,7 @@ namespace Q_Tech.Paginas
             lvComentsList.Items.Clear();
 
             List<Visita> visitas = await Herramientas.GetVisitas(_terrario.Id);
+            if (visitas.Any(x => !string.IsNullOrEmpty(x.Comentario))) BrMessageComentarios.Visibility = Visibility.Collapsed;
 
             foreach (Visita v in visitas)
             {
@@ -168,6 +169,8 @@ namespace Q_Tech.Paginas
         {
             lvSpList.Items.Clear();
             List<Especie> list = await Herramientas.GetEspeciesTerrario(_terrario.Id);
+            if (list.Count > 0) BrMessageEspecies.Visibility = Visibility.Collapsed;
+
 
             foreach (Especie e in list)
             {
@@ -220,6 +223,7 @@ namespace Q_Tech.Paginas
         {
             lvComentsList.Visibility = Visibility.Collapsed;
             AddComment.Visibility = Visibility.Collapsed;
+            BrMessageComentarios.Visibility = Visibility.Collapsed;
             TxbComment.Visibility = Visibility.Visible;
             SaveComment.Visibility = Visibility.Visible;
         }

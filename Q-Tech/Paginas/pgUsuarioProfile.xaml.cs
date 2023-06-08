@@ -32,6 +32,7 @@ namespace Q_Tech.Paginas
     {
         private readonly Usuario _usuario;
         private string _filename;
+        private bool _imageChanged = false;
         public PgUsuarioProfile()
         {
             InitializeComponent();
@@ -181,7 +182,10 @@ namespace Q_Tech.Paginas
                 {
                     _usuario.FechaNacimiento = fecha;
                 }
-                _usuario.FotoPerfil = CambiarImagenUsuario();
+                if (_imageChanged == true)
+                {
+                    _usuario.FotoPerfil = CambiarImagenUsuario();
+                }
 
                 Herramientas.UpdateUsuario(_usuario.Id, _usuario);
             }
@@ -198,6 +202,7 @@ namespace Q_Tech.Paginas
                 FileStream fileStream = File.OpenRead(Path.GetFullPath(_filename));
                 blobClient.Upload(fileStream, true);
                 fileStream.Close();
+                _imageChanged = true;
 
                 return blobUri.ToString();
             }

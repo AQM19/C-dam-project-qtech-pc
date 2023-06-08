@@ -19,8 +19,7 @@ namespace Q_Tech.Prop
         private List<Especie> _especies;
         private string _textValue;
         private readonly DispatcherTimer debounceTimer = new DispatcherTimer();
-        private GridViewColumnHeader _lastHeaderClicked = null;
-        private ListSortDirection _lastDirection = ListSortDirection.Ascending;
+
 
         public Especie Especie { get => _especie; }
 

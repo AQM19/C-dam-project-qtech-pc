@@ -240,6 +240,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToImageConverter.cs" />
+    <Compile Include="Converters\ImageConverter.cs" />
     <Compile Include="Paginas\PgListaEspecies.xaml.cs">
       <DependentUpon>PgListaEspecies.xaml</DependentUpon>
     </Compile>
@@ -419,7 +420,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="Presentacion_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

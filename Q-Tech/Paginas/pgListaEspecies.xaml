@@ -8,10 +8,22 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="pgListaEspecies">
 
-    <Grid>
-        <ListView x:Name="lvEspecies" Background="#88FFFFFF" BorderThickness="0" Padding="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+    <Grid Background="#88FFFFFF">
+        <DockPanel LastChildFill="True" Background="Transparent">
+            
+            <Border Margin="15,10" CornerRadius="15" BorderThickness="1" BorderBrush="LightGray" DockPanel.Dock="Top">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Recursos/Iconos/lupa.png" Width="24" Margin="15,0"/>
+                    <TextBox Grid.Row="0" Padding="5" Margin="5" BorderThickness="0" Width="590" TextChanged="TextBox_TextChanged"/>
+                </StackPanel>
+            </Border>
+            
+            <ListView x:Name="lvEspecies" BorderThickness="0" Padding="10" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="Transparent"/>
+        </DockPanel>
+        
         <Border Width="32" Height="32" Background="#BDECB6" Padding="3" Margin="25" CornerRadius="5" BorderThickness="2" BorderBrush="Black" Cursor="Hand" VerticalAlignment="Bottom" HorizontalAlignment="Right" x:Name="brdAniadirEspecie" MouseDown="brdAniadirEspecie_MouseDown">
             <Image Source="/Recursos/Iconos/anadir.png" />
         </Border>
+        
     </Grid>
 </Page>

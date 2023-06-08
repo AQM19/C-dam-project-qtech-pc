@@ -3,22 +3,16 @@ using Entities;
 using Q_Tech.Prop;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 using Image = System.Windows.Controls.Image;
 using ListViewItem = System.Windows.Controls.ListViewItem;
 using Orientation = System.Windows.Controls.Orientation;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace Q_Tech.Paginas
 {
@@ -27,9 +21,16 @@ namespace Q_Tech.Paginas
     /// </summary>
     public partial class PgListaEspecies : Page
     {
+        private List<Especie> _especies;
+        private string _textValue;
+        private readonly DispatcherTimer debounceTimer = new DispatcherTimer();
         public PgListaEspecies()
         {
             InitializeComponent();
+
+            debounceTimer.Interval = TimeSpan.FromMilliseconds(500);
+            debounceTimer.Tick += DebounceTimer_Tick;
+
             CargarEspecies();
         }
 
@@ -37,7 +38,7 @@ namespace Q_Tech.Paginas
         {
             Especie sp = new Especie();
             FrmAddEspecie addEspecie = new FrmAddEspecie(sp);
-            if(addEspecie.ShowDialog() == true)
+            if (addEspecie.ShowDialog() == true)
             {
                 await Herramientas.AddEspecie(sp);
                 CargarEspecies();
@@ -46,8 +47,13 @@ namespace Q_Tech.Paginas
 
         private async void CargarEspecies()
         {
+            _especies = await Herramientas.GetEspecies();
+            MostrarEspecies(_especies);
+        }
+
+        private void MostrarEspecies(List<Especie> especies)
+        {
             lvEspecies.Items.Clear();
-            List<Especie> especies = await Herramientas.GetEspecies();
 
             foreach (Especie e in especies)
             {
@@ -143,7 +149,7 @@ namespace Q_Tech.Paginas
                 border2.MouseDown += async (sender, ev) =>
                 {
                     FrmAddEspecie frmAdd = new FrmAddEspecie(e);
-                    if(frmAdd.ShowDialog() == true)
+                    if (frmAdd.ShowDialog() == true)
                     {
                         await Herramientas.UpdateEspecie(e.Id, e);
                         CargarEspecies();
@@ -181,6 +187,27 @@ namespace Q_Tech.Paginas
                 // Agregar ListViewItem al ListView
                 lvEspecies.Items.Add(listViewItem);
             }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _textValue = ((TextBox)sender).Text;
+            debounceTimer.Stop();
+            debounceTimer.Start();
+        }
+
+        private async void DebounceTimer_Tick(object sender, EventArgs e)
+        {
+            debounceTimer.Stop();
+
+            string searchText = _textValue.ToLower();
+
+            List<Especie> especiesFiltradas = _especies.FindAll(especie =>
+                especie.Genero.ToLower().Contains(searchText) ||
+                especie.Sp.ToLower().Contains(searchText)
+            );
+
+            MostrarEspecies(especiesFiltradas);
         }
     }
 }

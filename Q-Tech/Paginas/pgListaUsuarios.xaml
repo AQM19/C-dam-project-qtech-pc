@@ -10,7 +10,52 @@
 
     <Grid>
         <ListView x:Name="lvUsuarios" Background="#88FFFFFF" BorderThickness="0" Padding="10" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-            <!--Bienvenido al mundo de la fantasía-->
+            <!--⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠤⠐⠒⠒⠂⠠⡀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠊⠀⠀⡠⢠⠂⠀⠀⠀⠡⡀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠇⠀⠀⢰⣷⣾⠀⠀⠀⠀⠀⡇⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠜⢨⠢⠔⡀⠀⠠⠘⠛⠛⠀⠀⠀⠀⢸⡇⠀
+                ⠀⠀⠀⢀⣀⣀⠀⠀⠀⠰⠀⠀⠀⠀⠡⡀⠀⠈⠀⠒⠂⠄⡀⢀⠀⡀⠀
+                ⠀⡴⠊⠀⠀⠀⠉⢆⠀⡔⢣⠀⠀⠀⠀⠐⡤⣀⠀⠀⠀⠀⠀⣀⠄⠀⠀
+                ⢸⠀⠀⠀⢠⠀⠀⠈⣼⠀⠀⠣⠀⠀⠀⡰⡀⠀⠉⠀⠀⠰⠉⠀⠁⠠⢄
+                ⢰⠀⠀⠀⠀⠇⠀⢀⢿⠀⢀⠇⡐⠀⠈⠀⠈⠐⠠⠤⠤⠤⠀⠀⠀⠀⢨
+                ⠀⢓⠤⠤⠊⠀⠀⢸⠀⠣⠀⡰⠁⠀⠀⡀⠀⠀⠀⠸⠀⢰⠁⠐⠂⠈⠁
+                ⠀⠀⠑⢀⠀⠀⠀⠈⣄⠖⠉⠑⢄⠠⠊⠀⠢⢄⣠⣃⣀⡆⠀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠑⠠⢀⣀⠎⠀⠀⠀⠈⡄⠀⠀⠀⢠⢃⠠⠃⠐⡀⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠸⠀⠀⠀⠀⢀⠯⠉⠤⢴⡃⠁⠀⠀⠀⡇⠀⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠰⡁⠀⠀⠀⠠⠂⠀⠀⠀⠀⠑⢄⠀⠀⢀⠲⠁⠀⠀⠀
+                ⠀⠀⠀⠀⠀⠀⠀⠘⠒⠑⠔⠁⠀⠀⠀⠀⠀⠀⠀⠁⠉⠀⠀⠀⠀⠀⠀-->
+            <!--<ListViewItem>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border CornerRadius="5" BorderThickness="0" Height="100" Width="100" Grid.Column="0">
+                        <Border.Background>
+                            <ImageBrush ImageSource="C:\Users\a.quintanal\Desktop\aquintanal\ProyectosPersonales\QTECH_PC\Q-Tech\Recursos\Iconos\MainIcon.png" />
+                        </Border.Background>
+                    </Border>
+
+                    <StackPanel Orientation="Vertical" Grid.Column="1" Margin="5">
+                        <TextBlock Text="USERNAME" FontSize="18" FontWeight="Bold" TextTrimming="WordEllipsis" TextWrapping="Wrap" />
+                        <TextBlock Text="Nombre Apellido1 Apellido2" TextWrapping="Wrap"/>
+                    </StackPanel>
+
+                    <ComboBox Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="120" Padding="5">
+                        <ComboBoxItem Content="Administrador" Tag="ADMIN" IsSelected="True"/>
+                        <ComboBoxItem Content="Cliente" Tag="CLIENTE" IsSelected="False"/>
+                    </ComboBox>
+
+                    <Border Margin="10" CornerRadius="5" VerticalAlignment="Center" HorizontalAlignment="Right" Background="#34A853" BorderThickness="0" Cursor="Hand" Grid.Column="3">
+                        <TextBlock Text="Seguir" Padding="10" FontWeight="Bold" FontFamily="Segoe UI" Foreground="White" />
+                    </Border>
+
+                </Grid>
+            </ListViewItem>-->
+
         </ListView>
     </Grid>
 </Page>
