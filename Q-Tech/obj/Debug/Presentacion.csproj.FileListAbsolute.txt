@@ -401,3 +401,5 @@ C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Q-Tech.app
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\bin\Debug\AccesData.dll.config
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\FrmChangePassword.g.cs
 C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\FrmChangePassword.baml
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\FrmChangePasswordTerra.g.cs
+C:\Users\aaron\OneDrive\Escritorio\PROJECTS\QTECH_PC\Q-Tech\obj\Debug\Prop\FrmChangePasswordTerra.baml
